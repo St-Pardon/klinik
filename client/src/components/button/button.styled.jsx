@@ -5,8 +5,8 @@ export const Button = styled.button`
   border-radius: 3px;
   border: 2px solid #0765fe;
   color: #0765fe;
-  margin: 0.5em 1em;
-  padding: 0.25em 1em;
+
+  padding: 0.50rem 1rem;
 
   ${(props) =>
     props.primary &&

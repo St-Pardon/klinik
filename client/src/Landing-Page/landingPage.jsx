@@ -1,65 +1,108 @@
 import { Button } from "../components/button/button.styled";
-import { Header, Main, Nav } from "./landingPage.styled";
+import {
+  Header,
+  HeroContainer,
+  HeroPara,
+  HeroText,
+  Main,
+  Nav,
+  Navlink,
+  Para,
+  SecHeading,
+  Section,
+  Service,
+  ServiceIcon,
+  ServicesContainer,
+  SubHeading,
+} from "./landingPage.styled";
+import logoDark from "../assets/logo/klinik-logo-dark.png";
+import logoLite from "../assets/logo/klinik-logo-lite.png";
+import doc from "../assets/illustration/doctors-illustration.svg";
+import { Figure, Img } from "../components/img/img.styled";
+import {
+  FaCommentMedical,
+  FaHandHoldingMedical,
+  FaNotesMedical,
+} from "react-icons/fa";
 
 const LandingPage = () => {
   return (
     <>
       <Header>
-        <h2>Klinik</h2>
+        <Figure logo>
+          <Img src={logoDark} alt="Klinik logo dark" />
+        </Figure>
         <Nav>
-          <a href="#home">
-            <h4>Home</h4>
-          </a>
-          <a href="#service">
-            <h4>Service</h4>
-          </a>
-          <a href="#doctor">
-            <h4>Doctor</h4>
-          </a>
-          <a href="#about-us">
-            <h4>About Us</h4>
-          </a>
-          <a href="#contact-us">
-            <h4>Contact Us</h4>
-          </a>
+          <Navlink href="#home">
+            <p>Home</p>
+          </Navlink>
+          <Navlink href="#service">
+            <p>Service</p>
+          </Navlink>
+          <Navlink href="#doctor">
+            <p>Doctor</p>
+          </Navlink>
+          <Navlink href="#about-us">
+            <p>About Us</p>
+          </Navlink>
+          <Navlink href="#contact-us">
+            <p>Contact Us</p>
+          </Navlink>
           <Button primary>Get Started</Button>
         </Nav>
       </Header>
       <Main>
-        <section id="home">
+        <Section home id="home">
           <div>
-            <h3>Consult A Doctor, Anytime Anywhere</h3>
-            <p>Creating healtier hospital for patients in Africa and beyond.</p>
-            <div>
+            <HeroText>
+              Consult A Doctor,
+              <br />
+              Anytime Anywhere
+            </HeroText>
+            <HeroPara>
+              Creating healtier hospital for patients in Africa and beyond.
+            </HeroPara>
+            <HeroContainer>
               <Button primary>Book Appointment</Button>
               <a href="##">
                 <p>Learn more</p>
               </a>
-            </div>
+            </HeroContainer>
           </div>
-          <figure></figure>
-        </section>
+          <Figure hero>
+            <Img src={doc} alt="undraw doctor illustration" />
+          </Figure>
+        </Section>
         <section id="service">
-          <h3>Our Services</h3>
-          <div>
-            <div>
-              <h4>Consultation</h4>
-              <p>
+          <SecHeading service>Our Services</SecHeading>
+          <ServicesContainer>
+            <Service>
+              <ServiceIcon>
+                <FaCommentMedical />
+              </ServiceIcon>
+              <SubHeading>Consultation</SubHeading>
+              <Para>
                 Access doctor via chat or video conference for fantastic
                 service.
-              </p>
-            </div>
-            <div>
-              <h4>Counselling</h4>
-              <p>One-on-one matching experience to support your well being.</p>
-            </div>
-            <div>
-              <h4>Checkup</h4>
-              <p>
+              </Para>
+            </Service>
+            <Service>
+              <ServiceIcon>
+                <FaHandHoldingMedical />
+              </ServiceIcon>
+              <SubHeading>Counselling</SubHeading>
+              <Para>
+                One-on-one matching experience to support your well being.
+              </Para>
+            </Service>
+            <Service>
+              <ServiceIcon><FaNotesMedical /></ServiceIcon>
+              <SubHeading>Checkup</SubHeading>
+              <Para>
                 Keep track of your health to identify stress related dieseas.
-              </p>
-            </div>
-          </div>
+              </Para>
+            </Service>
+          </ServicesContainer>
           <div>
             <figure></figure>
             <div>
@@ -121,7 +164,9 @@ const LandingPage = () => {
       <footer>
         <section>
           <div>
-            <h2>Klinik</h2>
+            <figure>
+              <img src={logoLite} alt="klinik logo lite" />
+            </figure>
             <p>
               Klinik is a MedTech company that is committed to creating healtier
               hospital experience for patients

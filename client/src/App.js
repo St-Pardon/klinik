@@ -1,11 +1,10 @@
 import './style.css';
+import LandingPage from './Landing-Page/landingPage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Klinik</h1>
-      </header>
+      <LandingPage />
     </div>
   );
 }
