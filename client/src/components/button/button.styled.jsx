@@ -14,4 +14,11 @@ export const Button = styled.button`
       background: #0765fe;
       color: white;
     `}
+  ${(props) =>
+    props.alt &&
+    css`
+      color: #0765fe;
+      background-color: white;
+      border-color: white;
+    `}
 `;

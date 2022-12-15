@@ -16,4 +16,12 @@ export const Figure = styled.figure`
     css`
       max-width: 500px;
     `}
+  ${(props) =>
+    props.whyus &&
+    css`
+      max-width: 500px;
+      height: 380px;
+      border-radius: 5px;
+      overflow: hidden;
+    `}
 `;

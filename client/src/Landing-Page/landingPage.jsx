@@ -1,9 +1,13 @@
 import { Button } from "../components/button/button.styled";
 import {
+  Footer,
+  FooterTop,
   Header,
   HeroContainer,
   HeroPara,
   HeroText,
+  Item,
+  Li,
   Main,
   Nav,
   Navlink,
@@ -14,10 +18,12 @@ import {
   ServiceIcon,
   ServicesContainer,
   SubHeading,
+  WhyUs,
 } from "./landingPage.styled";
 import logoDark from "../assets/logo/klinik-logo-dark.png";
 import logoLite from "../assets/logo/klinik-logo-lite.png";
 import doc from "../assets/illustration/doctors-illustration.svg";
+import img1 from "../assets/images/img1.jpg";
 import { Figure, Img } from "../components/img/img.styled";
 import {
   FaCommentMedical,
@@ -96,27 +102,31 @@ const LandingPage = () => {
               </Para>
             </Service>
             <Service>
-              <ServiceIcon><FaNotesMedical /></ServiceIcon>
+              <ServiceIcon>
+                <FaNotesMedical />
+              </ServiceIcon>
               <SubHeading>Checkup</SubHeading>
               <Para>
                 Keep track of your health to identify stress related dieseas.
               </Para>
             </Service>
           </ServicesContainer>
-          <div>
-            <figure></figure>
+          <WhyUs>
+            <Figure whyus>
+              <Img src={img1} alt="doctor showing medical report to patient" />
+            </Figure>
             <div>
-              <h4>What makes us unique?</h4>
-              <ul>
-                <li>Top qualified doctors</li>
-                <li>24/7 customer services</li>
-                <li>Guaranteed health care</li>
-                <li>Free consultation</li>
-                <li>Discount available</li>
+              <SubHeading>What makes us unique?</SubHeading>
+              <ul style={{ padding: "5px 0 15px 0" }}>
+                <Li>Top qualified doctors</Li>
+                <Li>24/7 customer services</Li>
+                <Li>Guaranteed health care</Li>
+                <Li>Free consultation</Li>
+                <Li>Discount available</Li>
               </ul>
               <Button>Get Started</Button>
             </div>
-          </div>
+          </WhyUs>
         </section>
         <section id="doctor">
           <div>
@@ -161,61 +171,68 @@ const LandingPage = () => {
           </div>
         </section>
       </Main>
-      <footer>
-        <section>
+      <Footer>
+        <FooterTop>
           <div>
-            <figure>
-              <img src={logoLite} alt="klinik logo lite" />
-            </figure>
-            <p>
-              Klinik is a MedTech company that is committed to creating healtier
-              hospital experience for patients
+            <Figure logo>
+              <Img src={logoLite} alt="klinik logo lite" />
+            </Figure>
+            <p style={{ padding: "20px 0" }}>
+              Klinik is a MedTech company that is committed to
+              <br />
+              creating healtier hospital experience for patients
             </p>
-            <Button>Book Appointment</Button>
+            <Button alt>Book Appointment</Button>
           </div>
           <div>
             <h3>Quick Link</h3>
             <nav>
-              <a href="#home">
-                <h4>Home</h4>
-              </a>
-              <a href="#service">
-                <h4>Service</h4>
-              </a>
-              <a href="#doctor">
-                <h4>Doctor</h4>
-              </a>
-              <a href="#about-us">
-                <h4>About Us</h4>
-              </a>
-              <a href="#contact-us">
-                <h4>Contact Us</h4>
-              </a>
+              <Navlink ft href="#home">
+                <Item>Home</Item>
+              </Navlink>
+              <Navlink ft href="#service">
+                <Item>Service</Item>
+              </Navlink>
+              <Navlink ft href="#doctor">
+                <Item>Doctor</Item>
+              </Navlink>
+              <Navlink ft href="#about-us">
+                <Item>About Us</Item>
+              </Navlink>
+              <Navlink ft href="#contact-us">
+                <Item>Contact Us</Item>
+              </Navlink>
             </nav>
           </div>
           <div>
             <h3>Services</h3>
-            <p>Counselling</p>
-            <p>Counsulting</p>
-            <p>Dentistry</p>
+            <Item>Counselling</Item>
+            <Item>Counsulting</Item>
+            <Item>Dentistry</Item>
           </div>
           <div>
             <h3>Support</h3>
-            <p>Help center</p>
-            <p>Terms and Condition</p>
-            <p>Privacy</p>
+            <Item>Help center</Item>
+            <Item>Terms and Condition</Item>
+            <Item>Privacy</Item>
           </div>
           <div>
             <h3>Contact</h3>
-            <p>info@klinik.com</p>
-            <p>+234 855 234 5678</p>
-            <p>somewhere in lagos</p>
-            <p>FAQ</p>
+            <Navlink ft href="mailto:info@klinik.com">
+              <Item>info@klinik.com</Item>
+            </Navlink>
+            <Navlink ft href="tel:+2348552345678">
+              <Item>+234 855 234 5678</Item>
+            </Navlink>
+            <Item>somewhere in lagos</Item>
+            <Item>FAQ</Item>
             <div></div>
           </div>
+        </FooterTop>
+        <section style={{ textAlign: "center", padding: "10px 0" }}>
+          Klinik &copy; 2022. All Right Reversed
         </section>
-        <section>Klinik &copy; 2022. All Right Reversed</section>
-      </footer>
+      </Footer>
     </>
   );
 };
