@@ -12,12 +12,10 @@ import {
   Nav,
   Navlink,
   Para,
-  SecHeading,
   Section,
   Service,
-  ServiceIcon,
+  Icon,
   ServicesContainer,
-  SubHeading,
   WhyUs,
 } from "./landingPage.styled";
 import logoDark from "../assets/logo/klinik-logo-dark.png";
@@ -30,6 +28,13 @@ import {
   FaHandHoldingMedical,
   FaNotesMedical,
 } from "react-icons/fa";
+import { IoLogoInstagram } from "react-icons/io";
+import {
+  TiSocialFacebookCircular,
+  TiSocialLinkedinCircular,
+  TiSocialTwitterCircular,
+} from "react-icons/ti";
+import { SecHeading, SubHeading } from "../components/heading/heading.component";
 
 const LandingPage = () => {
   return (
@@ -83,9 +88,9 @@ const LandingPage = () => {
           <SecHeading service>Our Services</SecHeading>
           <ServicesContainer>
             <Service>
-              <ServiceIcon>
+              <Icon service>
                 <FaCommentMedical />
-              </ServiceIcon>
+              </Icon>
               <SubHeading>Consultation</SubHeading>
               <Para>
                 Access doctor via chat or video conference for fantastic
@@ -93,18 +98,18 @@ const LandingPage = () => {
               </Para>
             </Service>
             <Service>
-              <ServiceIcon>
+              <Icon service>
                 <FaHandHoldingMedical />
-              </ServiceIcon>
+              </Icon>
               <SubHeading>Counselling</SubHeading>
               <Para>
                 One-on-one matching experience to support your well being.
               </Para>
             </Service>
             <Service>
-              <ServiceIcon>
+              <Icon service>
                 <FaNotesMedical />
-              </ServiceIcon>
+              </Icon>
               <SubHeading>Checkup</SubHeading>
               <Para>
                 Keep track of your health to identify stress related dieseas.
@@ -128,7 +133,7 @@ const LandingPage = () => {
             </div>
           </WhyUs>
         </section>
-        <section id="doctor">
+        {/* <section id="doctor">
           <div>
             <div>
               <h3>Meet our Doctors</h3>
@@ -169,7 +174,7 @@ const LandingPage = () => {
               </ul>
             </div>
           </div>
-        </section>
+        </section> */}
       </Main>
       <Footer>
         <FooterTop>
@@ -226,7 +231,20 @@ const LandingPage = () => {
             </Navlink>
             <Item>somewhere in lagos</Item>
             <Item>FAQ</Item>
-            <div></div>
+            <ServicesContainer>
+              <Icon ft>
+                <TiSocialTwitterCircular />
+              </Icon>
+              <Icon ft>
+                <TiSocialFacebookCircular />
+              </Icon>
+              <Icon ft>
+                <TiSocialLinkedinCircular />
+              </Icon>
+              <Icon ft>
+                <IoLogoInstagram />
+              </Icon>
+            </ServicesContainer>
           </div>
         </FooterTop>
         <section style={{ textAlign: "center", padding: "10px 0" }}>

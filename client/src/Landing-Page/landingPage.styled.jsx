@@ -59,15 +59,7 @@ export const HeroPara = styled.p`
   padding: 10px 0;
   color: #84878c;
 `;
-export const SecHeading = styled.h3`
-  color: #444446;
-  ${(props) =>
-    props.service &&
-    css`
-      text-align: center;
-      font-size: 1.2rem;
-    `}
-`;
+
 export const ServicesContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -80,20 +72,25 @@ export const Service = styled.div`
   border-radius: 7px;
   box-shadow: 2px 1px 8px 10px rgba(200, 200, 255, 0.25);
 `;
-export const ServiceIcon = styled.div`
-  border-radius: 5px;
-  background-color: #0765fe;
-  text-align: center;
-  color: #fff;
-  display: inline-block;
-  padding: 5px;
-  font-size: 1.3rem;
+export const Icon = styled.div`
+  ${(props) =>
+    props.service &&
+    css`
+      border-radius: 5px;
+      background-color: #0765fe;
+      text-align: center;
+      color: #fff;
+      display: inline-block;
+      padding: 5px;
+      font-size: 1.3rem;
+    `}
+  ${(props) =>
+    props.ft &&
+    css`
+      font-size: 1.5rem;
+    `}
 `;
-export const SubHeading = styled.h4`
-  color: #444446;
-  font-size: 1rem;
-  padding: 10px 0;
-`;
+
 export const Para = styled.p`
   color: #84878c;
   font-size: 0.9rem;
