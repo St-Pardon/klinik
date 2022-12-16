@@ -1,10 +1,26 @@
-# Getting Started with Create React App
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Setup
+To start up this project, 
 
-In the project directory, you can run:
+- Clone this repo
+```sh
+git clone https://github.com/standardforever/klinik.git
+```
+
+- Change directory to the `client dir`
+```sh
+cd client/
+```
+
+- Install all dependencies
+```sh
+npm install
+```
+
+After successful instllation, run the following script
 
 ### `npm start`
 
