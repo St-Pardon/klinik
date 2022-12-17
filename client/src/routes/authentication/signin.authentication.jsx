@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Link} from 'react-router-dom'
 import Switch from "../../components/switch/switch.component";
 import { MdKeyboardBackspace } from "react-icons/md";
 import {
@@ -23,7 +24,9 @@ const Signin = () => {
   return (
     <LoginContainer>
       <Section left>
-        <MdKeyboardBackspace style={{ fontSize: "1.8rem" }} />
+        <Link to='/'>
+          <MdKeyboardBackspace style={{ fontSize: "1.8rem", color: 'black' }} />
+        </Link>
       </Section>
       <Section>
         <SubHeading login>Welcome to Klinik, kindly Login</SubHeading>

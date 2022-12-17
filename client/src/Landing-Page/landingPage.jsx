@@ -1,8 +1,8 @@
 import { Button } from "../components/button/button.styled";
+import { Link } from "react-router-dom";
 import {
   Footer,
   FooterTop,
-  Header,
   HeroContainer,
   HeroPara,
   HeroText,
@@ -14,7 +14,6 @@ import {
   Para,
   Section,
   Service,
-  Icon,
   ServicesContainer,
   WhyUs,
 } from "./landingPage.styled";
@@ -34,15 +33,22 @@ import {
   TiSocialLinkedinCircular,
   TiSocialTwitterCircular,
 } from "react-icons/ti";
-import { SecHeading, SubHeading } from "../components/heading/heading.component";
+import {
+  SecHeading,
+  SubHeading,
+} from "../components/heading/heading.component";
+import { Header } from "../components/header/header.styled";
+import { Icon } from "../components/icon/icon.styled";
 
 const LandingPage = () => {
   return (
     <>
-      <Header>
-        <Figure logo>
-          <Img src={logoDark} alt="Klinik logo dark" />
-        </Figure>
+      <Header lp>
+        <Link to="/">
+          <Figure logo>
+            <Img src={logoDark} alt="Klinik logo dark" />
+          </Figure>
+        </Link>
         <Nav>
           <Navlink href="#home">
             <p>Home</p>
@@ -50,16 +56,18 @@ const LandingPage = () => {
           <Navlink href="#service">
             <p>Service</p>
           </Navlink>
-          <Navlink href="#doctor">
+          {/* <Navlink href="#doctor">
             <p>Doctor</p>
-          </Navlink>
+          </Navlink> */}
           <Navlink href="#about-us">
             <p>About Us</p>
           </Navlink>
           <Navlink href="#contact-us">
             <p>Contact Us</p>
           </Navlink>
-          <Button primary>Get Started</Button>
+          <Link to="/signin">
+            <Button primary>Get Started</Button>
+          </Link>
         </Nav>
       </Header>
       <Main>
@@ -129,7 +137,9 @@ const LandingPage = () => {
                 <Li>Free consultation</Li>
                 <Li>Discount available</Li>
               </ul>
-              <Button>Get Started</Button>
+              <Link to="/signin">
+                <Button>Get Started</Button>
+              </Link>
             </div>
           </WhyUs>
         </section>
@@ -198,9 +208,9 @@ const LandingPage = () => {
               <Navlink ft href="#service">
                 <Item>Service</Item>
               </Navlink>
-              <Navlink ft href="#doctor">
+              {/* <Navlink ft href="#doctor">
                 <Item>Doctor</Item>
-              </Navlink>
+              </Navlink> */}
               <Navlink ft href="#about-us">
                 <Item>About Us</Item>
               </Navlink>
