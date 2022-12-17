@@ -18,6 +18,11 @@ export const Icon = styled.div`
       font-size: 1.5rem;
     `}
   ${(props) =>
+    props.sb &&
+    css`
+      font-size: 2.1rem;
+    `}
+  ${(props) =>
     props.header &&
     css`
       font-size: 1.5rem;
