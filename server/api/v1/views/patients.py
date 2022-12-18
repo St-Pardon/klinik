@@ -64,7 +64,7 @@ def updatepatientprofile(id):
     req = request.get_json()
     profileDetails = profile.to_dict()
     if not profileDetails or not req:
-        abort(404)
+        abort(400)
     for key, value in req.items():
         if value == None:
             abort(404)

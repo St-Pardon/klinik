@@ -1,7 +1,7 @@
 import sqlalchemy 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
+from flask import abort
 import models
 from models.doctor_report import DoctorReport
 from models.drugs import Drugs
@@ -21,6 +21,7 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         Session = sess_factory = sessionmaker(bind=self.__engine)
         self.session = Session()
+        # print(True)
 
     # def reload(self):
     #     """Reloads data from the database"""
