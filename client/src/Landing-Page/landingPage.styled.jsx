@@ -17,13 +17,7 @@ export const Navlink = styled.a`
       color: #fff;
     `}
 `;
-export const GetStated = styled.button`
-  background-color: blue;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 7px;
-`;
+
 export const Main = styled.main`
   background-color: #f6f9ff;
 `;

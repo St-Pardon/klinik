@@ -27,7 +27,7 @@ export const Icon = styled.div`
     css`
       font-size: 1.5rem;
       box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.25), -2px -2px 6px 0 rgba(255, 255, 255, 0.3);
-      align-items: center;
+      text-align: center;
       border-radius: 100%;
       padding: 4px 7px;
     `}
