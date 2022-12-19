@@ -1,14 +1,20 @@
 """Flask Application"""
 from flask_cors import CORS
-from api.v1.views import app_views
 from flasgger import Swagger
 from  flasgger.utils import swag_from
 from flask_bcrypt import Bcrypt
 # from flask_sqlalchemy import SQLAlchemy 
 from flask import Flask, make_response, jsonify
+from api.v1.views import app_views
+
+
+
+from flask_jwt_extended import JWTManager
+
 
 """Instantiate flask object """
 app = Flask(__name__)
+
 
 """ config to return a friendly json object """
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -35,7 +41,7 @@ Swagger(app)
 app.config['SECRET_KEY'] = 'sasdjshdjfsdk'
 
 bcrypt = Bcrypt(app)
-
+jwt = JWTManager(app)
 
 @app.errorhandler(404)
 def not_found(error):
@@ -46,4 +52,6 @@ def not_found(error):
         description: a resource was not found
     """
     return make_response(jsonify({'error': "Not found"}), 404)
+
+
 
