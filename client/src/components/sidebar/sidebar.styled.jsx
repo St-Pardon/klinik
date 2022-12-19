@@ -20,6 +20,6 @@ export const IconContainer = styled.div`
   align-items: center;
   gap: 10px;
   justify-content: flex-start;
-  color: #444446;
+  // color: #444446;
   width: 200px;
 `;

@@ -9,9 +9,7 @@ const StaffDashboard = () => {
       <HeaderComponent />
       <Main>
         <Sidebar />
-        <div>
-          <Outlet />
-        </div>
+        <Outlet />
       </Main>
     </>
   );
