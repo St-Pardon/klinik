@@ -1,7 +1,10 @@
 import models
 from models.base_model import BaseModel, Base
+from models.nurse_report import NurseReport
 import sqlalchemy
 from sqlalchemy import Column, String, DateTime, ForeignKey, Text, Integer
+from sqlalchemy.orm import relationship
+
 
 class PatientDetails(BaseModel, Base):
     """Patient Details """
@@ -13,7 +16,9 @@ class PatientDetails(BaseModel, Base):
     phone = Column(String(30), nullable=False)
     file_no = Column(String(80), nullable=False)
     password = Column(String(80), nullable=False)
-
+    nurse_report = relationship("NurseReport",
+                              backref="patient",
+                              cascade="all, delete, delete-orphan")
     def __init__(self, *args, **kwargs):
         """initializes Review"""
         super().__init__(*args, **kwargs)

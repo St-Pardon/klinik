@@ -30,7 +30,6 @@ def regpatient():
     new["created_at"] = patient.created_at
     new["updated_at"] = patient.updated_at
     new["id"] = patient.id
-    print(new)
     del new["password"]
     return (make_response(jsonify(new)), 201)
 

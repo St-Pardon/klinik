@@ -6,7 +6,7 @@ from flask import abort
 from models.doctor_report import DoctorReport
 from models.drugs import Drugs
 from models.lab_report import LabReport
-from models.nurse_report import NuresReport
+from models.nurse_report import NurseReport
 from models.patient_details import PatientDetails
 from models.staff import Staff
 from models.base_model import Base, BaseModel
@@ -16,7 +16,7 @@ class DBStorage:
     """Interacts with the MYSQL database """
     __engine = None
     # session = None
-    allClass = [DoctorReport, Drugs, LabReport, NuresReport, PatientDetails, Staff]
+    allClass = [DoctorReport, Drugs, LabReport, NurseReport, PatientDetails, Staff]
     def __init__(self):
         self.__engine = create_engine('sqlite:///project.db', echo=True)
         Base.metadata.create_all(self.__engine)
