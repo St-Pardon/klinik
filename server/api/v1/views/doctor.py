@@ -8,16 +8,43 @@ from models.doctor_report import DoctorReport
 
 @app_views.route("/allPatientRecord", methods=["GET"])
 def allPatientRecord():
-    obj = [{"file_no": "details",
-    "Record": [{"doctors": "doctor", "nurse": "nurse", "lab": "labs", "chemist": "chemist"}]}]
     records = storage.session.query(PatientDetails).all()
-    # print(records)
+    # print(record[0].nurse_report[1].to_dict())
+    new = {}
+    lis = []
+    obj = {}
+    obj_lis = []
+    count = 0
     for record in records:
-        if len(record.doctorRecord) > 0:
-            print("Yes")
-        print(record.to_dict())
-    return ("yes")
-    pass
+        new[record.file_no] = {"details": record.to_dict()}
+        for nurse in record.nurse_report:
+            obj[count] = {}
+            obj[count]["nurse_record"] = nurse.to_dict()
+            if nurse.nurse_report:
+                obj[count]["doctor_record"] = nurse.nurse_report.to_dict()
+            else:
+                obj[count]["doctor_record"] =  None
+            if nurse.nurse_report and len(nurse.nurse_report.labReport) > 0:
+                obj[count]["lab_record"] = nurse.nurse_report.labReport[0].to_dict()
+            else:
+                obj[count]["lab_record"] = None
+            count += 1
+            obj_lis.append(obj)
+            del obj
+            obj = {}
+        new[record.file_no]["medical_reocrd"] = obj_lis
+        lis.append(new)
+        del obj_lis
+        del new
+        new = {}
+        obj_lis = []
+        count = 0
+      
+        
+    return (jsonify(lis))
+        
+  
+
 @app_views.route("/patient/record", methods=["POST"])
 def createPatientRecord():
     obj = {}
@@ -66,14 +93,7 @@ def createPatientRecord():
 @app_views.route("/all", methods=["GET"])
 def all():
     """Get all Patient profile Details"""
-    # lis = storage.get_all("DoctorReport")
-    # if not lis:
-    #     abort(404)
-    lis = storage.session.query(PatientDetails).all()
-    # lis = storage.session.query(PatientDetails, DoctorReport)
-    # for row in lis:
-    #     print (row[1].doctor_id)
-    print(lis[0].doctorRecord) 
+    
     return ("yes")
 
 def singlePatientRecord():
