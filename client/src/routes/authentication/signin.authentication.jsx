@@ -3,13 +3,11 @@ import {Link} from 'react-router-dom'
 import Switch from "../../components/switch/switch.component";
 import { MdKeyboardBackspace } from "react-icons/md";
 import {
-  Fieldset,
-  Form,
-  Input,
   LoginContainer,
   Section,
 } from "./signin.styled";
 import { SubHeading } from "../../components/heading/heading.component";
+import { Fieldset, Form, Input } from "../../components/form/form.styled";
 
 const Signin = () => {
   const [file_no, setFile_no] = useState("");

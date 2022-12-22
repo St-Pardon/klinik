@@ -77,7 +77,7 @@ const OverviewContainer = ({ user_type }) => {
           </SummaryWidget>
         ) : null}
       </Row>
-      <Row>
+      {/* <Row>
         {user_type !== "staff" ? (
           <SummaryWidget>
             <SubHeading>Prescription History</SubHeading>
@@ -163,7 +163,43 @@ const OverviewContainer = ({ user_type }) => {
             <SubHeading>Lab Works</SubHeading>
           </SummaryWidget>
         ) : null}
-      </Row>
+      </Row> */}
+      <div>
+        <h4>12th January 2022</h4>
+        <div>
+          <p>
+            <span>Symptoms:</span> Headache, Sores, Nauseous
+          </p>
+          <p>
+            <span>Diagnosis:</span> Typhord Fever
+          </p>
+          <p>
+            <span>Doctors Comment:</span> Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Laborum dicta adipisci accusantium
+            deserunt doloremque odio quasi voluptas, excepturi iusto dolores
+            debitis corrupti distinctio quo similique aspernatur sapiente
+            molestias eveniet ipsa.
+          </p>
+        </div>
+        <div>
+          <h4>Prescriptions</h4>
+          <p>
+            <span>Drug:</span> Paracetamol
+          </p>
+          <p>
+            <span>Dosage:</span> 2 tabs 3 times daily
+          </p>
+        </div>
+        <div>
+          <h4>Lab works</h4>
+          <p>
+            <span>Test:</span> Covid
+          </p>
+          <p>
+            <span>Result:</span> -ive
+          </p>
+        </div>
+      </div>
     </Section>
   );
 };

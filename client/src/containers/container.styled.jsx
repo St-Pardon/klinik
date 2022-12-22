@@ -13,7 +13,7 @@ export const Section = styled.section`
 
 export const Row = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
 
   ${(props) =>
     props.right &&
