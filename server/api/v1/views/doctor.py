@@ -20,12 +20,12 @@ def allPatientRecord():
         for nurse in record.nurse_report:
             obj[count] = {}
             obj[count]["nurse_record"] = nurse.to_dict()
-            if nurse.nurse_report:
-                obj[count]["doctor_record"] = nurse.nurse_report.to_dict()
+            if nurse.doctor_report:
+                obj[count]["doctor_record"] = nurse.doctor_report.to_dict()
             else:
                 obj[count]["doctor_record"] =  None
-            if nurse.nurse_report and len(nurse.nurse_report.labReport) > 0:
-                obj[count]["lab_record"] = nurse.nurse_report.labReport[0].to_dict()
+            if nurse.lab_report:
+                obj[count]["lab_record"] = nurse.lab_report.to_dict()
             else:
                 obj[count]["lab_record"] = None
             count += 1
@@ -56,16 +56,16 @@ def createPatientRecord():
     new["prescription"] = details.get("prescription")
     new["lab"] = details.get("lab")
     new["doctor_id"] = details.get("doctor_id")
-    new["nurse_id"] = details.get("nurse_id")
+    new["nurse_report"] = details.get("nurse_report")
 
     """Check if the request contains the field doctor_id and patient_id"""
-    if not new["doctor_id"] or not new["nurse_id"]:
+    if not new["doctor_id"] or not new["nurse_report"]:
         abort(400)
     
     """Check if the doctor_id and patient_id are valid in the database and if doctor record exit"""
     try:
-        obj["class_"] = new["nurse_id"].split(".")[0]
-        obj["obj"] = {"id": new["nurse_id"]}
+        obj["class_"] = new["nurse_report"].split(".")[0]
+        obj["obj"] = {"id": new["nurse_report"]}
         doc_id = storage.get_one(**obj)
 
         obj["class_"] = new["doctor_id"].split(".")[0]
@@ -73,7 +73,7 @@ def createPatientRecord():
         pat_id = storage.get_one(**obj)
 
         obj["class_"] = "DoctorReport"
-        obj["obj"] = {"nurse_id": new["nurse_id"]}
+        obj["obj"] = {"nurse_report": new["nurse_report"]}
         record = storage.get_one(**obj)
 
         if not pat_id or not doc_id or record:

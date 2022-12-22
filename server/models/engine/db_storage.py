@@ -18,7 +18,7 @@ class DBStorage:
     # session = None
     allClass = [DoctorReport, Drugs, LabReport, NurseReport, PatientDetails, Staff]
     def __init__(self):
-        self.__engine = create_engine('sqlite:///project.db', echo=True)
+        self.__engine = create_engine('sqlite:///project.db', connect_args={'check_same_thread': False},  echo=True)
         Base.metadata.create_all(self.__engine)
         Session = sess_factory = sessionmaker(bind=self.__engine)
         self.session = Session()

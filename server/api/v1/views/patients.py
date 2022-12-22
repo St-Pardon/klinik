@@ -3,11 +3,13 @@ from models import storage
 from flask import request, abort, make_response, jsonify
 from datetime import datetime
 from  api.utils import verifyDetails, hashPassword
+from flasgger.utils import swag_from
 # from models.patient_details import PatientDetails
 
 
 
 @app_views.route('/regpatient', methods=["POST"])
+@swag_from("documentation/profile/create_patient_profile.yml")
 def regpatient():
     """Register a patient to the database"""
     class_ = "PatientDetails"
@@ -35,6 +37,7 @@ def regpatient():
 
 
 @app_views.route("/allpatientprofile", methods=["GET"])
+@swag_from("documentation/profile/all_patient.yml")
 def allPatientProfile():
     """Get all Patient profile Details"""
     lis = storage.get_all("PatientDetails")

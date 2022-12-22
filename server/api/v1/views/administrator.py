@@ -5,6 +5,7 @@ from datetime import datetime
 from  api.utils import verifyDetails, hashPassword, unhashpassword, admin_required
 # from models.patient_details import PatientDetails
 # from models.staff import Staff
+from flasgger.utils import swag_from
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -12,6 +13,7 @@ from flask_jwt_extended import jwt_required
 
 
 @app_views.route("/regstaff", methods=["POST"])
+@swag_from("documentation/profile/create_staff_profile.yml")
 def regStaff():
     """Register a Staff to the database"""
     class_ = "Staff"
@@ -42,6 +44,7 @@ def regStaff():
 
 
 @app_views.route("/getprofile/<id>", methods=["GET"])
+@swag_from("documentation/profile/get_staff.yml")
 def getProfile(id):
     """Get the Patient or Staff Profile details """
     class_name = id.split('.')
@@ -50,12 +53,13 @@ def getProfile(id):
     patient = storage.get_one(**obj)
     if not patient:
         """not found request"""
-        abort(404)
+        return (make_response(jsonify({'error': "Not found"}), 404))
     obj = patient.to_dict()
     return (make_response(jsonify(obj), 200))
 
 
 @app_views.route("/allstaffprofile", methods=["GET"])
+@swag_from("documentation/profile/get_all_staff.yml")
 def allStaffProfile():
     """Get all Staff profile Details"""
     lis = storage.get_all("Staff")
@@ -67,6 +71,7 @@ def allStaffProfile():
 """ Reminder: for this route i need to check for field that 
 are unique in the database and not update them to avoid conflict"""
 @app_views.route("/updateprofile/<id>", methods=["PUT"])
+@swag_from("documentation/profile/update_profile.yml")
 def updatepatientprofile(id):
     """Update users profile"""
     class_name = id.split(".")
@@ -84,12 +89,14 @@ def updatepatientprofile(id):
             abort(400)
         if profileDetails.get(key) != value and profileDetails.get(key) != None:
             setattr(profile, key, value)
+    name = profile.to_dict()
     profile.save()
-    return(make_response(jsonify({}), 200))
+    return(make_response(jsonify(name), 201))
     
 
 
 @app_views.route("/deleteprofile/<id>", methods=["DELETE"])
+@swag_from("documentation/profile/delete_profile.yml")
 def deleteprofile(id):
     """Delete Patient or Staff profile"""
     class_lis = id.split(".")

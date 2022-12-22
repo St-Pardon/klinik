@@ -16,6 +16,14 @@ from flask_jwt_extended import JWTManager
 app = Flask(__name__)
 
 
+"""Config for swagger doc """
+app.config['SWAGGER'] = {
+    'title': 'KLINIK Restful API',
+    'uiversion': 3
+}
+
+Swagger(app)
+
 """ config to return a friendly json object """
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
@@ -25,12 +33,6 @@ app.register_blueprint(app_views)
 """ cors for /api/v1 """
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
-"""Config for swagger doc """
-app.config['SWAGGER'] = {
-    'title': 'Klinik Hospital Management System Restful API',
-    'uiversion': 1
-}
-Swagger(app)
 
 # """Config for database"""
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
