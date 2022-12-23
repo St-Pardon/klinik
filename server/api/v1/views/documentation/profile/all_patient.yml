@@ -8,6 +8,7 @@ responses:
     schema:
       type: array
       items:
+        type: object
         properties:
           address:
             type: "string"
@@ -36,6 +37,9 @@ responses:
           id:
             type: string
             example: Staff.0ac86aa1-2e9f-4ab9-9488-2b7037fb2747
+
+
+            
 
  
 

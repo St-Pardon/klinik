@@ -5,9 +5,11 @@ from flask import request, abort, make_response, jsonify
 # from  api.utils import verifyDetails, hashPassword
 from models.patient_details import PatientDetails
 from models.doctor_report import DoctorReport
+from flasgger.utils import swag_from
 
 
-@app_views.route("/nurse/record", methods=["POST"])
+@app_views.route("/nurse/createRecord", methods=["POST"])
+@swag_from("documentation/nurse/create_record.yml")
 def create_nurse_record():
     obj = {}
     new = {}

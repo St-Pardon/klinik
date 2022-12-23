@@ -4,11 +4,11 @@ from flask import request, abort, make_response, jsonify
 from datetime import datetime
 from  api.utils import verifyDetails, hashPassword
 from flasgger.utils import swag_from
-# from models.patient_details import PatientDetails
+from models.patient_details import PatientDetails
+from models.nurse_report import NurseReport
 
 
-
-@app_views.route('/regpatient', methods=["POST"])
+@app_views.route('/patient/register', methods=["POST"])
 @swag_from("documentation/profile/create_patient_profile.yml")
 def regpatient():
     """Register a patient to the database"""
@@ -36,7 +36,7 @@ def regpatient():
     return (make_response(jsonify(new)), 201)
 
 
-@app_views.route("/allpatientprofile", methods=["GET"])
+@app_views.route("/patient/all-profile", methods=["GET"])
 @swag_from("documentation/profile/all_patient.yml")
 def allPatientProfile():
     """Get all Patient profile Details"""
@@ -45,4 +45,76 @@ def allPatientProfile():
         abort(404)
     return (make_response(jsonify(lis), 200))
 
+@app_views.route("/Patient/all-Record", methods=["GET"])
+@swag_from("documentation/patient/all_patient_record.yml")
+def allPatientRecord():
+    """Get all patient records"""
+    records = storage.session.query(PatientDetails).all()
+    # print(record[0].nurse_report[1].to_dict())
+    new = {}
+    lis = []
+    obj = {}
+    obj_lis = []
+    count = 0
+    for record in records:
+        new[record.file_no] = {"details": record.to_dict()}
+        for nurse in record.nurse_report:
+            obj[count] = {}
+            obj[count]["nurse_record"] = nurse.to_dict()
+            if nurse.doctor_report:
+                obj[count]["doctor_record"] = nurse.doctor_report.to_dict()
+            else:
+                obj[count]["doctor_record"] =  None
+            if nurse.lab_report:
+                obj[count]["lab_record"] = nurse.lab_report.to_dict()
+            else:
+                obj[count]["lab_record"] = None
+            count += 1
+            obj_lis.append(obj)
+            del obj
+            obj = {}
+        new[record.file_no]["medical_reocrd"] = obj_lis
+        lis.append(new)
+        del obj_lis
+        del new
+        new = {}
+        obj_lis = []
+        count = 0      
+    return (jsonify(lis))
 
+
+@app_views.route("/patient/all-single-record/<id>", methods=["GET"])
+@swag_from("documentation/patient/single_patient_record.yml")
+def singlePatientRecord(id):
+    """Get all records for single patient"""
+    records = storage.session.query(NurseReport).filter_by(patient_id=id).all()
+    obj = {}
+    obj_lis = []
+    count = 0
+    if not records:
+        return (jsonify({"error": "Not found"}))
+    for nurse in records:
+        obj[count] = {}
+        obj[count]["nurse_record"] = nurse.to_dict()
+        if nurse.doctor_report:
+            obj[count]["doctor_record"] = nurse.doctor_report.to_dict()
+        else:
+            obj[count]["doctor_record"] =  None
+        if nurse.lab_report:
+            obj[count]["lab_record"] = nurse.lab_report.to_dict()
+        else:
+            obj[count]["lab_record"] = None
+        count += 1
+        obj_lis.append(obj)
+        del obj
+        obj = {}
+    return (jsonify(obj_lis))
+
+
+# @app_views.route("/singlePatientRecord/<id>", methods=["GET"])
+# @swag_from("documentation/patient/single_patient_record.yml")
+# def singlePatientRecord(id):
+#     """Get all records for single patient"""
+#     records = storage.session.query(NurseReport).filter_by(patient_id=id).all()
+#     obj = {}
+#     obj_lis = []

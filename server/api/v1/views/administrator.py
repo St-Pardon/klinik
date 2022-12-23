@@ -1,7 +1,7 @@
 from api.v1.views import app_views
 from models import storage
 from flask import request, abort, make_response, jsonify
-from datetime import datetime
+from datetime import datetime, time
 from  api.utils import verifyDetails, hashPassword, unhashpassword, admin_required
 # from models.patient_details import PatientDetails
 # from models.staff import Staff
@@ -72,7 +72,7 @@ def allStaffProfile():
 are unique in the database and not update them to avoid conflict"""
 @app_views.route("/updateprofile/<id>", methods=["PUT"])
 @swag_from("documentation/profile/update_profile.yml")
-def updatepatientprofile(id):
+def updatetprofile(id):
     """Update users profile"""
     class_name = id.split(".")
     class_ = class_name[0]
@@ -88,7 +88,12 @@ def updatepatientprofile(id):
         if value == None:
             abort(400)
         if profileDetails.get(key) != value and profileDetails.get(key) != None:
-            setattr(profile, key, value)
+            if key == "create_at":
+                setattr(profile, key, datetime.strptime(value, time))
+            elif key == "updated_at":
+                setattr(profile, key, datetime.strptime(value, time))
+            else:
+                setattr(profile, key, value)
     name = profile.to_dict()
     profile.save()
     return(make_response(jsonify(name), 201))
