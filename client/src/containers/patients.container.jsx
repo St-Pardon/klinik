@@ -10,7 +10,7 @@ const PatientsContainer = () => {
     <Section>
       <Row right>
         <div style={{ padding: "10px", display: "flex", gap: "20px" }}>
-          <Link to="new_patient">
+          <Link to="/dashboard/new_patient">
             <Button primary>Add new patient</Button>
           </Link>
           <Button>
@@ -36,7 +36,7 @@ const PatientsContainer = () => {
           <tbody>
             <tr>
               <td>1</td>
-              <td>Jon doe</td>
+              <Link to='/dashboard/patient_detail'><td>Jon doe</td></Link>
               <td>P20220980</td>
               <td>08099988899</td>
               <td>doe@abc.com</td>

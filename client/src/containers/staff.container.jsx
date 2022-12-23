@@ -10,7 +10,7 @@ const StaffContainer = () => {
     <Section>
       <Row right>
         <div style={{ padding: "10px", display: "flex", gap: "20px" }}>
-          <Link to='new_staff'><Button primary>Register New Staff</Button></Link>
+          <Link to='/dashboard/new_staff'><Button primary>Register New Staff</Button></Link>
           <Button>
             <FaUserEdit /> Edit
           </Button>

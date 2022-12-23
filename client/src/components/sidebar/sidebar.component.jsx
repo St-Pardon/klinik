@@ -39,6 +39,17 @@ const Sidebar = ({user_type}) => {
         </IconContainer>
       </NavLink>
       <NavLink
+        to="staff"
+        style={({ isActive }) => (isActive ? activeStyle : user_type !== "admin" ? {display: "none"} : inactiveStyle)}
+      >
+        <IconContainer>
+          <Icon sb>
+            <BsPeopleFill />
+          </Icon>
+          <p>Staff</p>
+        </IconContainer>
+      </NavLink>
+      <NavLink
         to="appointment"
         style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
       >

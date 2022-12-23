@@ -9,10 +9,8 @@ export const Menu = styled.aside`
   justify-content: flex-start;
   gap: 30px;
   padding: 50px 0 0 20px;
-    // max-width: 65px;
-    overflow: hidden;
-
-
+  // max-width: 65px;
+  overflow: hidden;
 `;
 
 export const IconContainer = styled.div`

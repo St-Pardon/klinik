@@ -7,6 +7,10 @@ import { Fieldset, Form, Input } from "../../components/form/form.styled";
 const NewStaffContainer = () => {
   return (
     <Form>
+      <Link to="/dashboard/staff">
+        {" "}
+        <MdKeyboardBackspace style={{ fontSize: "1.8rem", color: "black" }} />
+      </Link>
       <p>Fill in the staff informations</p>
       <Fieldset>
         <label htmlFor="first_name">First Name:</label>
@@ -33,14 +37,6 @@ const NewStaffContainer = () => {
         <Input type="text" id="job_title" name="job_title" placeholder="" />
       </Fieldset>
       <Fieldset>
-        <Link to="staff">
-          <Button type="btn">
-            <MdKeyboardBackspace
-              style={{ fontSize: "1.8rem", color: "black" }}
-            />{" "}
-            Back
-          </Button>
-        </Link>
         <Input submit type="submit" value="Submit" />
       </Fieldset>
     </Form>

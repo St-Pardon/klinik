@@ -8,11 +8,13 @@ import LandingPage from "./Landing-Page/landingPage";
 import OverviewContainer from "./containers/overview.container";
 import PatientsContainer from "./containers/patients.container";
 import StaffContainer from "./containers/staff.container";
-import NewPatientContainer from "./routes/registration/newPatient.container";
-import NewStaffContainer from "./routes/registration/newStaff.container";
+import NewPatientContainer from "./routes/registration/newPatient.registration";
+import NewStaffContainer from "./routes/registration/newStaff.registration";
+import PatientDetail from "./routes/Detail/patient.detail";
+import AdminDashboard from "./routes/dashboard/admin.dashboard";
 
 function App() {
-  const [user_type, setUser_type] = useState("staff");
+  const [user_type, setUser_type] = useState("admin");
   const router = createBrowserRouter([
     { path: "/", element: <LandingPage /> },
     { path: "/signin", element: <Signin getUser={setUser_type} /> },
@@ -23,6 +25,8 @@ function App() {
           <PatientDashboard />
         ) : user_type === "staff" ? (
           <StaffDashboard />
+        ) : user_type === "admin" ? (
+          <AdminDashboard />
         ) : null,
       children: [
         {
@@ -36,6 +40,10 @@ function App() {
         {
           path: "new_patient",
           element: <NewPatientContainer />,
+        },
+        {
+          path: "patient_detail",
+          element: <PatientDetail />,
         },
         {
           path: "new_staff",
