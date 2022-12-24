@@ -1,14 +1,28 @@
 """Flask Application"""
 from flask_cors import CORS
-from api.v1.views import app_views
 from flasgger import Swagger
 from  flasgger.utils import swag_from
 from flask_bcrypt import Bcrypt
 # from flask_sqlalchemy import SQLAlchemy 
 from flask import Flask, make_response, jsonify
+from api.v1.views import app_views
+
+
+
+from flask_jwt_extended import JWTManager
+
 
 """Instantiate flask object """
 app = Flask(__name__)
+
+
+"""Config for swagger doc """
+app.config['SWAGGER'] = {
+    'title': 'KLINIK Restful API',
+    'uiversion': 3
+}
+
+Swagger(app)
 
 """ config to return a friendly json object """
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -19,12 +33,6 @@ app.register_blueprint(app_views)
 """ cors for /api/v1 """
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
-"""Config for swagger doc """
-app.config['SWAGGER'] = {
-    'title': 'Klinik Hospital Management System Restful API',
-    'uiversion': 1
-}
-Swagger(app)
 
 # """Config for database"""
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -35,7 +43,7 @@ Swagger(app)
 app.config['SECRET_KEY'] = 'sasdjshdjfsdk'
 
 bcrypt = Bcrypt(app)
-
+jwt = JWTManager(app)
 
 @app.errorhandler(404)
 def not_found(error):
@@ -46,4 +54,6 @@ def not_found(error):
         description: a resource was not found
     """
     return make_response(jsonify({'error': "Not found"}), 404)
+
+
 

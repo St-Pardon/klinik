@@ -15,6 +15,7 @@ class Staff(BaseModel, Base):
     licence_no = Column(String(80), nullable=False)
     user_role = Column(String(80), nullable=False)
     reg_no = Column(String(80), nullable=False)
+    password = Column(String(80), nullable=False)
 
 
     def __init__(self, *args, **kwargs):

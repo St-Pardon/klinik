@@ -2,22 +2,23 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from flask import abort
-import models
+# import models
 from models.doctor_report import DoctorReport
 from models.drugs import Drugs
 from models.lab_report import LabReport
-from models.nurse_report import NuresReport
+from models.nurse_report import NurseReport
 from models.patient_details import PatientDetails
 from models.staff import Staff
 from models.base_model import Base, BaseModel
+
 
 class DBStorage:
     """Interacts with the MYSQL database """
     __engine = None
     # session = None
-    
+    allClass = [DoctorReport, Drugs, LabReport, NurseReport, PatientDetails, Staff]
     def __init__(self):
-        self.__engine = create_engine('sqlite:///project.db', echo=True)
+        self.__engine = create_engine('sqlite:///project.db', connect_args={'check_same_thread': False},  echo=True)
         Base.metadata.create_all(self.__engine)
         Session = sess_factory = sessionmaker(bind=self.__engine)
         self.session = Session()
@@ -32,14 +33,18 @@ class DBStorage:
     #     self.__session = Session()
 
     def get_one(self, **kwargs):
-        class_ = kwargs["class_"]
-        data = self.session.query(eval(class_)).filter_by(**kwargs["obj"]).first()
+        class_ = eval(kwargs["class_"])
+        if class_ not in self.allClass:
+            return (None)
+        data = self.session.query(class_).filter_by(**kwargs["obj"]).first()
         return (data)
 
     def new(self, **kwargs):
         """Add new object to session"""
         class_ = eval(kwargs["class_"])
-        obj = class_(**kwargs["obj"])
+        if class_ not in self.allClass:
+            return (None)
+        obj = class_(**kwargs["obj"]) 
         self.session.add(obj)
         self.session.commit()
         return (obj)
@@ -50,7 +55,7 @@ class DBStorage:
         lis = []
         patients = self.session.query(eval(args)).all()
         if not patients:
-            abort(404)
+            return (None)
         for patient in patients:
             obj = patient.to_dict()
             lis.append(obj)
@@ -61,6 +66,11 @@ class DBStorage:
 
     def save(self):
         """ Save obj to the database"""
+        self.session.commit()
+
+    def delete(self, arg):
+        """Delete record from the database"""
+        self.session.delete(arg)
         self.session.commit()
 
     def close(self):
