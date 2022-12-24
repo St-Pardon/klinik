@@ -99,7 +99,6 @@ def updatetprofile(id):
     return(make_response(jsonify(name), 201))
     
 
-
 @app_views.route("/deleteprofile/<id>", methods=["DELETE"])
 @swag_from("documentation/profile/delete_profile.yml")
 def deleteprofile(id):
