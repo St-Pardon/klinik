@@ -12,9 +12,11 @@ import NewPatientContainer from "./routes/registration/newPatient.registration";
 import NewStaffContainer from "./routes/registration/newStaff.registration";
 import PatientDetail from "./routes/Detail/patient.detail";
 import AdminDashboard from "./routes/dashboard/admin.dashboard";
+import SupportContainer from "./containers/support.container";
+import SettingsContainer from "./containers/settings.container";
 
 function App() {
-  const [user_type, setUser_type] = useState("admin");
+  const [user_type, setUser_type] = useState("staff");
   const router = createBrowserRouter([
     { path: "/", element: <LandingPage /> },
     { path: "/signin", element: <Signin getUser={setUser_type} /> },
@@ -54,8 +56,8 @@ function App() {
           element: <StaffContainer />,
         },
         { path: "appointment", element: <h3>Hello appointment</h3> },
-        { path: "settings", element: <h3>Hello settings</h3> },
-        { path: "support", element: <h3>Hello support</h3> },
+        { path: "settings", element: <SettingsContainer /> },
+        { path: "support", element: <SupportContainer /> },
       ],
     },
   ]);

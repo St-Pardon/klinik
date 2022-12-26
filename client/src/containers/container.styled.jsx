@@ -9,6 +9,12 @@ export const Section = styled.section`
   gap: 20px;
   overflow-y: scroll;
   padding: 10px;
+
+  ${(props) =>
+    props.detail &&
+    css`
+      display: block;
+    `}
 `;
 
 export const Row = styled.div`

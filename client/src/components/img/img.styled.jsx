@@ -17,6 +17,16 @@ export const Figure = styled.figure`
       max-width: 500px;
     `}
   ${(props) =>
+    props.detail &&
+    css`
+      max-width: 300px;
+      max-height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      top: -90px;
+    `}
+  ${(props) =>
     props.avi &&
     css`
       width: 60px;
