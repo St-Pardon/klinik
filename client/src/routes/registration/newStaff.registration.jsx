@@ -1,7 +1,6 @@
 import React from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Button } from "../../components/button/button.styled";
 import { Fieldset, Form, Input } from "../../components/form/form.styled";
 
 const NewStaffContainer = () => {
