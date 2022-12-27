@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Banner = styled.div`
   width: 100%;
@@ -8,7 +8,7 @@ export const Banner = styled.div`
 `;
 
 export const Div = styled.div`
-display: flex;
+  display: flex;
   ${(props) =>
     props.banner &&
     css`
@@ -26,25 +26,10 @@ display: flex;
       display: block;
       margin-bottom: 10px;
     `}
-`;
-
-export const Record = styled.div`
-  padding: 30px;
-  border-bottom: 1px solid #84878c;
-`;
-
-export const Para = styled.p`
-  padding: 4px 0;
-  color: #84878c;
-
   ${(props) =>
-    props.comment &&
+    props.icon &&
     css`
-      width: 80%;
+      gap: 7px;
+      aligb-items: center;
     `}
-`;
-
-export const Span = styled.span`
-  color: #565555;
-  font-weight: 600;
 `;
