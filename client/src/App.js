@@ -16,28 +16,61 @@ import SupportContainer from "./containers/support.container";
 import SettingsContainer from "./containers/settings.container";
 
 function App() {
-  const [user_type, setUser_type] = useState("staff");
+  const [user_type, setUser_type] = useState("");
+  const [user_role, setUser_role] = useState("");
+  const [job_type, setJob_type] = useState("");
   const router = createBrowserRouter([
     { path: "/", element: <LandingPage /> },
-    { path: "/signin", element: <Signin getUser={setUser_type} /> },
+    {
+      path: "/signin",
+      element: (
+        <Signin
+          getUser={setUser_type}
+          getUser_role={setUser_role}
+          getJob_type={setJob_type}
+        />
+      ),
+    },
     {
       path: "/dashboard",
-      element:
-        user_type === "patient" ? (
-          <PatientDashboard />
-        ) : user_type === "staff" ? (
-          <StaffDashboard />
-        ) : user_type === "admin" ? (
-          <AdminDashboard />
-        ) : null,
+      element: (
+        <PatientDashboard
+          user_type={user_type}
+          user_role={user_role}
+          job_type={job_type}
+        />
+      ),
+      // user_type === "patient" ? (
+      //   <PatientDashboard />
+      // ) : user_type === "staff" ? (
+      //   <StaffDashboard />
+      // ) : user_type === "admin" ? (
+      //   <AdminDashboard />
+      // ) : null,
       children: [
         {
+          index: true,
+          element: <h2>Welcome to your dashboard</h2>,
+        },
+        {
           path: "overview",
-          element: <OverviewContainer user_type={user_type} />,
+          element: (
+            <OverviewContainer
+              user_type={user_type}
+              user_role={user_role}
+              job_type={job_type}
+            />
+          ),
         },
         {
           path: "patients",
-          element: <PatientsContainer user_type={user_type} />,
+          element: (
+            <PatientsContainer
+              user_type={user_type}
+              user_role={user_role}
+              job_type={job_type}
+            />
+          ),
         },
         {
           path: "new_patient",
