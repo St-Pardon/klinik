@@ -1,7 +1,8 @@
 import React from "react";
 import { SubHeading } from "../components/heading/heading.component";
+import Record from "../components/record/record.component";
 import SummaryWidget from "../components/widgets/summary.widget";
-import { Section, Row, Entry } from "./container.styled";
+import { Section, Row } from "./container.styled";
 
 const OverviewContainer = ({ user_type }) => {
   return (
@@ -77,6 +78,7 @@ const OverviewContainer = ({ user_type }) => {
           </SummaryWidget>
         ) : null}
       </Row>
+      {user_type === "patient" ? <Record /> : null}
       {/* <Row>
         {user_type !== "staff" ? (
           <SummaryWidget>
@@ -164,7 +166,7 @@ const OverviewContainer = ({ user_type }) => {
           </SummaryWidget>
         ) : null}
       </Row> */}
-      <div>
+      {/* <div>
         <h4>12th January 2022</h4>
         <div>
           <p>
@@ -199,7 +201,7 @@ const OverviewContainer = ({ user_type }) => {
             <span>Result:</span> -ive
           </p>
         </div>
-      </div>
+      </div> */}
     </Section>
   );
 };
