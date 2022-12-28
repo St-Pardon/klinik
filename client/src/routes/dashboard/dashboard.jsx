@@ -4,7 +4,7 @@ import HeaderComponent from "../../components/header/header.component";
 import Sidebar from "../../components/sidebar/sidebar.component";
 import { Main } from "./dashboard.styled";
 
-const PatientDashboard = ({ user_type, user_role, job_type }) => {
+const Dashboard = ({ user_type, user_role, job_type }) => {
   return (
     <>
       <HeaderComponent />
@@ -20,4 +20,4 @@ const PatientDashboard = ({ user_type, user_role, job_type }) => {
   );
 };
 
-export default PatientDashboard;
+export default Dashboard;
