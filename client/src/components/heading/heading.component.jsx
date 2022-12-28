@@ -11,6 +11,16 @@ export const SubHeading = styled.h4`
       font-size: 1.5rem;
       text-align: center;
     `}
+  ${(props) =>
+    props.widget &&
+    css`
+      font-size: 1.2rem;
+    `}
+  ${(props) =>
+    props.bio &&
+    css`
+      padding: 5px 0;
+    `}
 `;
 
 export const SecHeading = styled.h3`

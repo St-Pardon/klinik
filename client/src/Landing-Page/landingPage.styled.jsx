@@ -1,11 +1,5 @@
 import styled, { css } from "styled-components";
 
-export const Header = styled.header`
-  background-color: unset;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
 export const Nav = styled.nav`
   align-items: center;
   display: flex;
@@ -23,13 +17,7 @@ export const Navlink = styled.a`
       color: #fff;
     `}
 `;
-export const GetStated = styled.button`
-  background-color: blue;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 7px;
-`;
+
 export const Main = styled.main`
   background-color: #f6f9ff;
 `;
@@ -71,24 +59,6 @@ export const Service = styled.div`
   width: 300px;
   border-radius: 7px;
   box-shadow: 2px 1px 8px 10px rgba(200, 200, 255, 0.25);
-`;
-export const Icon = styled.div`
-  ${(props) =>
-    props.service &&
-    css`
-      border-radius: 5px;
-      background-color: #0765fe;
-      text-align: center;
-      color: #fff;
-      display: inline-block;
-      padding: 5px;
-      font-size: 1.3rem;
-    `}
-  ${(props) =>
-    props.ft &&
-    css`
-      font-size: 1.5rem;
-    `}
 `;
 
 export const Para = styled.p`
