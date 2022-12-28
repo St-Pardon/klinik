@@ -15,6 +15,12 @@ export const Section = styled.section`
     css`
       display: block;
     `}
+  ${(props) =>
+    props.center &&
+    css`
+      justify-content: center;
+      align-items: center;
+    `}
 `;
 
 export const Row = styled.div`

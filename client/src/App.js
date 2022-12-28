@@ -13,6 +13,8 @@ import PatientDetail from "./routes/Detail/patient.detail";
 import SupportContainer from "./containers/support.container";
 import SettingsContainer from "./containers/settings.container";
 import DrugContainer from "./containers/drug.container";
+import NewDrug from "./routes/registration/newDrug.registration";
+import WelcomeDashboard from "./routes/dashboard/welcome.dashboard";
 
 function App() {
   const [user_type, setUser_type] = useState("");
@@ -42,7 +44,7 @@ function App() {
       children: [
         {
           index: true,
-          element: <h2>Welcome to your dashboard</h2>,
+          element: <WelcomeDashboard job_type={job_type} />,
         },
         {
           path: "overview",
@@ -75,6 +77,10 @@ function App() {
         {
           path: "new_staff",
           element: <NewStaffContainer />,
+        },
+        {
+          path: "new_drug",
+          element: <NewDrug />,
         },
         {
           path: "staff",

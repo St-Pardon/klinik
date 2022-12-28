@@ -40,6 +40,15 @@ export const Icon = styled.div`
       align-items: center;
     `}
     ${(props) =>
+    props.welcome &&
+    css`
+      font-size: 2rem;
+      color: #0765fe;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    `}
+    ${(props) =>
     props.add &&
     css`
       position: fixed;

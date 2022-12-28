@@ -26,7 +26,7 @@ const DrugContainer = () => {
               <Th>Manufactured Date</Th>
               <Th>Expiry Date</Th>
               <Th>Quantity</Th>
-              <Th>Amount</Th>
+              <Th>Price per unit</Th>
               <Th>Serial Number</Th>
             </tr>
           </Thead>
