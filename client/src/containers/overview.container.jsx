@@ -4,45 +4,47 @@ import Record from "../components/record/record.component";
 import SummaryWidget from "../components/widgets/summary.widget";
 import { Section, Row } from "./container.styled";
 
-const OverviewContainer = ({ user_type }) => {
+const OverviewContainer = ({ job_type, user_type }) => {
   return (
     <Section>
       <Row>
-        {/*----- widgets for patients ----- */}
-
-        {user_type !== "staff" ? (
-          <SummaryWidget>
-            <SubHeading widget>Last Diagonisis</SubHeading>
-            <p>Malaria</p>
-          </SummaryWidget>
-        ) : null}
-        {user_type !== "staff" ? (
-          <SummaryWidget>
-            <SubHeading>Next Appointment</SubHeading>
-            <p>23rd June</p>
-          </SummaryWidget>
-        ) : null}
-        {user_type !== "staff" ? (
-          <SummaryWidget>
-            <SubHeading>Last Vitals Checked</SubHeading>
-            <ul style={{ listStyle: "none" }}>
-              <li>height - 5.2"</li>
-              <li>weight - 79kg</li>
-              <li>Temperature - 45 &deg; C</li>
-              <li>BP - 124/232 bpm</li>
-            </ul>
-          </SummaryWidget>
-        ) : null}
-        {user_type !== "staff" ? (
-          <SummaryWidget>
-            <SubHeading>Doctor's Information</SubHeading>
-            <p>Name: Dr. Stephen Gerald (M.Med)</p>
-            <p>Email: Stephengerald@fmc.com</p>
-          </SummaryWidget>
-        ) : null}
+        <>
+          {/*----- widgets for patients ----- */}
+          {user_type === "patient" ? (
+            <SummaryWidget>
+              <SubHeading widget>Last Diagonisis</SubHeading>
+              <p>Malaria</p>
+            </SummaryWidget>
+          ) : null}
+          {user_type === "patient" ? (
+            <SummaryWidget>
+              <SubHeading>Next Appointment</SubHeading>
+              <p>23rd June</p>
+            </SummaryWidget>
+          ) : null}
+          {user_type === "patient" ? (
+            <SummaryWidget>
+              <SubHeading>Last Vitals Checked</SubHeading>
+              <ul style={{ listStyle: "none" }}>
+                <li>height - 5.2"</li>
+                <li>weight - 79kg</li>
+                <li>Temperature - 45 &deg; C</li>
+                <li>BP - 124/232 bpm</li>
+              </ul>
+            </SummaryWidget>
+          ) : null}
+          {user_type === "patient" ? (
+            <SummaryWidget>
+              <SubHeading>Doctor's Information</SubHeading>
+              <p>Name: Dr. Stephen Gerald (M.Med)</p>
+              <p>Email: Stephengerald@fmc.com</p>
+            </SummaryWidget>
+          ) : null}
+          {user_type === "patient" ? <Record /> : null}
+        </>
 
         {/* ----- widgets for Nurses ----- */}
-        {user_type !== "patient" ? (
+        {user_type === "staff" && job_type === "nurse" ? (
           <SummaryWidget>
             <SubHeading>Appointment Today</SubHeading>
             <p>
@@ -50,7 +52,7 @@ const OverviewContainer = ({ user_type }) => {
             </p>
           </SummaryWidget>
         ) : null}
-        {user_type !== "patient" ? (
+        {user_type === "staff" && job_type === "nurse" ? (
           <SummaryWidget>
             <SubHeading>Doctors on Duty</SubHeading>
             <p>
@@ -58,7 +60,8 @@ const OverviewContainer = ({ user_type }) => {
             </p>
           </SummaryWidget>
         ) : null}
-        {user_type !== "patient" ? (
+        {user_type === "staff" &&
+        (job_type === "nurse" || job_type === "doctor") ? (
           <SummaryWidget>
             <SubHeading>Patients Admitted</SubHeading>
             <p>
@@ -66,7 +69,8 @@ const OverviewContainer = ({ user_type }) => {
             </p>
           </SummaryWidget>
         ) : null}
-        {user_type !== "patient" ? (
+        {user_type === "staff" &&
+        (job_type === "nurse" || job_type === "doctor") ? (
           <SummaryWidget>
             <SubHeading>Processed Patients</SubHeading>
             <ul style={{ listStyle: "none" }}>
@@ -77,10 +81,74 @@ const OverviewContainer = ({ user_type }) => {
             </ul>
           </SummaryWidget>
         ) : null}
+
+        {/* Tiles for Pharamsist  */}
+        {user_type === "staff" && job_type === "pharmasist" ? (
+          <SummaryWidget>
+            <SubHeading>About to Expire</SubHeading>
+            <p>None</p>
+          </SummaryWidget>
+        ) : null}
+        {user_type === "staff" && job_type === "pharmasist" ? (
+          <SummaryWidget>
+            <SubHeading>Needs Restocking</SubHeading>
+            <ul>
+              <li>B Complex</li>
+              <li>Paracetamol</li>
+              <li>Descovite</li>
+              <li>Cellgivity</li>
+              <li>Folic Acid</li>
+            </ul>
+          </SummaryWidget>
+        ) : null}
+        {user_type === "staff" && job_type === "pharmasist" ? (
+          <SummaryWidget>
+            <SubHeading>Patient's Pickup</SubHeading>
+            <ul>
+              <li>John Akanimoh - P202200072</li>
+              <li>Tracy Murphy - P2022000876</li>
+              <li>Funsho Akerele - P2022000725</li>
+              <li>Michael Issac - P2022000087</li>
+              <li>Ejike Osuawku - P2022000011</li>
+            </ul>
+          </SummaryWidget>
+        ) : null}
+        {user_type === "staff" && job_type === "pharmasist" ? (
+          <SummaryWidget>
+            <SubHeading>Something</SubHeading>
+          </SummaryWidget>
+        ) : null}
+        {user_type === "staff" && job_type === "chemist" ? (
+          <SummaryWidget>
+            <SubHeading>Sample Collection</SubHeading>
+            <ul>
+              <li>John Akanimoh - P202200072</li>
+              <li>Tracy Murphy - P2022000876</li>
+              <li>Funsho Akerele - P2022000725</li>
+              <li>Michael Issac - P2022000087</li>
+              <li>Ejike Osuawku - P2022000011</li>
+            </ul>
+          </SummaryWidget>
+        ) : null}
+        {user_type === "staff" && job_type === "chemist" ? (
+          <SummaryWidget>
+            <SubHeading>Results to Dispatch</SubHeading>
+            <ul>
+              <li>John Akanimoh - P202200072</li>
+              <li>Tracy Murphy - P2022000876</li>
+              <li>Funsho Akerele - P2022000725</li>            
+            </ul>
+          </SummaryWidget>
+        ) : null}
+        {user_type === "staff" && job_type === "chemist" ? (
+          <SummaryWidget>
+            <SubHeading>Processing</SubHeading>
+            <p>None</p>
+          </SummaryWidget>
+        ) : null}
       </Row>
-      {user_type === "patient" ? <Record /> : null}
       {/* <Row>
-        {user_type !== "staff" ? (
+        {job_type !== "staff" ? (
           <SummaryWidget>
             <SubHeading>Prescription History</SubHeading>
             <Entry>
@@ -107,7 +175,7 @@ const OverviewContainer = ({ user_type }) => {
             </Entry>
           </SummaryWidget>
         ) : null}
-        {user_type !== "staff" ? (
+        {job_type !== "staff" ? (
           <SummaryWidget>
             <SubHeading>Doctor's Entry</SubHeading>
             <Entry>
@@ -160,7 +228,7 @@ const OverviewContainer = ({ user_type }) => {
             </Entry>
           </SummaryWidget>
         ) : null}
-        {user_type !== "staff" ? (
+        {job_type !== "staff" ? (
           <SummaryWidget>
             <SubHeading>Lab Works</SubHeading>
           </SummaryWidget>
