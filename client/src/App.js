@@ -15,6 +15,7 @@ import SettingsContainer from "./containers/settings.container";
 import DrugContainer from "./containers/drug.container";
 import NewDrug from "./routes/registration/newDrug.registration";
 import WelcomeDashboard from "./routes/dashboard/welcome.dashboard";
+import UserProfile from "./routes/profile/user.profile";
 
 function App() {
   const [user_type, setUser_type] = useState("");
@@ -29,6 +30,14 @@ function App() {
           getUser={setUser_type}
           getUser_role={setUser_role}
           getJob_type={setJob_type}
+        />
+      ),
+    },
+    {
+      path: "/profile",
+      element: (
+        <UserProfile
+          getUser={setUser_type}
         />
       ),
     },
