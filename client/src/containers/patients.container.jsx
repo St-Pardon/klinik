@@ -36,7 +36,7 @@ const PatientsContainer = () => {
           <tbody>
             <tr>
               <td>1</td>
-              <Link to='/dashboard/patient_detail'><td>Jon doe</td></Link>
+              <td><Link to='/dashboard/patient_detail'>Jon doe</Link></td>
               <td>P20220980</td>
               <td>08099988899</td>
               <td>doe@abc.com</td>

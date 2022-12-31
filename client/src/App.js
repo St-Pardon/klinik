@@ -16,6 +16,7 @@ import DrugContainer from "./containers/drug.container";
 import NewDrug from "./routes/registration/newDrug.registration";
 import WelcomeDashboard from "./routes/dashboard/welcome.dashboard";
 import UserProfile from "./routes/profile/user.profile";
+import StaffDetail from "./routes/Detail/staff.detail";
 
 function App() {
   const [user_type, setUser_type] = useState("");
@@ -82,6 +83,10 @@ function App() {
         {
           path: "patient_detail",
           element: <PatientDetail />,
+        },
+        {
+          path: "staff_detail",
+          element: <StaffDetail />,
         },
         {
           path: "new_staff",

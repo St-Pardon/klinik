@@ -21,6 +21,12 @@ export const SubHeading = styled.h4`
     css`
       padding: 5px 0;
     `}
+    ${(props) =>
+    props.profile &&
+    css`
+      color: #0765fe;
+      font-size: 1.3rem;
+    `}
 `;
 
 export const SecHeading = styled.h3`
@@ -30,5 +36,12 @@ export const SecHeading = styled.h3`
     css`
       text-align: center;
       font-size: 1.2rem;
+    `}
+  ${(props) =>
+    props.name &&
+    css`
+      color: #0765fe;
+      padding: 15px 0 0 0;
+      font-size: 2rem;
     `}
 `;
