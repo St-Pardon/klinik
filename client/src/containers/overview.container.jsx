@@ -8,7 +8,7 @@ const OverviewContainer = ({ job_type, user_type }) => {
   return (
     <Section>
       <Row>
-        <>
+        
           {/*----- widgets for patients ----- */}
           {user_type === "patient" ? (
             <SummaryWidget>
@@ -40,8 +40,7 @@ const OverviewContainer = ({ job_type, user_type }) => {
               <p>Email: Stephengerald@fmc.com</p>
             </SummaryWidget>
           ) : null}
-          {user_type === "patient" ? <Record /> : null}
-        </>
+        
 
         {/* ----- widgets for Nurses ----- */}
         {user_type === "staff" && job_type === "nurse" ? (
@@ -147,6 +146,8 @@ const OverviewContainer = ({ job_type, user_type }) => {
           </SummaryWidget>
         ) : null}
       </Row>
+          {user_type === "patient" ? <Record /> : null}
+
       {/* <Row>
         {job_type !== "staff" ? (
           <SummaryWidget>
