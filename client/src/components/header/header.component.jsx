@@ -13,7 +13,9 @@ const HeaderComponent = () => {
   return (
     <Header dashboard>
       <Figure logo>
-        <Img src={img} alt="Klinik logo" />
+        <Link to="/dashboard">
+          <Img src={img} alt="Klinik logo" />
+        </Link>
       </Figure>
       <Nav>
         <Icon header>
@@ -30,10 +32,10 @@ const HeaderComponent = () => {
         </Nav>
         {open ? (
           <Dropdown>
-            <Link to="/profile" onClick={() => setOpen(!open)} >
+            <Link to="/profile" onClick={() => setOpen(!open)}>
               <p>Profile</p>
             </Link>
-            <Link to="/signout" onClick={() => setOpen(!open)} >
+            <Link to="/signout" onClick={() => setOpen(!open)}>
               <p>Sign Out</p>
             </Link>
           </Dropdown>

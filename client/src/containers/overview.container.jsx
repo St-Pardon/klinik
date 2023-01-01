@@ -2,7 +2,7 @@ import React from "react";
 import { SubHeading } from "../components/heading/heading.component";
 import Record from "../components/record/record.component";
 import SummaryWidget from "../components/widgets/summary.widget";
-import { Section, Row } from "./container.styled";
+import { Section, Row, Ul } from "./container.styled";
 
 const OverviewContainer = ({ job_type, user_type }) => {
   return (
@@ -72,12 +72,12 @@ const OverviewContainer = ({ job_type, user_type }) => {
         (job_type === "nurse" || job_type === "doctor") ? (
           <SummaryWidget>
             <SubHeading>Processed Patients</SubHeading>
-            <ul style={{ listStyle: "none" }}>
+            <Ul>
               <li>John Snow</li>
               <li>Tormound Gaintsbane</li>
               <li>Bruce Wayne</li>
               <li>Chole Sullivan</li>
-            </ul>
+            </Ul>
           </SummaryWidget>
         ) : null}
 
@@ -91,25 +91,25 @@ const OverviewContainer = ({ job_type, user_type }) => {
         {user_type === "staff" && job_type === "pharmasist" ? (
           <SummaryWidget>
             <SubHeading>Needs Restocking</SubHeading>
-            <ul>
+            <Ul>
               <li>B Complex</li>
               <li>Paracetamol</li>
               <li>Descovite</li>
               <li>Cellgivity</li>
               <li>Folic Acid</li>
-            </ul>
+            </Ul>
           </SummaryWidget>
         ) : null}
         {user_type === "staff" && job_type === "pharmasist" ? (
           <SummaryWidget>
             <SubHeading>Patient's Pickup</SubHeading>
-            <ul>
+            <Ul>
               <li>John Akanimoh - P202200072</li>
               <li>Tracy Murphy - P2022000876</li>
               <li>Funsho Akerele - P2022000725</li>
               <li>Michael Issac - P2022000087</li>
               <li>Ejike Osuawku - P2022000011</li>
-            </ul>
+            </Ul>
           </SummaryWidget>
         ) : null}
         {user_type === "staff" && job_type === "pharmasist" ? (
@@ -120,23 +120,23 @@ const OverviewContainer = ({ job_type, user_type }) => {
         {user_type === "staff" && job_type === "chemist" ? (
           <SummaryWidget>
             <SubHeading>Sample Collection</SubHeading>
-            <ul>
+            <Ul>
               <li>John Akanimoh - P202200072</li>
               <li>Tracy Murphy - P2022000876</li>
               <li>Funsho Akerele - P2022000725</li>
               <li>Michael Issac - P2022000087</li>
               <li>Ejike Osuawku - P2022000011</li>
-            </ul>
+            </Ul>
           </SummaryWidget>
         ) : null}
         {user_type === "staff" && job_type === "chemist" ? (
           <SummaryWidget>
             <SubHeading>Results to Dispatch</SubHeading>
-            <ul>
+            <Ul>
               <li>John Akanimoh - P202200072</li>
               <li>Tracy Murphy - P2022000876</li>
               <li>Funsho Akerele - P2022000725</li>            
-            </ul>
+            </Ul>
           </SummaryWidget>
         ) : null}
         {user_type === "staff" && job_type === "chemist" ? (
