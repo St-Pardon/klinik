@@ -17,6 +17,9 @@ import NewDrug from "./routes/registration/newDrug.registration";
 import WelcomeDashboard from "./routes/dashboard/welcome.dashboard";
 import UserProfile from "./routes/profile/user.profile";
 import StaffDetail from "./routes/Detail/staff.detail";
+import AppointmentScheduler from "./components/scheduler/appointment.scheduler";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function App() {
   const [user_type, setUser_type] = useState("");
@@ -36,11 +39,7 @@ function App() {
     },
     {
       path: "/profile",
-      element: (
-        <UserProfile
-          getUser={setUser_type}
-        />
-      ),
+      element: <UserProfile getUser={setUser_type} />,
     },
     {
       path: "/dashboard",
@@ -104,14 +103,21 @@ function App() {
           path: "drugs",
           element: <DrugContainer />,
         },
-        { path: "appointment", element: <h3>Hello appointment</h3> },
+        { path: "appointment", element: <AppointmentScheduler /> },
         { path: "settings", element: <SettingsContainer /> },
         { path: "support", element: <SupportContainer /> },
       ],
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  const queryClient = new QueryClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />;
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

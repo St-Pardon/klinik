@@ -19,10 +19,10 @@ const HeaderComponent = () => {
       </Figure>
       <Nav>
         <Icon header>
-          <BsQuestion />
+          <BsQuestion title="help" />
         </Icon>
         <Icon header>
-          <IoMdNotificationsOutline />
+          <IoMdNotificationsOutline title="notification" />
         </Icon>
         <Nav avatar onClick={() => setOpen(!open)}>
           <Figure avi>
