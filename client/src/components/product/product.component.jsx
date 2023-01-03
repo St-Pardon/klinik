@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Figure, Img } from "../img/img.styled";
-import vid from '../../assets/demo.demo.webm'
+import vid from '../../assets/demo/demo.webm'
 
 const ProductComponent = () => {
   const [isDown, setIsDown] = useState(false);
