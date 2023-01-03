@@ -26,7 +26,7 @@ const ProductComponent = () => {
         slider1.current.scrollLeft = scrollLeft - walk;
       }}
     >
-      <video controls>
+      <video controls width="100%" style={{display: "block", maxWidth: "1000px", margin: "20px auto"}}>
         <source src={vid} type="video/webm" />
         not compartible
       </video>
