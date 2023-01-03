@@ -92,11 +92,11 @@ const LandingPage = () => {
           </Figure>
         </Section>
         <Section peek>
-          <SecHeading service>Take a Peek</SecHeading>
+          <SecHeading peek>Take a Peek</SecHeading>
           <ProductComponent />
         </Section>
         <section id="service">
-          <SecHeading service>Our Services</SecHeading>
+          <SecHeading center>Our Services</SecHeading>
           <ServicesContainer>
             <Service>
               <Icon service>
@@ -146,18 +146,19 @@ const LandingPage = () => {
             </div>
           </WhyUs>
         </section>
-        <section id="#about-us">
-          <SecHeading>About Us</SecHeading>
-          <p>
+        <section id="about-us" style={{ margin: "50px 0" }}>
+          <SecHeading center>About Us</SecHeading>
+          <Para about>
             Inspired by the need to transform the hospital system from the
             card-file technique which is not only slow but often lead to loss of
-            medical records, we came up with the web app to fix that problem and
-            help local and under funded hospital properly manage patient records
-            and information
-          </p>
-
-          <SecHeading>Meet The Team</SecHeading>
-          <TeamComponent />
+            medical records, we came up with this web app to fix that problem
+            and help local and under funded hospital around Afica and other 3rd
+            world properly manage patient records and information
+          </Para>
+          <div style={{ margin: "50px 0" }}>
+            <SecHeading center>Meet The Team</SecHeading>
+            <TeamComponent />
+          </div>
         </section>
       </Main>
       <Footer>
@@ -171,7 +172,7 @@ const LandingPage = () => {
               <br />
               creating healtier hospital experience for patients
             </p>
-            <Button alt>Book Appointment</Button>
+            <Button alt>Request Demo</Button>
           </div>
           <div>
             <h3>Quick Link</h3>

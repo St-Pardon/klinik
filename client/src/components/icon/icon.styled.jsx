@@ -49,6 +49,16 @@ export const Icon = styled.div`
       align-items: center;
     `}
     ${(props) =>
+    props.team &&
+    css`
+      font-size: 1.4rem;
+      color: #0765fe;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      margin: 20px auto;
+    `}
+    ${(props) =>
     props.add &&
     css`
       position: fixed;

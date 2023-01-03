@@ -31,11 +31,17 @@ export const SubHeading = styled.h4`
 
 export const SecHeading = styled.h3`
   color: #444446;
+  font-size: 1.2rem;
   ${(props) =>
-    props.service &&
+    props.center &&
     css`
       text-align: center;
-      font-size: 1.2rem;
+    `}
+  ${(props) =>
+    props.peek &&
+    css`
+      text-align: center;
+      color: #FFF;
     `}
   ${(props) =>
     props.name &&

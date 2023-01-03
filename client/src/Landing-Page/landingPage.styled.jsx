@@ -69,6 +69,14 @@ export const Service = styled.div`
 export const Para = styled.p`
   color: #84878c;
   font-size: 0.9rem;
+
+   ${(props) =>
+    props.about &&
+    css`
+      max-width: 700px;
+      width: 100%; 
+      margin: 20px auto
+    `}
 `;
 
 export const WhyUs = styled.div`
