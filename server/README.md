@@ -72,5 +72,5 @@ Follow these steps to setup and run server
 ```
 - ***NOTE:*** Whenever you install a new package to the project run to add the installed package to the requirements.txt
 ```
-	pip freeze --local requirements.txt
+	pip freeze --local > requirements.txt
 ```
