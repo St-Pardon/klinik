@@ -31,6 +31,11 @@ export const Section = styled.section`
       justify-content: space-around;
       align-items: center;
     `}
+  ${(props) =>
+    props.peek &&
+    css`
+      background-color: #0765fe;
+    `}
 `;
 export const HeroContainer = styled.div`
   display: flex;
