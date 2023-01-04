@@ -27,6 +27,13 @@ export const Div = styled.div`
       margin-bottom: 10px;
     `}
   ${(props) =>
+    props.profile &&
+    css`
+      display: block;
+      border-top: 1px solid #444446;
+      margin-bottom: 20px;
+    `}
+  ${(props) =>
     props.icon &&
     css`
       gap: 7px;

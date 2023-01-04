@@ -26,6 +26,7 @@ const PatientsContainer = () => {
               <Th>Name</Th>
               <Th>File No</Th>
               <Th>Phone No</Th>
+              <Th>Email</Th>
               <Th>Address</Th>
               <Th>Last Checkup</Th>
               <Th>Primary Doctor</Th>
@@ -36,27 +37,43 @@ const PatientsContainer = () => {
           <tbody>
             <tr>
               <td>1</td>
-              <Link to='/dashboard/patient_detail'><td>Jon doe</td></Link>
-              <td>P20220980</td>
+              <td>
+                <Link to="/dashboard/patient_detail">Jon doe</Link>
+              </td>
+              <td>P202200000</td>
               <td>08099988899</td>
               <td>doe@abc.com</td>
-              <td></td>
+              <td>543 livento street</td>
+              <td>12 June 2022</td>
+              <td>Dr. Joseph Pope</td>
+              <td>Jane Doe</td>
+              <td>08027162632</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Jon doe</td>
-              <td>P20220980</td>
-              <td>08099988899</td>
-              <td>doe@abc.com</td>
-              <td></td>
+              <td>
+                <Link to="/dashboard/patient_detail">Mike Tyson</Link>
+              </td>
+              <td>P2022000001</td>
+              <td>08099988563</td>
+              <td>tyson@abc.com</td>
+              <td>5 jojoba street</td>
+              <td>1 Sept 2022</td>
+              <td>Dr. Emmanuel Price</td>
+              <td>Jane Tyson</td>
+              <td>08027162689</td>
             </tr>
             <tr>
               <td>3</td>
-              <td>Jon doe</td>
-              <td>P20220980</td>
-              <td>08099988899</td>
-              <td>doe@abc.com</td>
-              <td></td>
+              <td>Tim crook</td>
+              <td>P202200003</td>
+              <td>0809998962</td>
+              <td>tim@abc.com</td>
+              <td>43 papi street</td>
+              <td>11 Dec 2022</td>
+              <td>Dr. Mike Henry</td>
+              <td>Jane Henry</td>
+              <td>08027162612</td>
             </tr>
           </tbody>
         </Table>

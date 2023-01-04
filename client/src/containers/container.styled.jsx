@@ -1,4 +1,4 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Section = styled.section`
   display: flex;
@@ -52,4 +52,9 @@ export const Thead = styled.thead`
 
 export const Th = styled.th`
   padding: 8px;
+`;
+
+export const Ul = styled.ul`
+  padding-left: 30px;
+  text-align: left;
 `;

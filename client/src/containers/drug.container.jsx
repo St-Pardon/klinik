@@ -25,6 +25,7 @@ const DrugContainer = () => {
               <Th>Name</Th>
               <Th>Manufactured Date</Th>
               <Th>Expiry Date</Th>
+              <Th>Nafdac Approved</Th>
               <Th>Quantity</Th>
               <Th>Price per unit</Th>
               <Th>Serial Number</Th>
@@ -36,6 +37,7 @@ const DrugContainer = () => {
               <Link to='/dashboard/drug_detail'><td>Paracetamol</td></Link>
               <td>08/2020</td>
               <td>12/2024</td>
+              <td>true</td>
               <td>1000</td>
               <td>250 NGN</td>
               <td>232464657DSB6392</td>
@@ -45,6 +47,7 @@ const DrugContainer = () => {
               <Link to='/dashboard/drug_detail'><td>Amateen</td></Link>
               <td>08/2017</td>
               <td>12/2023</td>
+              <td>false</td>
               <td>730</td>
               <td>600 NGN</td>
               <td>275464657DSB6392</td>
