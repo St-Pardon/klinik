@@ -34,8 +34,8 @@ const StaffContainer = () => {
           <tbody>
             <tr>
               <td>1</td>
-              <td>Jon doe</td>
-              <td>S20220980</td>
+              <td><Link to='/dashboard/staff_detail'>Jon doe</Link></td>
+              <td>S20220000</td>
               <td>08099988899</td>
               <td>doe@abc.com</td>
               <td>27353 levigon avenue</td>
@@ -45,11 +45,11 @@ const StaffContainer = () => {
             </tr>
             <tr>
               <td>2</td>
-              <td>Jon doe</td>
-              <td>P20220980</td>
-              <td>08099988899</td>
-              <td>doe@abc.com</td>
-              <td>27353 levigon avenue</td>
+              <td><Link to='/dashboard/staff_detail'>Diana Prince</Link></td>
+              <td>S202200001</td>
+              <td>08099112343</td>
+              <td>diana@abc.com</td>
+              <td>27 kings avenue</td>
               <td>Nurse</td>
               <td>Admin</td>
               <td>Off Duty</td>

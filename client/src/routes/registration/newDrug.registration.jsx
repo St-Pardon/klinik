@@ -1,7 +1,7 @@
 import React from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { Fieldset, Form, Input } from "../../components/form/form.styled";
+import { Fieldset, Form, Input, Select } from "../../components/form/form.styled";
 import { Section } from "../../containers/container.styled";
 
 const NewDrug = () => {
@@ -34,6 +34,14 @@ const NewDrug = () => {
         <Fieldset>
           <label htmlFor="manufactured_date">Manufactured Date:</label>
           <Input type="date" id="manufactured_date" name="manufactured_date" />
+        </Fieldset>
+        <Fieldset>
+          <label htmlFor="nafdac_approved">Nafdac Approved:</label>
+          <Select type="date" id="nafdac_approved" name="nafdac_approved">
+            <option value="" selected disabled>- - - Select Nafdac Status - - -</option>
+            <option value="true">Approved</option>
+            <option value="false">Not Approved</option>
+          </Select>
         </Fieldset>
         <Fieldset>
           <label htmlFor="expiry_date">Expiry Date:</label>

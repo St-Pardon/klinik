@@ -31,6 +31,11 @@ export const Section = styled.section`
       justify-content: space-around;
       align-items: center;
     `}
+  ${(props) =>
+    props.peek &&
+    css`
+      background-color: #0765fe;
+    `}
 `;
 export const HeroContainer = styled.div`
   display: flex;
@@ -64,6 +69,14 @@ export const Service = styled.div`
 export const Para = styled.p`
   color: #84878c;
   font-size: 0.9rem;
+
+   ${(props) =>
+    props.about &&
+    css`
+      max-width: 700px;
+      width: 100%; 
+      margin: 20px auto
+    `}
 `;
 
 export const WhyUs = styled.div`

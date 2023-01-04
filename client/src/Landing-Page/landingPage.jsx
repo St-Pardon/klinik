@@ -39,6 +39,8 @@ import {
 } from "../components/heading/heading.component";
 import { Header } from "../components/header/header.styled";
 import { Icon } from "../components/icon/icon.styled";
+import TeamComponent from "../components/team/team.component";
+import ProductComponent from "../components/product/product.component";
 
 const LandingPage = () => {
   return (
@@ -56,9 +58,6 @@ const LandingPage = () => {
           <Navlink href="#service">
             <p>Service</p>
           </Navlink>
-          {/* <Navlink href="#doctor">
-            <p>Doctor</p>
-          </Navlink> */}
           <Navlink href="#about-us">
             <p>About Us</p>
           </Navlink>
@@ -74,16 +73,16 @@ const LandingPage = () => {
         <Section home id="home">
           <div>
             <HeroText>
-              Consult A Doctor,
+              Access your Medical Record,
               <br />
               Anytime Anywhere
             </HeroText>
             <HeroPara>
-              Creating healtier hospital for patients in Africa and beyond.
+              Creating faster hospital access for patients in Africa and beyond.
             </HeroPara>
             <HeroContainer>
-              <Button primary>Book Appointment</Button>
-              <a href="##">
+              <Button primary>Request Demo</Button>
+              <a href="#about-us">
                 <p>Learn more</p>
               </a>
             </HeroContainer>
@@ -92,8 +91,12 @@ const LandingPage = () => {
             <Img src={doc} alt="undraw doctor illustration" />
           </Figure>
         </Section>
+        <Section peek>
+          <SecHeading peek>Take a Peek</SecHeading>
+          <ProductComponent />
+        </Section>
         <section id="service">
-          <SecHeading service>Our Services</SecHeading>
+          <SecHeading center>Our Services</SecHeading>
           <ServicesContainer>
             <Service>
               <Icon service>
@@ -143,48 +146,20 @@ const LandingPage = () => {
             </div>
           </WhyUs>
         </section>
-        {/* <section id="doctor">
-          <div>
-            <div>
-              <h3>Meet our Doctors</h3>
-              <p>
-                Start an online conversation with a using an end-to-end
-                encrypted platform
-              </p>
-              <Button primary>Start a conversation</Button>
-            </div>
-            <div>
-              <figure></figure>
-              <figure></figure>
-              <figure></figure>
-              <figure></figure>
-            </div>
+        <section id="about-us" style={{ margin: "50px 0" }}>
+          <SecHeading center>About Us</SecHeading>
+          <Para about>
+            Inspired by the need to transform the hospital system from the
+            card-file technique which is not only slow but often lead to loss of
+            medical records, we came up with this web app to fix that problem
+            and help local and under funded hospital around Afica and other 3rd
+            world properly manage patient records and information
+          </Para>
+          <div style={{ margin: "50px 0" }}>
+            <SecHeading center>Meet The Team</SecHeading>
+            <TeamComponent />
           </div>
-          <div>
-            <h3>Hear from our patients</h3>
-            <div>
-              <ul>
-                <li>
-                  <div></div>
-                  <div>
-                    <figure></figure>
-                    <div>
-                      <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Veniam minima fugit dignissimos. Fugiat, quos.
-                        Ipsum illum vitae amet dicta officia sapiente
-                        consequatur placeat, repellendus ducimus eum fugiat
-                        numquam quisquam nihil.
-                      </p>
-                      <h4>Diane Simmens</h4>
-                      <p>Pharmasist</p>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section> */}
+        </section>
       </Main>
       <Footer>
         <FooterTop>
@@ -197,7 +172,7 @@ const LandingPage = () => {
               <br />
               creating healtier hospital experience for patients
             </p>
-            <Button alt>Book Appointment</Button>
+            <Button alt>Request Demo</Button>
           </div>
           <div>
             <h3>Quick Link</h3>
@@ -208,9 +183,6 @@ const LandingPage = () => {
               <Navlink ft href="#service">
                 <Item>Service</Item>
               </Navlink>
-              {/* <Navlink ft href="#doctor">
-                <Item>Doctor</Item>
-              </Navlink> */}
               <Navlink ft href="#about-us">
                 <Item>About Us</Item>
               </Navlink>
