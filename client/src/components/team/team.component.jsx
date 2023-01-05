@@ -50,10 +50,10 @@ const TeamComponent = () => {
             >
               <FaGithub title="Github" />
             </a>
-            <a href="https://linkedin.com/" target="_blank" rel="noreferrer">
+            <a href="https://linkedin.com/in/ibukunoluwa-dawodu-75bb9619b" target="_blank" rel="noreferrer">
               <FaLinkedin title="Linkedin" />
             </a>
-            <a href="https://twitter.com/" target="_blank" rel="noreferrer">
+            <a href="https://twitter.com/ibukunDawodu" target="_blank" rel="noreferrer">
               <FaTwitter title="Linkedin" />
             </a>
           </Icon>

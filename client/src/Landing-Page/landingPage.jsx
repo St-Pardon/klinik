@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Button } from "../components/button/button.styled";
 import { Link } from "react-router-dom";
 import {
   Footer,
   FooterTop,
+  Hamburger,
   HeroContainer,
   HeroPara,
   HeroText,
@@ -41,8 +43,16 @@ import { Header } from "../components/header/header.styled";
 import { Icon } from "../components/icon/icon.styled";
 import TeamComponent from "../components/team/team.component";
 import ProductComponent from "../components/product/product.component";
+import { MdClose } from "react-icons/md";
+import { RiMenu4Fill } from "react-icons/ri";
+import Sidemenu from "../components/Sidemenu/Sidemenu.component";
 
 const LandingPage = () => {
+  const [menu, setMenu] = useState(false);
+  const openMenu = () => {
+    setMenu(!menu);
+  };
+
   return (
     <>
       <Header lp>
@@ -51,6 +61,14 @@ const LandingPage = () => {
             <Img src={logoDark} alt="Klinik logo dark" />
           </Figure>
         </Link>
+        <Hamburger>
+          {menu ? (
+            <MdClose onClick={openMenu} />
+          ) : (
+            <RiMenu4Fill onClick={openMenu} />
+          )}
+        </Hamburger>
+        <Sidemenu display={menu} closeBar={openMenu} />
         <Nav>
           <Navlink href="#home">
             <p>Home</p>
@@ -81,7 +99,7 @@ const LandingPage = () => {
               Creating faster hospital access for patients in Africa and beyond.
             </HeroPara>
             <HeroContainer>
-              <Button primary>Request Demo</Button>
+              <Link to='signin'><Button primary>Get Started</Button></Link>
               <a href="#about-us">
                 <p>Learn more</p>
               </a>
@@ -93,6 +111,10 @@ const LandingPage = () => {
         </Section>
         <Section peek>
           <SecHeading peek>Take a Peek</SecHeading>
+          <Para peek>
+            Klinik goal is to create a seamless experience for both patients and
+            doctor.
+          </Para>
           <ProductComponent />
         </Section>
         <section id="service">
