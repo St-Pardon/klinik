@@ -10,6 +10,7 @@ from models.nurse_report import NurseReport
 
 @app_views.route('/patient/register', methods=["POST"])
 @swag_from("documentation/profile/create_patient_profile.yml")
+
 def regpatient():
     """Register a patient to the database"""
     class_ = "PatientDetails"
@@ -22,7 +23,21 @@ def regpatient():
     new["phone"] = details.get("phone")
     new["file_no"] = details.get("file_no")
     new["password"] = hashPassword(details.get("first_name"))
+
+    new["sex"] = details.get("sex")
+    new["next_of_kin"] = details.get("next_of_kin")
+    new["next_of_kin_phone"] = details.get("next_of_kin_phone")
+    new["next_of_kin_address"] = details.get("next_of_kin_address")
+    new["relation"] = details.get("relation")
+    
     check = verifyDetails(new)
+
+    new["chronic_disease"] = details.get("chronic_disease")
+    new["disability"] = details.get("disability")
+    new["genotype"] = details.get("genotype")
+    new["blood_group"] = details.get("blod_group")
+
+    
     obj = {"class_": class_, "obj": {"file_no": new.get("file_no")}}
     data = storage.get_one(**obj)
     if not check or data != None:
@@ -110,6 +125,12 @@ def singlePatientRecord(id):
         obj = {}
     return (jsonify(obj_lis))
 
+
+@app_views.route("/patient/admit")
+def patient_admit():
+    obj = {"class_": "PatientDetails", "key": "PatientDetails.admitted", "val": "True"}
+    user = storage.filter_all(**obj)
+    return (jsonify(user))
 
 # @app_views.route("/singlePatientRecord/<id>", methods=["GET"])
 # @swag_from("documentation/patient/single_patient_record.yml")

@@ -19,7 +19,8 @@ app = Flask(__name__)
 """Config for swagger doc """
 app.config['SWAGGER'] = {
     'title': 'KLINIK Restful API',
-    'uiversion': 3
+    'uiversion': 3,
+    "url_prefix": "/api/v1/docs"
 }
 
 Swagger(app)
