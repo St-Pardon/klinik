@@ -5,6 +5,7 @@ import { MdKeyboardBackspace } from "react-icons/md";
 import { LoginContainer, Section } from "./signin.styled";
 import { SubHeading } from "../../components/heading/heading.component";
 import { Fieldset, Form, Input } from "../../components/form/form.styled";
+import { GoInfo } from "react-icons/go";
 
 const Signin = ({ getUser, getUser_role, getJob_type }) => {
   const [file_no, setFile_no] = useState("");
@@ -72,6 +73,11 @@ const Signin = ({ getUser, getUser_role, getJob_type }) => {
       <Section>
         <SubHeading login>Welcome to Klinik, kindly Login</SubHeading>
         <Form onSubmit={(e) => handleLogin(e)}>
+          <div class="tooltip">
+            <GoInfo />
+            To test demo hover here
+            <span class="tooltiptext">Signin with "P202200001" for patient and "S202200001 for Nurse". use "qwertyuiop" as password. Explore on PC</span>
+          </div>
           <p>What best describe you?</p>
           <Fieldset>
             <Switch
