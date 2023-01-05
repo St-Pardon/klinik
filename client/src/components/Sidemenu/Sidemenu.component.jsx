@@ -10,7 +10,7 @@ const Sidemenu = ({ display, closeBar }) => {
           <p>Home</p>
         </Link>
         <a
-          href="/services"
+          href="#services"
           onClick={() => {
             closeBar();
           }}
