@@ -1,4 +1,5 @@
 import styled, {css} from 'styled-components';
+import { devices } from '../../assets/breakpoint';
 import img1 from "../../assets/team/pardon_techshot.jpeg";
 import img2 from "../../assets/team/dammy_techshot.png";
 import img3 from "../../assets/team/yusuf_techshot.png";
@@ -9,6 +10,10 @@ export const TeamContainer = styled.div`
     justify-content: center;
     text-align: center;
     margin-top: 20px;
+
+    @media ${devices.mobileL}{
+        flex-direction: column;
+      }
 `
 
 export const Figure = styled.figure`

@@ -1,14 +1,20 @@
 import styled, { css } from "styled-components";
+import { devices } from "../../assets/breakpoint";
 
 export const Header = styled.header`
   background-color: unset;
   display: flex;
   align-items: center;
+  width: 100%;
 
   ${(props) =>
     props.lp &&
     css`
       justify-content: space-around;
+      
+      @media ${devices.mobileL} {
+        justify-content: space-between;
+      }
     `}
 
   ${(props) =>

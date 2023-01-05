@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
-import { Figure, Img } from "../img/img.styled";
+// import { Figure, Img } from "../img/img.styled";
 import vid from '../../assets/demo/demo.webm'
+import { Video } from "./product.style";
 
 const ProductComponent = () => {
   const [isDown, setIsDown] = useState(false);
@@ -26,14 +27,14 @@ const ProductComponent = () => {
         slider1.current.scrollLeft = scrollLeft - walk;
       }}
     >
-      <video controls width="100%" style={{display: "block", maxWidth: "1000px", margin: "20px auto"}}>
+      <Video controls>
         <source src={vid} type="video/webm" />
         not compartible
-      </video>
-      <Figure>
+      </Video>
+      {/* <Figure>
         <Img src="" alt="Product Screenshot" />
         <figcaption></figcaption>
-      </Figure>
+      </Figure> */}
     </div>
   );
 };
