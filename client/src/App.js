@@ -20,6 +20,7 @@ import StaffDetail from "./routes/Detail/staff.detail";
 import AppointmentScheduler from "./components/scheduler/appointment.scheduler";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import Enonet from "./routes/404/404.route";
 
 function App() {
   const [user_type, setUser_type] = useState("");
@@ -108,6 +109,7 @@ function App() {
         { path: "support", element: <SupportContainer /> },
       ],
     },
+    { path: "*", element: <Enonet /> },
   ]);
 
   const queryClient = new QueryClient();
