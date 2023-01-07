@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { devices } from "../../assets/breakpoint";
 import img from "../../assets/images/login-bg.jpg";
 
 export const LoginContainer = styled.div`
@@ -17,6 +18,9 @@ export const Section = styled.section`
       background-position: center;
       background-size: cover;
       backround-repeat: norepeatg;
+
+      @media ${devices.mobileL} {
+        display: none;
+      }
     `}
 `;
-

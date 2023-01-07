@@ -19,6 +19,7 @@ counter = Value('i', 0)
 
 
 @app_views.route("/regstaff", methods=["POST"])
+@jwt_required
 @swag_from("documentation/profile/create_staff_profile.yml")
 def regStaff():
     """Register a Staff to the database"""
@@ -40,11 +41,11 @@ def regStaff():
     new["next_of_kin_address"] = details.get("next_of_kin_address")
     new["relationship"] = details.get("relationship")
 
-    """Increment the doctor Reg_no"""
-    with counter.get_lock():
-        counter.value += 1
-        out = counter.value
-    new["reg_no"] = "out"
+    # """Increment the doctor Reg_no"""
+    # with counter.get_lock():
+    #     counter.value += 1
+    #     out = counter.value
+    # new["reg_no"] = "out"
 
     check = verifyDetails(new)
     obj = {"class_": class_, "obj": {"reg_no": new.get("reg_no")}}

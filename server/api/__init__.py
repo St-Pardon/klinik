@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 # from flask_sqlalchemy import SQLAlchemy 
 from flask import Flask, make_response, jsonify
 from api.v1.views import app_views
-
+import datetime
 
 
 from flask_jwt_extended import JWTManager
@@ -23,7 +23,10 @@ app.config['SWAGGER'] = {
     "url_prefix": "/api/v1/docs"
 }
 
-Swagger(app)
+SWAGGER_TEMPLATE = {
+   "securityDefinitions": {"APIKeyHeader": {"type": "apiKey", "name": "x-access-token", "in": "header"}}}
+
+swagger = Swagger(app, template=SWAGGER_TEMPLATE)
 
 """ config to return a friendly json object """
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -42,6 +45,8 @@ cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 """ config for secret key"""
 app.config['SECRET_KEY'] = 'sasdjshdjfsdk'
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(minutes=30)
+
 
 bcrypt = Bcrypt(app)
 jwt = JWTManager(app)

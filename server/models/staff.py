@@ -29,5 +29,5 @@ class Staff(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initializes Review"""
         super().__init__(*args, **kwargs)
-        # self.count += 1
-        # self.reg_no = 'S' + str(datetime.today().year) + str(self.count)
+        Staff.count += 1
+        self.reg_no = 'S' + str(datetime.today().year) + "DS" + str(Staff.count)

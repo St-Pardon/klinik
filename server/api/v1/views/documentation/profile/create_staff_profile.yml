@@ -56,6 +56,8 @@ parameters:
       relationship:
         type: string
         example: "brother"
+security:
+  - APIKeyHeader: [ 'x-access-token' ]
 
 responses:
   201:

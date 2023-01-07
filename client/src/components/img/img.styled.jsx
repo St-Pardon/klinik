@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { devices } from "../../assets/breakpoint";
 
 export const Img = styled.img`
   width: 100%;
@@ -15,6 +16,10 @@ export const Figure = styled.figure`
     props.hero &&
     css`
       max-width: 500px;
+
+      @media ${devices.mobileL} {
+        width: 80%;
+      }
     `}
   ${(props) =>
     props.detail &&
@@ -41,5 +46,11 @@ export const Figure = styled.figure`
       height: 380px;
       border-radius: 5px;
       overflow: hidden;
+
+      @media ${devices.mobileL} {
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
+      }
     `}
 `;
