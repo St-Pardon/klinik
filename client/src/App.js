@@ -81,7 +81,7 @@ function App() {
           element: <NewPatientContainer />,
         },
         {
-          path: "patient_detail",
+          path: "profile_detail/:profileId",
           element: <PatientDetail />,
         },
         {

@@ -2,31 +2,32 @@ import axios from "axios";
 
 const BaseURI = "https://www.st-pardon.tech/api/v1";
 
-// Patients routes
-export const getPatientProfile = () => {
-  axios
-    .get(`${BaseURI}/profile`)
-    .then((data) => data)
-    .catch((err) => console.log(err));
+// Patients
+export const getProfileById = (userId) => {
+  return axios.get(`${BaseURI}/getprofile/${userId}`).then((res) => res.data);
 };
 
-export const getPatientRecords = () => {
-  axios
-    .get(`${BaseURI}/records`)
-    .then((data) => data)
-    .catch((err) => console.log(err));
-};
-export const getPatientRecordById = (recordId) => {
-  axios
-    .get(`${BaseURI}/records/${recordId}`)
-    .then((data) => data)
-    .catch((err) => console.log(err));
+export const getAllPatient = () => {
+  return axios.get(`${BaseURI}/patient/all-profile`).then((res) => res.data);
 };
 
-// Doctor's Routes 
-export const getStaffById = (staffId) => {
-  axios
-    .get(`${BaseURI}/records/${staffId}`)
-    .then((data) => data)
-    .catch((err) => console.log(err));
-};
+// export const getPatientRecords = () => {
+//   axios
+//     .get(`${BaseURI}/records`)
+//     .then((res) => res.json())
+//     .catch((err) => console.log(err));
+// };
+// export const getPatientRecordById = (recordId) => {
+//   axios
+//     .get(`${BaseURI}/records/${recordId}`)
+//     .then((res) => res.json())
+//     .catch((err) => console.log(err));
+// };
+
+// // staff
+// export const getStaffById = (staffId) => {
+//   axios
+//     .get(`${BaseURI}/records/${staffId}`)
+//     .then((res) => res.json())
+//     .catch((err) => console.log(err));
+// };

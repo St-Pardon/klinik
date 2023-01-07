@@ -2,10 +2,12 @@ import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
+import { AllPatient } from "../services/queries/req.query";
 // import SummaryWidget from "../components/widgets/summary.widget";
 import { Row, Section, Table, Th, Thead } from "./container.styled";
 
 const PatientsContainer = () => {
+  const { isLoading, data } = AllPatient();
   return (
     <Section>
       <Row right>
@@ -35,21 +37,29 @@ const PatientsContainer = () => {
             </tr>
           </Thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>
-                <Link to="/dashboard/patient_detail">Jon doe</Link>
-              </td>
-              <td>P202200000</td>
-              <td>08099988899</td>
-              <td>doe@abc.com</td>
-              <td>543 livento street</td>
-              <td>12 June 2022</td>
-              <td>Dr. Joseph Pope</td>
-              <td>Jane Doe</td>
-              <td>08027162632</td>
-            </tr>
-            <tr>
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              data?.map((item, i) => (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>
+                    <Link to={`/dashboard/profile_detail/${item.id}`}>
+                      {item.first_name} {item.last_name}
+                    </Link>
+                  </td>
+                  <td>{item.file_no}</td>
+                  <td>{item.address}</td>
+                  <td>{item.email}</td>
+                  <td>{item.address}</td>
+                  <td>12 June 2022</td>
+                  <td>Dr. Joseph Pope</td>
+                  <td>Jane Doe</td>
+                  <td>08027162632</td>
+                </tr>
+              ))
+            )}
+            {/* <tr>
               <td>2</td>
               <td>
                 <Link to="/dashboard/patient_detail">Mike Tyson</Link>
@@ -74,7 +84,7 @@ const PatientsContainer = () => {
               <td>Dr. Mike Henry</td>
               <td>Jane Henry</td>
               <td>08027162612</td>
-            </tr>
+            </tr> */}
           </tbody>
         </Table>
       </Row>

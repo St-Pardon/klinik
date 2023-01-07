@@ -8,7 +8,7 @@ import {
 import { GiDna1 } from "react-icons/gi";
 import { TbDisabled } from "react-icons/tb";
 import { RiVirusLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { SubHeading } from "../../components/heading/heading.component";
 import { Figure, Img } from "../../components/img/img.styled";
 import { Section } from "../../containers/container.styled";
@@ -24,8 +24,16 @@ import {
   BsQuestionSquare,
   BsTelephone,
 } from "react-icons/bs";
+import { ProfileById } from "../../services/queries/req.query";
 
 const PatientDetail = () => {
+  const { profileId } = useParams();
+  const { isLoading, data } = ProfileById(profileId);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <Section detail>
       <Banner>
@@ -40,7 +48,7 @@ const PatientDetail = () => {
         </Figure>
         <div>
           <div>
-            <h2>John Doe</h2>
+            <h2>{data?.first_name} {data?.last_name}</h2>
             <SubHeading bio>P2022163823</SubHeading>
           </div>
           <Div bio>
