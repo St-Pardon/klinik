@@ -54,6 +54,10 @@ export const Th = styled.th`
   padding: 8px;
 `;
 
+export const Td = styled.td`
+  padding: 8px;
+`;
+
 export const Ul = styled.ul`
   padding-left: 30px;
   text-align: left;

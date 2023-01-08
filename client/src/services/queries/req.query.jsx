@@ -1,5 +1,5 @@
-import { getAllPatient, getAllStaff, getDrugData, getPatientRecords, getProfileById } from "../api/req.api";
-import { useQuery } from "react-query";
+import { createStaff, deleteUser, getAllPatient, getAllStaff, getDrugData, getPatientRecords, getProfileById } from "../api/req.api";
+import { useQuery, useMutation } from "react-query";
 
 // Patients
 export const useAllPatient = () => {
@@ -20,4 +20,12 @@ export const usePatientRecord = (userId) => {
 
 export const useDrugData = () => {
   return useQuery(["staff"], getDrugData);
+}
+
+export const useCreateStaff = () => {
+  return useMutation(createStaff)
+}
+
+export const UseDeleteUser = (userId) => {
+  return useMutation(()=>{deleteUser(userId)})
 }

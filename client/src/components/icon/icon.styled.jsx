@@ -67,4 +67,11 @@ export const Icon = styled.div`
       color: #0765fe;
       font-size: 4rem;
     `}
+    ${(props) =>
+    props.edit &&
+    css`
+      display: flex;
+      gap: 20px;
+      font-size: 1rem;
+    `}
 `;

@@ -1,13 +1,20 @@
-import React from "react";
-import { MdEditNote } from "react-icons/md";
+import { useState } from "react";
+import { MdEditNote, MdOutlineDeleteForever } from "react-icons/md";
+import { HiOutlinePencilAlt } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
 import { DataTable } from "../components/Loader/loaders";
+import {
+  handleDelete,
+  handleEdit,
+} from "../services/function/helper.functions";
 import { useDrugData } from "../services/queries/req.query";
-import { Row, Section, Table, Th, Thead } from "./container.styled";
+import { Row, Section, Table, Td, Th, Thead } from "./container.styled";
+import { Icon } from "../components/icon/icon.styled";
 
 const DrugContainer = () => {
   const { isLoading, data } = useDrugData();
+  const [edit, setEdit] = useState(false);
 
   return (
     <Section>
@@ -16,7 +23,7 @@ const DrugContainer = () => {
           <Link to="/dashboard/new_drug">
             <Button primary>Add new drug</Button>
           </Link>
-          <Button>
+          <Button onClick={() => handleEdit(setEdit, edit)}>
             <MdEditNote /> Edit
           </Button>
         </div>
@@ -33,29 +40,53 @@ const DrugContainer = () => {
               <Th>Quantity</Th>
               <Th>Price per unit</Th>
               <Th>Serial Number</Th>
+              {edit && <Th>Edit</Th>}
             </tr>
           </Thead>
           <tbody>
             {isLoading ? (
-              <DataTable />
+              <tr>
+                <td colSpan={8}>
+                  <DataTable />
+                </td>
+              </tr>
             ) : (
               data?.map((item, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>
+                <tr
+                  key={i}
+                  style={i % 2 === 0 ? { backgroundColor: "#f4f4f4" } : {}}
+                >
+                  <Td>{i + 1}</Td>
+                  <Td>
                     <Link to="/dashboard/drug_detail">Paracetamol</Link>
-                  </td>
-                  <td>08/2020</td>
-                  <td>12/2024</td>
-                  <td>true</td>
-                  <td>1000</td>
-                  <td>250 NGN</td>
-                  <td>232464657DSB6392</td>
+                  </Td>
+                  <Td>08/2020</Td>
+                  <Td>12/2024</Td>
+                  <Td>true</Td>
+                  <Td>1000</Td>
+                  <Td>250 NGN</Td>
+                  <Td>232464657DSB6392</Td>
+                  {edit && (
+                    <Td>
+                      <Icon edit>
+                        <Link to={`/edit/:${item.id}`}>
+                          {" "}
+                          <HiOutlinePencilAlt />
+                        </Link>{" "}
+                        <MdOutlineDeleteForever
+                          onClick={() => {
+                            handleDelete(item.id);
+                          }}
+                          style={{ color: "red" }}
+                        />
+                      </Icon>
+                    </Td>
+                  )}
                 </tr>
               ))
             )}
             <tr>
-              <td>2</td>
+              <td>1</td>
               <td>
                 <Link to="/dashboard/drug_detail">Amateen</Link>
               </td>
@@ -67,7 +98,7 @@ const DrugContainer = () => {
               <td>275464657DSB6392</td>
             </tr>
             <tr>
-              <td>3</td>
+              <td>2</td>
               <td>
                 <Link to="/dashboard/drug_detail">Folic Acid</Link>
               </td>

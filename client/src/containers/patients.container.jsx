@@ -1,14 +1,19 @@
-import React from "react";
+import { useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
 import { DataTable } from "../components/Loader/loaders";
 import { useAllPatient } from "../services/queries/req.query";
-// import SummaryWidget from "../components/widgets/summary.widget";
-import { Row, Section, Table, Th, Thead } from "./container.styled";
+import { Row, Section, Table, Td, Th, Thead } from "./container.styled";
+import { handleDelete, handleEdit } from "../services/function/helper.functions";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { Icon } from "../components/icon/icon.styled";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 const PatientsContainer = () => {
   const { isLoading, data } = useAllPatient();
+  const [edit, setEdit] = useState(false);
+
   return (
     <Section>
       <Row right>
@@ -16,7 +21,7 @@ const PatientsContainer = () => {
           <Link to="/dashboard/new_patient">
             <Button primary>Add new patient</Button>
           </Link>
-          <Button>
+          <Button onClick={() => handleEdit(setEdit, edit)}>
             <FaUserEdit /> Edit
           </Button>
         </div>
@@ -35,57 +40,53 @@ const PatientsContainer = () => {
               <Th>Primary Doctor</Th>
               <Th>Next of Kin</Th>
               <Th>Next of Kin Contact</Th>
+              {edit && <Th>Edit</Th>}
             </tr>
           </Thead>
           <tbody>
             {isLoading ? (
-              <DataTable />
+              <tr>
+                <td colSpan={10}>
+                  <DataTable />
+                </td>
+              </tr>
             ) : (
               data?.map((item, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>
+                <tr
+                  key={i}
+                  style={i % 2 === 0 ? { backgroundColor: "#f4f4f4" } : {}}
+                >
+                  <Td>{i + 1}</Td>
+                  <Td style={{ color: "skyblue" }}>
                     <Link to={`/dashboard/profile_detail/${item.id}`}>
                       {item.first_name} {item.last_name}
                     </Link>
-                  </td>
-                  <td>{item.file_no}</td>
-                  <td>{item.address}</td>
-                  <td>{item.email}</td>
-                  <td>{item.address}</td>
-                  <td>12 June 2022</td>
-                  <td>Dr. Joseph Pope</td>
-                  <td>Jane Doe</td>
-                  <td>08027162632</td>
+                  </Td>
+                  <Td>{item.file_no}</Td>
+                  <Td>{item.address}</Td>
+                  <Td>{item.email}</Td>
+                  <Td>{item.address}</Td>
+                  <Td>12 June 2022</Td>
+                  <Td>Dr. Joseph Pope</Td>
+                  <Td>Jane Doe</Td>
+                  <Td>08027162632</Td>
+                  {edit && (
+                    <Td>
+                      <Icon edit>
+                        <Link to={`/edit/:${item.id}`}>
+                          {" "}
+                          <HiOutlinePencilAlt />
+                        </Link>{" "}
+                        <MdOutlineDeleteForever
+                          onClick={() => {handleDelete(item.id)}}
+                          style={{ color: "red" }}
+                        />
+                      </Icon>
+                    </Td>
+                  )}
                 </tr>
               ))
             )}
-            {/* <tr>
-              <td>2</td>
-              <td>
-                <Link to="/dashboard/patient_detail">Mike Tyson</Link>
-              </td>
-              <td>P2022000001</td>
-              <td>08099988563</td>
-              <td>tyson@abc.com</td>
-              <td>5 jojoba street</td>
-              <td>1 Sept 2022</td>
-              <td>Dr. Emmanuel Price</td>
-              <td>Jane Tyson</td>
-              <td>08027162689</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Tim crook</td>
-              <td>P202200003</td>
-              <td>0809998962</td>
-              <td>tim@abc.com</td>
-              <td>43 papi street</td>
-              <td>11 Dec 2022</td>
-              <td>Dr. Mike Henry</td>
-              <td>Jane Henry</td>
-              <td>08027162612</td>
-            </tr> */}
           </tbody>
         </Table>
       </Row>

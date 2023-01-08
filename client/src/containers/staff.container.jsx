@@ -1,14 +1,19 @@
-import React from "react";
+import { useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
 import { DataTable } from "../components/Loader/loaders";
 import { useAllStaff } from "../services/queries/req.query";
-// import SummaryWidget from "../components/widgets/summary.widget";
-import { Row, Section, Table, Th, Thead } from "./container.styled";
+import { Row, Section, Table, Td, Th, Thead } from "./container.styled";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { Icon } from "../components/icon/icon.styled";
+import { MdOutlineDeleteForever } from "react-icons/md";
+import { handleDelete, handleEdit } from "../services/function/helper.functions";
 
 const StaffContainer = () => {
   const { isLoading, data } = useAllStaff();
+  const [edit, setEdit] = useState(false);
+
   return (
     <Section>
       <Row right>
@@ -16,7 +21,7 @@ const StaffContainer = () => {
           <Link to="/dashboard/new_staff">
             <Button primary>Register New Staff</Button>
           </Link>
-          <Button>
+          <Button onClick={() => handleEdit(setEdit, edit)}>
             <FaUserEdit /> Edit
           </Button>
         </div>
@@ -34,41 +39,52 @@ const StaffContainer = () => {
               <Th>Job Title</Th>
               <Th>User Role</Th>
               <Th>Status</Th>
+              {edit && <Th>Edit</Th>}
             </tr>
           </Thead>
           <tbody>
             {isLoading ? (
-              <DataTable />
+              <tr>
+                <td colSpan={9}>
+                  <DataTable />
+                </td>
+              </tr>
             ) : (
               data?.map((item, i) => (
-                <tr key={i}>
-                  <td>{i + 1}</td>
-                  <td>
-                    <Link to={`/dashboard/patient_detail/${item.id}`}>Jon doe</Link>
-                  </td>
-                  <td>S20220000</td>
-                  <td>08099988899</td>
-                  <td>doe@abc.com</td>
-                  <td>27353 levigon avenue</td>
-                  <td>Doctor</td>
-                  <td>User</td>
-                  <td>On duty</td>
+                <tr
+                  key={i}
+                  style={i % 2 === 0 ? { backgroundColor: "#f4f4f4" } : {}}
+                >
+                  <Td>{i + 1}</Td>
+                  <Td>
+                    <Link to={`/dashboard/patient_detail/${item.id}`}>
+                      Jon doe
+                    </Link>
+                  </Td>
+                  <Td>S20220000</Td>
+                  <Td>08099988899</Td>
+                  <Td>doe@abc.com</Td>
+                  <Td>27353 levigon avenue</Td>
+                  <Td>Doctor</Td>
+                  <Td>User</Td>
+                  <Td>On duty</Td>
+                  {edit && (
+                    <Td>
+                      <Icon edit>
+                        <Link to={`/edit/:${item.id}`}>
+                          {" "}
+                          <HiOutlinePencilAlt />
+                        </Link>{" "}
+                        <MdOutlineDeleteForever
+                          onClick={() => {handleDelete(item.id)}}
+                          style={{ color: "red" }}
+                        />
+                      </Icon>
+                    </Td>
+                  )}
                 </tr>
               ))
             )}
-            {/* <tr>
-              <td>2</td>
-              <td>
-                <Link to="/dashboard/staff_detail">Diana Prince</Link>
-              </td>
-              <td>S202200001</td>
-              <td>08099112343</td>
-              <td>diana@abc.com</td>
-              <td>27 kings avenue</td>
-              <td>Nurse</td>
-              <td>Admin</td>
-              <td>Off Duty</td>
-            </tr> */}
           </tbody>
         </Table>
       </Row>

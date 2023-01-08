@@ -23,23 +23,18 @@ export const getDrugData= () => {
   return axios.get(`${BaseURI}/`).then((res) => res.data); //not complete
 };
 
-// export const getPatientRecords = () => {
-//   axios
-//     .get(`${BaseURI}/records`)
-//     .then((res) => res.json())
-//     .catch((err) => console.log(err));
-// };
-// export const getPatientRecordById = (recordId) => {
-//   axios
-//     .get(`${BaseURI}/records/${recordId}`)
-//     .then((res) => res.json())
-//     .catch((err) => console.log(err));
-// };
 
-// // staff
-// export const getStaffById = (staffId) => {
-//   axios
-//     .get(`${BaseURI}/records/${staffId}`)
-//     .then((res) => res.json())
-//     .catch((err) => console.log(err));
-// };
+// create staff
+export const createStaff = () => {
+  return axios.post(`${BaseURI}/regstaff`, {Authentication: localStorage.getItem("jwt")})
+}
+
+// create patient
+export const createPatient = () => {
+  return axios.post(`${BaseURI}/patient/register`, {Authentication: localStorage.getItem("jwt")})
+}
+
+// create patient
+export const deleteUser = (userId) => {
+  return axios.post(`${BaseURI}/deleteprofile/${userId}`, {Authentication: localStorage.getItem("jwt")})
+}

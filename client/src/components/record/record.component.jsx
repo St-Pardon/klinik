@@ -2,13 +2,14 @@ import React from "react";
 import { Div } from "../../routes/Detail/detail.style";
 import { usePatientRecord } from "../../services/queries/req.query";
 import { SecHeading, SubHeading } from "../heading/heading.component";
+import { DetailList } from "../Loader/loaders";
 import { Para, RecordContainer, Span } from "./record.styled";
 
 const Record = ({ userId }) => {
   const { isLoading, data } = usePatientRecord(userId);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <DetailList />;
   }
 
   return (
