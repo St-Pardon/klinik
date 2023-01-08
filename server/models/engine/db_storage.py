@@ -39,6 +39,23 @@ class DBStorage:
         data = self.session.query(class_).filter_by(**kwargs["obj"]).first()
         return (data)
 
+    def filter_all(self, **kwargs):
+        class_ = eval(kwargs["class_"])
+        lis = []
+        obj = {}
+
+        if class_ not in self.allClass:
+            return (None)
+        datas = self.session.query(class_).filter(eval(kwargs["key"]) == eval(kwargs["val"])).all()
+        if not datas:
+            return (lis)
+        for data in datas:
+            obj = data.to_dict()
+            lis.append(obj)
+            del(obj)
+            obj = {}
+        return (lis)
+
     def new(self, **kwargs):
         """Add new object to session"""
         class_ = eval(kwargs["class_"])

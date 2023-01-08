@@ -7,12 +7,19 @@ from  api.utils import verifyDetails, hashPassword, unhashpassword, admin_requir
 # from models.staff import Staff
 from flasgger.utils import swag_from
 
+
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
+from multiprocessing import Value
+from datetime import datetime
+
+counter = Value('i', 0)
+
 
 @app_views.route("/regstaff", methods=["POST"])
+@jwt_required
 @swag_from("documentation/profile/create_staff_profile.yml")
 def regStaff():
     """Register a Staff to the database"""
@@ -27,13 +34,24 @@ def regStaff():
     new["user_type"] = details.get("user_type")
     new["licence_no"] = details.get("licence_no")
     new["user_role"] = details.get("user_role")
-    new["reg_no"] = details.get("reg_no")
     new["password"] = hashPassword(details.get("first_name"))
+    new["sex"] = details.get("sex")
+    new["next_of_kin"] = details.get("next_of_kin")
+    new["next_of_kin_phone"] = details.get("next_of_kin_phone")
+    new["next_of_kin_address"] = details.get("next_of_kin_address")
+    new["relationship"] = details.get("relationship")
+
+    # """Increment the doctor Reg_no"""
+    # with counter.get_lock():
+    #     counter.value += 1
+    #     out = counter.value
+    # new["reg_no"] = "out"
+
     check = verifyDetails(new)
     obj = {"class_": class_, "obj": {"reg_no": new.get("reg_no")}}
     data = storage.get_one(**obj)
     if not check or data != None:
-        abort(400)
+        return (jsonify({"error": "invalid input"}), 400)
     obj["obj"] = new
     staff = storage.new(**obj)
     new["created_at"] = staff.created_at
@@ -68,8 +86,6 @@ def allStaffProfile():
     return (make_response(jsonify(lis), 200))
 
 
-""" Reminder: for this route i need to check for field that 
-are unique in the database and not update them to avoid conflict"""
 @app_views.route("/updateprofile/<id>", methods=["PUT"])
 @swag_from("documentation/profile/update_profile.yml")
 def updatetprofile(id):
@@ -79,14 +95,12 @@ def updatetprofile(id):
     obj = {"class_": class_, "obj": {"id": id}}
     profile = storage.get_one(**obj)
     req = request.get_json()
-    if not profile:
-        abort(404)
-    if not req:
-        abort(400)
+    if not profile or not req:
+        return (jsonify({"error": "bad request"}), 400)
     profileDetails = profile.to_dict()
     for key, value in req.items():
         if value == None:
-            abort(400)
+            return (jsonify({"error": "bad request"}), 400)
         if profileDetails.get(key) != value and profileDetails.get(key) != None:
             if key == "create_at":
                 setattr(profile, key, datetime.strptime(value, time))
@@ -97,7 +111,7 @@ def updatetprofile(id):
     name = profile.to_dict()
     profile.save()
     return(make_response(jsonify(name), 201))
-    
+
 
 @app_views.route("/deleteprofile/<id>", methods=["DELETE"])
 @swag_from("documentation/profile/delete_profile.yml")
@@ -109,6 +123,7 @@ def deleteprofile(id):
     record = storage.get_one(**obj)
     storage.delete(record)
     return ({}, 200)
+
 
 # Create a route to authenticate your users and return JWTs. The
 # create_access_token() function is used to actually generate the JWT.
@@ -132,21 +147,31 @@ def login():
     """Check if user in database"""
     user = storage.get_one(**obj)
     if user and unhashpassword(user.password, password):
-        if file_no and user.first_name == "u":
-            access_token = create_access_token(identity=user.file_no)
-        elif reg_no and user.first_name == "y":
-            access_token = create_access_token(identity=user.reg_no)
-        else:
-            access_token = create_access_token(identity="admin_user", additional_claims={"is_administrator": True})
-        return jsonify(access_token=access_token)
+        return (jsonify({"access_token": create_access_token(identity=user.email),
+         "details": user.to_dict()}))
+        # if file_no and user.file_no != None:
+        #     access_token = create_access_token(identity=user.file_no)
+        # elif reg_no and user.user_role == "admin":
+        #     access_token = create_access_token(identity=user.reg_no, additional_claims={"is_admin": True})
+        # elif reg_no and user.reg_no != None:
+        #     access_token = create_access_token(identity=user.reg_no, additional_claims={"is_staff": True})
+        # return jsonify(access_token=access_token)
     else:
-        return jsonify({"msg": "Bad username or password"}), 401
+        return (jsonify({"msg": "username or password not found!"}), 401)
         
     # return jsonify({"msg": "Bad username or password"}), 401
 
-# @app_views.route("/protected", methods=["GET"])
-# @admin_required()
-# def protected():
-#     # Access the identity of the current user with get_jwt_identity
-#     current_user = get_jwt_identity()
-#     return jsonify(logged_in_as=current_user), 200
+
+
+@app_views.route("/duty")
+def staff_duty():
+    obj = {"class_": "Staff", "key": "Staff.status", "val": "True"}
+    user = storage.filter_all(**obj)
+    return (jsonify(user))
+
+
+# @app_views.route("/duty")
+# def get():
+#     obj = {"class_": "Staff", "key": "Staff.status", "val": "True"}
+#     user = storage.filter_all(**obj)
+#     return (jsonify(user))
