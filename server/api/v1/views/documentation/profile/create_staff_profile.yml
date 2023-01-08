@@ -14,7 +14,6 @@ parameters:
       - last_name
       - licence_no
       - phone
-      - reg_no
       - user_role
       - user_type
     properties:
@@ -36,15 +35,29 @@ parameters:
       phone:
         type: "string"
         example: "09025162207"
-      reg_no:
-        type: "string"
-        example: "U18DM1001"
       user_role:
         type: "string"
         example: "Specalist"
       user_type:
         type: "string"
         example: "Doctor"
+      sex:
+        type: "string"
+        example: "Male"
+      next_of_kin:
+        type: "string"
+        example: "Abdul"
+      next_of_kin_phone:
+        type: "string"
+        example: "09023674859"
+      next_of_kin_address:
+        type: "string"
+        example: "abuja"
+      relationship:
+        type: string
+        example: "brother"
+security:
+  - APIKeyHeader: [ 'x-access-token' ]
 
 responses:
   201:
@@ -85,6 +98,21 @@ responses:
         user_type:
           type: "string"
           example: "Doctor"
+        sex:
+          type: "string"
+          example: "Male"
+        next_of_kin:
+          type: "string"
+          example: "Abdul"
+        next_of_kin_phone:
+          type: "string"
+          example: "09023674859"
+        next_of_kin_address:
+          type: "string"
+          example: "abuja"
+        relationship:
+          type: string
+          example: "brother"
         id:
           type: string
           example: Staff.0ac86aa1-2e9f-4ab9-9488-2b7037fb2747
