@@ -2,9 +2,13 @@ import React from "react";
 import { MdEditNote } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
+import { DataTable } from "../components/Loader/loaders";
+import { useDrugData } from "../services/queries/req.query";
 import { Row, Section, Table, Th, Thead } from "./container.styled";
 
 const DrugContainer = () => {
+  const { isLoading, data } = useDrugData();
+
   return (
     <Section>
       <Row right>
@@ -32,19 +36,29 @@ const DrugContainer = () => {
             </tr>
           </Thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <Link to='/dashboard/drug_detail'><td>Paracetamol</td></Link>
-              <td>08/2020</td>
-              <td>12/2024</td>
-              <td>true</td>
-              <td>1000</td>
-              <td>250 NGN</td>
-              <td>232464657DSB6392</td>
-            </tr>
+            {isLoading ? (
+              <DataTable />
+            ) : (
+              data?.map((item, i) => (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>
+                    <Link to="/dashboard/drug_detail">Paracetamol</Link>
+                  </td>
+                  <td>08/2020</td>
+                  <td>12/2024</td>
+                  <td>true</td>
+                  <td>1000</td>
+                  <td>250 NGN</td>
+                  <td>232464657DSB6392</td>
+                </tr>
+              ))
+            )}
             <tr>
               <td>2</td>
-              <Link to='/dashboard/drug_detail'><td>Amateen</td></Link>
+              <td>
+                <Link to="/dashboard/drug_detail">Amateen</Link>
+              </td>
               <td>08/2017</td>
               <td>12/2023</td>
               <td>false</td>
@@ -54,7 +68,9 @@ const DrugContainer = () => {
             </tr>
             <tr>
               <td>3</td>
-              <Link to='/dashboard/drug_detail'><td>Folic Acid</td></Link>
+              <td>
+                <Link to="/dashboard/drug_detail">Folic Acid</Link>
+              </td>
               <td>02/2020</td>
               <td>10/2024</td>
               <td>1070</td>

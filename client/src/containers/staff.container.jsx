@@ -2,12 +2,13 @@ import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
-import { AllStaff } from "../services/queries/req.query";
+import { DataTable } from "../components/Loader/loaders";
+import { useAllStaff } from "../services/queries/req.query";
 // import SummaryWidget from "../components/widgets/summary.widget";
 import { Row, Section, Table, Th, Thead } from "./container.styled";
 
 const StaffContainer = () => {
-  const { isLoading, data } = AllStaff();
+  const { isLoading, data } = useAllStaff();
   return (
     <Section>
       <Row right>
@@ -37,7 +38,7 @@ const StaffContainer = () => {
           </Thead>
           <tbody>
             {isLoading ? (
-              <p>Loading...</p>
+              <DataTable />
             ) : (
               data?.map((item, i) => (
                 <tr key={i}>
@@ -55,7 +56,7 @@ const StaffContainer = () => {
                 </tr>
               ))
             )}
-            <tr>
+            {/* <tr>
               <td>2</td>
               <td>
                 <Link to="/dashboard/staff_detail">Diana Prince</Link>
@@ -67,7 +68,7 @@ const StaffContainer = () => {
               <td>Nurse</td>
               <td>Admin</td>
               <td>Off Duty</td>
-            </tr>
+            </tr> */}
           </tbody>
         </Table>
       </Row>

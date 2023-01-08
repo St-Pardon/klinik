@@ -24,14 +24,15 @@ import {
   BsQuestionSquare,
   BsTelephone,
 } from "react-icons/bs";
-import { ProfileById } from "../../services/queries/req.query";
+import { useProfileById } from "../../services/queries/req.query";
+import { ProfileHeadLoader } from "../../components/Loader/loaders";
 
 const PatientDetail = () => {
   const { profileId } = useParams();
-  const { isLoading, data } = ProfileById(profileId);
+  const { isLoading, data } = useProfileById(profileId);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ProfileHeadLoader />;
   }
 
   return (
@@ -48,25 +49,27 @@ const PatientDetail = () => {
         </Figure>
         <div>
           <div>
-            <h2>{data?.first_name} {data?.last_name}</h2>
-            <SubHeading bio>P2022163823</SubHeading>
+            <h2>
+              {data?.first_name} {data?.last_name}
+            </h2>
+            <SubHeading bio>{data?.reg_no}</SubHeading>
           </div>
           <Div bio>
             <div>
-              <a href="mailto:johndoe@gmail.com">
+              <a href={`mailto:${data?.email}`}>
                 <Div icon>
                   <Icon detail>
                     <MdOutlineEmail />
                   </Icon>
-                  <SubHeading bio>johndoe@gmail.com</SubHeading>
+                  <SubHeading bio>{data?.email}</SubHeading>
                 </Div>
               </a>
-              <a href="tel:+234809237289">
+              <a href={`tel:${data?.phone}`}>
                 <Div icon>
                   <Icon detail>
                     <BsTelephone />
                   </Icon>
-                  <SubHeading bio>+234 8092 37289</SubHeading>
+                  <SubHeading bio>{data?.phone}</SubHeading>
                 </Div>
               </a>
               <Div icon>
@@ -124,7 +127,7 @@ const PatientDetail = () => {
         </div>
       </Div>
       <hr />
-      <Record />
+      <Record userId={data.id} />
       <Link to="new_entry">
         <Icon add>
           <BsFillPlusCircleFill title="New Entry" />

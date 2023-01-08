@@ -2,12 +2,13 @@ import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
-import { AllPatient } from "../services/queries/req.query";
+import { DataTable } from "../components/Loader/loaders";
+import { useAllPatient } from "../services/queries/req.query";
 // import SummaryWidget from "../components/widgets/summary.widget";
 import { Row, Section, Table, Th, Thead } from "./container.styled";
 
 const PatientsContainer = () => {
-  const { isLoading, data } = AllPatient();
+  const { isLoading, data } = useAllPatient();
   return (
     <Section>
       <Row right>
@@ -38,7 +39,7 @@ const PatientsContainer = () => {
           </Thead>
           <tbody>
             {isLoading ? (
-              <p>Loading...</p>
+              <DataTable />
             ) : (
               data?.map((item, i) => (
                 <tr key={i}>

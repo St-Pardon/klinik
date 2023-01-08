@@ -12,7 +12,15 @@ export const getAllPatient = () => {
 };
 
 export const getAllStaff= () => {
-  return axios.get(`${BaseURI}/patient/all-profile`).then((res) => res.data);
+  return axios.get(`${BaseURI}/allstaffprofile`).then((res) => res.data);
+};
+
+export const getPatientRecords = (userId) => {
+  return axios.get(`${BaseURI}/patient/all-single-record/${userId}`).then((res) => res.data);
+};
+
+export const getDrugData= () => {
+  return axios.get(`${BaseURI}/`).then((res) => res.data); //not complete
 };
 
 // export const getPatientRecords = () => {

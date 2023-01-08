@@ -22,7 +22,7 @@ const WelcomeDashboard = ({ job_type, user = null, appointment = null }) => {
         <a href="https://news.google.com" target="_blank" rel="noreferrer">
           <ImNewspaper title="News" />
         </a>
-        <a href="https://weather.google.com" target="_blank" rel="noreferrer">
+        <a href="https://weather.com/" target="_blank" rel="noreferrer">
           <FaCloudSunRain title="Weather" />
         </a>
         <Link to="/dashboard/appointment">
