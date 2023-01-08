@@ -11,6 +11,9 @@ export const Section = styled.section`
   height: 100vh;
   padding: 30px;
 
+@media ${devices.mobileL} {
+        width: 100%;
+      }
   ${(props) =>
     props.left &&
     css`
