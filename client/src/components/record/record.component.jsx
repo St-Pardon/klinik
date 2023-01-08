@@ -1,12 +1,20 @@
-import React from 'react'
-import { Div } from '../../routes/Detail/detail.style';
-import { SecHeading, SubHeading } from '../heading/heading.component';
-import { Para, RecordContainer, Span } from './record.styled';
+import React from "react";
+import { Div } from "../../routes/Detail/detail.style";
+import { usePatientRecord } from "../../services/queries/req.query";
+import { SecHeading, SubHeading } from "../heading/heading.component";
+import { DetailList } from "../Loader/loaders";
+import { Para, RecordContainer, Span } from "./record.styled";
 
-const Record = () => {
+const Record = ({ userId }) => {
+  const { isLoading, data } = usePatientRecord(userId);
+
+  if (isLoading) {
+    return <DetailList />;
+  }
+
   return (
     <RecordContainer>
-      <SecHeading>Record for 20th June 2021</SecHeading>
+      <SecHeading>{data?.created_at}Record for 20th June 2021</SecHeading>
       <Div record>
         <SubHeading bio>Vitals</SubHeading>
         <div>
@@ -99,6 +107,6 @@ const Record = () => {
       </Div>
     </RecordContainer>
   );
-}
+};
 
-export default Record
+export default Record;

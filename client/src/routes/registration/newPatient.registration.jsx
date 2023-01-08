@@ -1,14 +1,66 @@
-import React from "react";
+import { useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 import { Link } from "react-router-dom";
 // import { Button } from "../../components/button/button.styled";
-import { Fieldset, Form, Input, Select } from "../../components/form/form.styled";
+import {
+  Fieldset,
+  Form,
+  Input,
+  Select,
+} from "../../components/form/form.styled";
 import { Section } from "../../containers/container.styled";
 
+const formField = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  address: "",
+  phone: "",
+  user_type: "",
+  blood_group: "",
+  job_title: "",
+  password: "",
+  sex: "",
+  next_of_kin: "",
+  next_of_kin_phone: "",
+  next_of_kin_address: "",
+  relationship: "",
+};
+
 const NewPatientContainer = () => {
+  const [formData, setFormData] = useState(formField);
+  const {
+    first_name,
+    last_name,
+    email,
+    address,
+    phone,
+    blood_group,
+    password,
+    sex,
+    next_of_kin,
+    next_of_kin_phone,
+    next_of_kin_address,
+    relationship,
+  } = formData;
+
+  const resetFeild = () => {
+    setFormData(formField);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    resetFeild();
+  };
   return (
     <Section>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Link to="/dashboard/patients">
           {" "}
           <MdKeyboardBackspace style={{ fontSize: "1.8rem", color: "black" }} />
@@ -21,6 +73,8 @@ const NewPatientContainer = () => {
             type="text"
             id="first_name"
             name="first_name"
+            value={first_name}
+            onChange={handleChange}
             placeholder="e.g: John"
           />
         </Fieldset>
@@ -30,6 +84,8 @@ const NewPatientContainer = () => {
             type="text"
             id="last_name"
             name="last_name"
+            value={last_name}
+            onChange={handleChange}
             placeholder="e.g: Doe"
           />
         </Fieldset>
@@ -39,14 +95,26 @@ const NewPatientContainer = () => {
             type="email"
             id="email"
             name="email"
+            value={email}
+            onChange={handleChange}
             placeholder="e.g: someone@example.com"
           />
         </Fieldset>
         <Fieldset>
+          <label htmlFor="password">Password:</label>
+          <Input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </Fieldset>
+        <Fieldset>
           <label htmlFor="sex">Sex:</label>
-          <Select name="sex" id="sex">
+          <Select name="sex" id="sex" value={sex} onChange={handleChange}>
             <option value="" selected disabled>
-              - - - Select Patient's Sex - - - 
+              - - - Select Patient's Sex - - -
             </option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -60,6 +128,8 @@ const NewPatientContainer = () => {
             type="numeric"
             id="phone"
             name="phone"
+            value={phone}
+            onChange={handleChange}
             placeholder="eg: +234 8082 5555 777"
           />
         </Fieldset>
@@ -69,14 +139,21 @@ const NewPatientContainer = () => {
             type="text"
             id="address"
             name="address"
+            value={address}
+            onChange={handleChange}
             placeholder="eg: 123 pyper avenue"
           />
         </Fieldset>
         <Fieldset>
           <label htmlFor="blood_group">Blood Group:</label>
-          <Select name="blood_group" id="blood_group">
+          <Select
+            name="blood_group"
+            id="blood_group"
+            value={blood_group}
+            onChange={handleChange}
+          >
             <option value="" selected disabled>
-              - - - Select Patient's Blood Group - - - 
+              - - - Select Patient's Blood Group - - -
             </option>
             <option value="O Positive">O+</option>
             <option value="O Negative">O-</option>
@@ -89,7 +166,7 @@ const NewPatientContainer = () => {
           <label htmlFor="genotype">Genotype:</label>
           <Select name="genotype" id="genotype">
             <option value="" selected disabled>
-              - - - Select Patient's Genotype - - - 
+              - - - Select Patient's Genotype - - -
             </option>
             <option value="AA">AA</option>
             <option value="AS">AS</option>
@@ -107,22 +184,45 @@ const NewPatientContainer = () => {
           <Input type="text" id="chronic_disease" name="chronic_disease" />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="nok">Next of Kin:</label>
-          <Input type="text" id="nok" name="nok" />
+          <label htmlFor="next_of_kin">Next of Kin:</label>
+          <Input
+            type="text"
+            id="next_of_kin"
+            name="next_of_kin"
+            value={next_of_kin}
+            onChange={handleChange}
+          />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="nok_phone">Next of Kin Phone No:</label>
-          <Input type="numeric" id="nok_phone" name="nok_phone" />
+          <label htmlFor="next_of_kin_phone">Next of Kin Phone No:</label>
+          <Input
+            type="numeric"
+            id="next_of_kin_phone"
+            name="next_of_kin_phone"
+            value={next_of_kin_phone}
+            onChange={handleChange}
+          />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="nok_address">Next of Kin Address:</label>
-          <Input type="text" id="nok_address" name="nok_address" />
+          <label htmlFor="next_of_kin_address">Next of Kin Address:</label>
+          <Input
+            type="text"
+            id="next_of_kin_address"
+            name="next_of_kin_address"
+            value={next_of_kin_address}
+            onChange={handleChange}
+          />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="nok_relationship">
-            Relationship with Next of Kin:
-          </label>
-          <Input type="text" id="nok_relationship" name="nok_relationship" />
+          <label htmlFor="relationship">Relationship with Next of Kin:</label>
+          <Input
+            type="text"
+            id="relationship"
+            name="relationship"
+            value={relationship}
+            onChange={handleChange}
+            placeholder="Mother"
+          />
         </Fieldset>
         <Fieldset>
           <Input submit type="submit" value="Submit" />
