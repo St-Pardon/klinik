@@ -34,7 +34,7 @@ export const createPatient = () => {
   return axios.post(`${BaseURI}/patient/register`, {Authentication: localStorage.getItem("jwt")})
 }
 
-// create patient
+// delete user
 export const deleteUser = (userId) => {
   return axios.post(`${BaseURI}/deleteprofile/${userId}`, {Authentication: localStorage.getItem("jwt")})
 }

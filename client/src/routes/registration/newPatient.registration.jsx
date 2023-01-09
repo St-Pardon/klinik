@@ -18,7 +18,6 @@ const formField = {
   phone: "",
   user_type: "",
   blood_group: "",
-  job_title: "",
   password: "",
   sex: "",
   next_of_kin: "",
