@@ -12,7 +12,7 @@ class Staff(BaseModel, Base):
     email = Column(String(120), nullable=False)
     address = Column(Text, nullable=False)
     phone = Column(String(30), nullable=False)
-    user_type = Column(String(20), nullable=False)
+    job_title = Column(String(20), nullable=False)
     licence_no = Column(String(80), nullable=False)
     user_role = Column(String(80), nullable=False)
     reg_no = Column(String(80), nullable=False)

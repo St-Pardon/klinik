@@ -17,6 +17,7 @@ counter = Value('i', 0)
 
 
 @app_views.route("/regstaff", methods=["POST"])
+@jwt_required()
 @swag_from("documentation/profile/create_staff_profile.yml")
 def regStaff():
     """Register a Staff to the database"""
@@ -28,7 +29,7 @@ def regStaff():
     new["email"] = details.get("email")
     new["address"] = details.get("address")
     new["phone"] = details.get("phone")
-    new["user_type"] = details.get("user_type")
+    new["job_title"] = details.get("job_title")
     new["licence_no"] = details.get("licence_no")
     new["user_role"] = details.get("user_role")
     new["password"] = hashPassword(details.get("first_name"))
