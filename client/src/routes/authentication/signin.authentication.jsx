@@ -73,10 +73,10 @@ const Signin = ({ getUser, getUser_role, getJob_type }) => {
       <Section>
         <SubHeading login>Welcome to Klinik, kindly Login</SubHeading>
         <Form onSubmit={(e) => handleLogin(e)}>
-          <div class="tooltip">
+          <div className="tooltip">
             <GoInfo />
             To test demo hover here
-            <span class="tooltiptext">Signin with "P202200001" for patient and "S202200001 for Nurse". use "qwertyuiop" as password. Explore on PC</span>
+            <span className="tooltiptext">Signin with "P202200001" for patient and "S202200001 for Nurse". use "qwertyuiop" as password. Explore on PC</span>
           </div>
           <p>What best describe you?</p>
           <Fieldset>

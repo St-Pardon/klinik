@@ -3,16 +3,23 @@ import { FaUserEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
 import { DataTable } from "../components/Loader/loaders";
-import { useAllStaff } from "../services/queries/req.query";
+import { useAllStaff, UseDeleteUser } from "../services/queries/req.query";
 import { Row, Section, Table, Td, Th, Thead } from "./container.styled";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { Icon } from "../components/icon/icon.styled";
 import { MdOutlineDeleteForever } from "react-icons/md";
-import { handleDelete, handleEdit } from "../services/function/helper.functions";
+import { handleEdit } from "../services/function/helper.functions";
 
 const StaffContainer = () => {
-  const { isLoading, data } = useAllStaff();
+  const { isLoading, data, refetch } = useAllStaff();
   const [edit, setEdit] = useState(false);
+  const onSuccess = () => {
+    refetch();
+  };
+  const onError = (err) => {
+    console.log(err);
+  };
+  const { mutate } = UseDeleteUser(onSuccess, onError);
 
   return (
     <Section>
@@ -57,26 +64,28 @@ const StaffContainer = () => {
                 >
                   <Td>{i + 1}</Td>
                   <Td>
-                    <Link to={`/dashboard/patient_detail/${item.id}`}>
-                      Jon doe
+                    <Link to={`/dashboard/staff_detail/${item.id}`}>
+                      {item.first_name} {item.last_name}
                     </Link>
                   </Td>
-                  <Td>S20220000</Td>
-                  <Td>08099988899</Td>
-                  <Td>doe@abc.com</Td>
-                  <Td>27353 levigon avenue</Td>
-                  <Td>Doctor</Td>
-                  <Td>User</Td>
+                  <Td>{item.reg_no}</Td>
+                  <Td>{item.phone}</Td>
+                  <Td>{item.email}</Td>
+                  <Td>{item.address}</Td>
+                  <Td>{item.job_title}</Td>
+                  <Td>{item.user_role}</Td>
                   <Td>On duty</Td>
                   {edit && (
                     <Td>
                       <Icon edit>
-                        <Link to={`/edit/:${item.id}`}>
+                        <Link to={`/dashboard/edit_staff/${item.id}`}>
                           {" "}
                           <HiOutlinePencilAlt />
                         </Link>{" "}
                         <MdOutlineDeleteForever
-                          onClick={() => {handleDelete(item.id)}}
+                          onClick={() => {
+                            mutate(item.id);
+                          }}
                           style={{ color: "red" }}
                         />
                       </Icon>

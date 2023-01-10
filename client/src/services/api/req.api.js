@@ -25,16 +25,22 @@ export const getDrugData= () => {
 
 
 // create staff
-export const createStaff = () => {
-  return axios.post(`${BaseURI}/regstaff`, {Authentication: localStorage.getItem("jwt")})
+export const createStaff = (data) => {
+  return axios.post(`${BaseURI}/regstaff`, data)
 }
 
 // create patient
-export const createPatient = () => {
-  return axios.post(`${BaseURI}/patient/register`, {Authentication: localStorage.getItem("jwt")})
+export const createPatient = (data) => {
+  return axios.post(`${BaseURI}/patient/register`, data)
 }
 
-// delete user
+// create patient
 export const deleteUser = (userId) => {
-  return axios.post(`${BaseURI}/deleteprofile/${userId}`, {Authentication: localStorage.getItem("jwt")})
+  return axios.delete(`${BaseURI}/deleteprofile/${userId}`)
+}
+
+// edit user
+export const editUser = (userId, data) => {
+  console.log(userId, data)
+  return axios.put(`${BaseURI}/updateprofile/${userId}`, data)
 }

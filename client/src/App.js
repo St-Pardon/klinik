@@ -21,6 +21,8 @@ import AppointmentScheduler from "./components/scheduler/appointment.scheduler";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Enonet from "./routes/404/404.route";
+import EditStaff from "./routes/editUsers/editStaff";
+import EditPatient from "./routes/editUsers/editPatient";
 
 function App() {
   const [user_type, setUser_type] = useState("");
@@ -77,10 +79,6 @@ function App() {
           ),
         },
         {
-          path: "new_patient",
-          element: <NewPatientContainer />,
-        },
-        {
           path: "profile_detail/:profileId",
           element: <PatientDetail />,
         },
@@ -89,11 +87,27 @@ function App() {
           element: <StaffDetail />,
         },
         {
+          path: "new_patient",
+          element: <NewPatientContainer />,
+        },
+        {
           path: "new_staff",
           element: <NewStaffContainer />,
         },
         {
           path: "new_drug",
+          element: <NewDrug />,
+        },
+        {
+          path: "edit_patient:/userId",
+          element: <EditPatient />,
+        },
+        {
+          path: "edit_staff/:userId",
+          element: <EditStaff />,
+        },
+        {
+          path: "edit_drug/:userId",
           element: <NewDrug />,
         },
         {

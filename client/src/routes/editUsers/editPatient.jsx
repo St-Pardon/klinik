@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button } from "../../components/button/button.styled";
 import {
   Fieldset,
@@ -8,9 +8,11 @@ import {
   Input,
   Select,
 } from "../../components/form/form.styled";
-import { DetailList } from "../../components/Loader/loaders";
+import { SubHeading } from "../../components/heading/heading.component";
+import { ThreeDots } from "../../components/Loader/loaders";
 import { Section } from "../../containers/container.styled";
-import { useCreateStaff } from "../../services/queries/req.query";
+import { UseEditUser, useProfileById } from "../../services/queries/req.query";
+import { Success } from "./editUser.styled";
 
 const formField = {
   first_name: "",
@@ -18,41 +20,44 @@ const formField = {
   email: "",
   address: "",
   phone: "",
-  user_type: "staff",
-  licence_no: "",
-  user_role: "user",
+  user_type: "",
+  blood_group: "",
   job_title: "",
   password: "",
   sex: "",
   next_of_kin: "",
   next_of_kin_phone: "",
   next_of_kin_address: "",
-  relationship: "",
+  relation: "",
 };
 
-const NewStaffContainer = () => {
+const EditPatient = () => {
+  const { userId } = useParams();
   const [formData, setFormData] = useState(formField);
+
+  const onSuccess = (data) => {
+    setFormData(data);
+  };
+  const onError = () => {
+    console.log("error");
+  };
+  const { isLoading } = useProfileById(userId, onSuccess, onError);
   const {
     first_name,
     last_name,
     email,
     address,
     phone,
-    job_title,
-    licence_no,
+    blood_group,
     password,
     sex,
     next_of_kin,
     next_of_kin_phone,
     next_of_kin_address,
-    relationship,
+    relation,
   } = formData;
 
-  const { mutate, isSuccess, isLoading } = useCreateStaff();
-
-  const resetFeild = () => {
-    setFormData(formField);
-  };
+  const { mutate, isSuccess } = UseEditUser(userId);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,29 +67,30 @@ const NewStaffContainer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutate(formData);
-    resetFeild();
   };
-
   return (
     <Section>
       {isLoading ? (
-        <DetailList />
+        <Success>
+          <ThreeDots />
+        </Success>
       ) : isSuccess ? (
-        <div>
-          <h3>Successfully Compeleted</h3>
+        <Success>
+          <SubHeading green>Successfully Compeleted</SubHeading>
           <Link to={"/dashboard/staff"}>
             <Button primary>Go back</Button>
           </Link>
-        </div>
+        </Success>
       ) : (
         <Form onSubmit={handleSubmit}>
-          <Link to="/dashboard/staff">
+          <Link to="/dashboard/patients">
             {" "}
             <MdKeyboardBackspace
               style={{ fontSize: "1.8rem", color: "black" }}
             />
           </Link>
-          <p>Fill in the staff informations</p>
+          <p>Kindly fill in the patient's details</p>
+
           <Fieldset>
             <label htmlFor="first_name">First Name:</label>
             <Input
@@ -93,7 +99,7 @@ const NewStaffContainer = () => {
               name="first_name"
               value={first_name}
               onChange={handleChange}
-              placeholder=""
+              placeholder="e.g: John"
             />
           </Fieldset>
           <Fieldset>
@@ -104,13 +110,34 @@ const NewStaffContainer = () => {
               name="last_name"
               value={last_name}
               onChange={handleChange}
-              placeholder=""
+              placeholder="e.g: Doe"
+            />
+          </Fieldset>
+          <Fieldset>
+            <label htmlFor="email">Email:</label>
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="e.g: someone@example.com"
+            />
+          </Fieldset>
+          <Fieldset>
+            <label htmlFor="password">Password:</label>
+            <Input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
             />
           </Fieldset>
           <Fieldset>
             <label htmlFor="sex">Sex:</label>
             <Select name="sex" id="sex" value={sex} onChange={handleChange}>
-              <option value="" disabled>
+              <option value="" selected disabled>
                 - - - Select Patient's Sex - - -
               </option>
               <option value="male">Male</option>
@@ -127,28 +154,7 @@ const NewStaffContainer = () => {
               name="phone"
               value={phone}
               onChange={handleChange}
-              placeholder="+2348126535797"
-            />
-          </Fieldset>
-          <Fieldset>
-            <label htmlFor="email">Email:</label>
-            <Input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              placeholder="someone@example.com"
-            />
-          </Fieldset>
-          <Fieldset>
-            <label htmlFor="password">Password:</label>
-            <Input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
+              placeholder="eg: +234 8082 5555 777"
             />
           </Fieldset>
           <Fieldset>
@@ -159,29 +165,47 @@ const NewStaffContainer = () => {
               name="address"
               value={address}
               onChange={handleChange}
-              placeholder="213 New Haven, Ebute Meta Abuja"
+              placeholder="eg: 123 pyper avenue"
             />
           </Fieldset>
           <Fieldset>
-            <label htmlFor="licence_no">Medical Licence:</label>
-            <Input
-              type="text"
-              id="licence_no"
-              name="licence_no"
-              value={licence_no}
+            <label htmlFor="blood_group">Blood Group:</label>
+            <Select
+              name="blood_group"
+              id="blood_group"
+              value={blood_group}
               onChange={handleChange}
-            />
+            >
+              <option value="" selected disabled>
+                - - - Select Patient's Blood Group - - -
+              </option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="AB+">AB+</option>
+            </Select>
           </Fieldset>
           <Fieldset>
-            <label htmlFor="job_title">Job Title:</label>
-            <Input
-              type="text"
-              id="job_title"
-              name="job_title"
-              value={job_title}
-              onChange={handleChange}
-              placeholder="Doctor"
-            />
+            <label htmlFor="genotype">Genotype:</label>
+            <Select name="genotype" id="genotype">
+              <option value="" selected disabled>
+                - - - Select Patient's Genotype - - -
+              </option>
+              <option value="AA">AA</option>
+              <option value="AS">AS</option>
+              <option value="AC">AC</option>
+              <option value="SS">SS</option>
+              <option value="SC">SC+</option>
+            </Select>
+          </Fieldset>
+          <Fieldset>
+            <label htmlFor="disability">Disability:</label>
+            <Input type="text" id="disability" name="disability" />
+          </Fieldset>
+          <Fieldset>
+            <label htmlFor="chronic_disease">Chronic Disease:</label>
+            <Input type="text" id="chronic_disease" name="chronic_disease" />
           </Fieldset>
           <Fieldset>
             <label htmlFor="next_of_kin">Next of Kin:</label>
@@ -214,14 +238,14 @@ const NewStaffContainer = () => {
             />
           </Fieldset>
           <Fieldset>
-            <label htmlFor="relationship">Relationship with Next of Kin:</label>
+            <label htmlFor="relation">Relationship with Next of Kin:</label>
             <Input
               type="text"
-              id="relationship"
-              name="relationship"
-              placeholder="brother"
-              value={relationship}
+              id="relation"
+              name="relation"
+              value={relation}
               onChange={handleChange}
+              placeholder="Mother"
             />
           </Fieldset>
           <Fieldset>
@@ -233,4 +257,4 @@ const NewStaffContainer = () => {
   );
 };
 
-export default NewStaffContainer;
+export default EditPatient;

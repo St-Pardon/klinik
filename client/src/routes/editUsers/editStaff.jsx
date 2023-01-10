@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button } from "../../components/button/button.styled";
 import {
   Fieldset,
@@ -8,9 +8,11 @@ import {
   Input,
   Select,
 } from "../../components/form/form.styled";
-import { DetailList } from "../../components/Loader/loaders";
+import { SubHeading } from "../../components/heading/heading.component";
+import { ThreeDots } from "../../components/Loader/loaders";
 import { Section } from "../../containers/container.styled";
-import { useCreateStaff } from "../../services/queries/req.query";
+import { UseEditUser, useProfileById } from "../../services/queries/req.query";
+import { Success } from "./editUser.styled";
 
 const formField = {
   first_name: "",
@@ -30,8 +32,17 @@ const formField = {
   relationship: "",
 };
 
-const NewStaffContainer = () => {
+const EditStaff = () => {
+  const { userId } = useParams();
   const [formData, setFormData] = useState(formField);
+
+  const onSuccess = (data) => {
+    setFormData(data);
+  };
+  const onError = () => {
+    console.log("error");
+  };
+  const { isLoading } = useProfileById(userId, onSuccess, onError);
   const {
     first_name,
     last_name,
@@ -40,7 +51,6 @@ const NewStaffContainer = () => {
     phone,
     job_title,
     licence_no,
-    password,
     sex,
     next_of_kin,
     next_of_kin_phone,
@@ -48,11 +58,7 @@ const NewStaffContainer = () => {
     relationship,
   } = formData;
 
-  const { mutate, isSuccess, isLoading } = useCreateStaff();
-
-  const resetFeild = () => {
-    setFormData(formField);
-  };
+  const { mutate, isSuccess } = UseEditUser(userId);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,20 +68,21 @@ const NewStaffContainer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutate(formData);
-    resetFeild();
   };
 
   return (
     <Section>
       {isLoading ? (
-        <DetailList />
+        <Success>
+          <ThreeDots />
+        </Success>
       ) : isSuccess ? (
-        <div>
-          <h3>Successfully Compeleted</h3>
+        <Success>
+          <SubHeading green>Successfully Compeleted</SubHeading>
           <Link to={"/dashboard/staff"}>
             <Button primary>Go back</Button>
           </Link>
-        </div>
+        </Success>
       ) : (
         <Form onSubmit={handleSubmit}>
           <Link to="/dashboard/staff">
@@ -139,16 +146,6 @@ const NewStaffContainer = () => {
               value={email}
               onChange={handleChange}
               placeholder="someone@example.com"
-            />
-          </Fieldset>
-          <Fieldset>
-            <label htmlFor="password">Password:</label>
-            <Input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
             />
           </Fieldset>
           <Fieldset>
@@ -233,4 +230,4 @@ const NewStaffContainer = () => {
   );
 };
 
-export default NewStaffContainer;
+export default EditStaff;

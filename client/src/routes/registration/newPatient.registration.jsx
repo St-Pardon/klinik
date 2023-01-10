@@ -23,7 +23,7 @@ const formField = {
   next_of_kin: "",
   next_of_kin_phone: "",
   next_of_kin_address: "",
-  relationship: "",
+  relation: "",
 };
 
 const NewPatientContainer = () => {
@@ -40,7 +40,7 @@ const NewPatientContainer = () => {
     next_of_kin,
     next_of_kin_phone,
     next_of_kin_address,
-    relationship,
+    relation,
   } = formData;
 
   const resetFeild = () => {
@@ -213,12 +213,12 @@ const NewPatientContainer = () => {
           />
         </Fieldset>
         <Fieldset>
-          <label htmlFor="relationship">Relationship with Next of Kin:</label>
+          <label htmlFor="relation">Relationship with Next of Kin:</label>
           <Input
             type="text"
-            id="relationship"
-            name="relationship"
-            value={relationship}
+            id="relation"
+            name="relation"
+            value={relation}
             onChange={handleChange}
             placeholder="Mother"
           />
