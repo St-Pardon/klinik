@@ -2,8 +2,7 @@
 from flask_cors import CORS
 from flasgger import Swagger
 from  flasgger.utils import swag_from
-from flask_bcrypt import Bcrypt
-# from flask_sqlalchemy import SQLAlchemy 
+from flask_bcrypt import Bcrypt 
 from flask import Flask, make_response, jsonify
 from api.v1.views import app_views
 import datetime
@@ -17,16 +16,42 @@ app = Flask(__name__)
 
 
 """Config for swagger doc """
+
+
+template = {
+  "swagger": "2.0",
+  "info": {
+    "title": "Flask Restful Swagger Demo",
+    "description": "A Demof for the Flask-Restful Swagger Demo",
+    "version": "0.1.1",
+    "contact": {
+      "name": "Klinik",
+      "url": "https://Kanoki.org",
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+
+}
+
 app.config['SWAGGER'] = {
     'title': 'KLINIK Restful API',
     'uiversion': 3,
     "url_prefix": "/api/v1/docs"
 }
 
-SWAGGER_TEMPLATE = {
-   "securityDefinitions": {"APIKeyHeader": {"type": "apiKey", "name": "x-access-token", "in": "header"}}}
-
-swagger = Swagger(app, template=SWAGGER_TEMPLATE)
+swagger = Swagger(app, template= template)
 
 """ config to return a friendly json object """
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True

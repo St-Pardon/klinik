@@ -1,14 +1,14 @@
 from api.v1.views import app_views
 from models import storage
 from api.v1.views import app_views
-from flask import request, abort, make_response, jsonify
-# from  api.utils import verifyDetails, hashPassword
-# from models.patient_details import PatientDetails
-from models.doctor_report import DoctorReport
+from flask import request, abort, jsonify
+
 from flasgger.utils import swag_from
-        
+
+from flask_jwt_extended import jwt_required
 
 @app_views.route("/doctor/createRecord", methods=["POST"])
+@jwt_required()
 @swag_from("documentation/doctor/doctor_record.yml")
 def doctor_record():
     obj = {}
