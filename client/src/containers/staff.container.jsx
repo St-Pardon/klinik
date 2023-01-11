@@ -74,7 +74,7 @@ const StaffContainer = () => {
                   <Td>{item.address}</Td>
                   <Td>{item.job_title}</Td>
                   <Td>{item.user_role}</Td>
-                  <Td>On duty</Td>
+                  <Td>{item.status ? "On Duty" : "Off Duty"}</Td>
                   {edit && (
                     <Td>
                       <Icon edit>

@@ -23,7 +23,7 @@ const UserProfile = () => {
     <>
       {" "}
       <Banner>
-        <Link to="/dashboard/patients">
+        <Link to="/dashboard/overview">
           {" "}
           <MdKeyboardBackspace style={{ fontSize: "1.8rem", color: "black" }} />
         </Link>

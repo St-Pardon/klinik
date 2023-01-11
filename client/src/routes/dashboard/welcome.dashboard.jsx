@@ -6,16 +6,19 @@ import { Icon } from "../../components/icon/icon.styled";
 import { Section } from "../../containers/container.styled";
 import { Link } from "react-router-dom";
 
-const WelcomeDashboard = ({ job_type, user = null, appointment = null }) => {
+const WelcomeDashboard = ({ job_type, appointment = null }) => {
   const date = new Date().toUTCString();
   return (
     <Section center>
       <h3>
-        Hello {job_type} {user === null ? "user" : user}, Welcome to your
-        Dashboard
+        Hello {job_type}{" "}
+        {localStorage.getItem("fullname") === null
+          ? "user"
+          : localStorage.getItem("fullname")}
+        , Welcome to your Dashboard
       </h3>
       <p>
-        Today is {date} and you have {appointment === null ? 0 : appointment}{" "}
+        Today is {date} and you have {appointment === null ? 0 : appointment}{" "} appointments
         today.
       </p>
       <Icon welcome>

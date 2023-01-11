@@ -1,4 +1,5 @@
 import {
+  createPatient,
   createStaff,
   deleteUser,
   editUser,
@@ -7,6 +8,7 @@ import {
   getDrugData,
   getPatientRecords,
   getProfileById,
+  Signin,
 } from "../api/req.api";
 import { useQuery, useMutation } from "react-query";
 
@@ -38,6 +40,10 @@ export const useCreateStaff = () => {
   return useMutation(createStaff);
 };
 
+export const useCreatePatient = () => {
+  return useMutation(createPatient);
+};
+
 export const UseDeleteUser = (onSuccess, onError) => {
   return useMutation(
     (userId) => {
@@ -51,4 +57,8 @@ export const UseEditUser = (userId) => {
   return useMutation((data) => {
     editUser(userId, data);
   });
+};
+
+export const UseSignin = (onSuccess, onError) => {
+  return useMutation(Signin, { onSuccess, onError });
 };

@@ -8,9 +8,11 @@ import {
   Input,
   Select,
 } from "../../components/form/form.styled";
-import { DetailList } from "../../components/Loader/loaders";
+import { SubHeading } from "../../components/heading/heading.component";
+import { ThreeDots } from "../../components/Loader/loaders";
 import { Section } from "../../containers/container.styled";
 import { useCreateStaff } from "../../services/queries/req.query";
+import { Success } from "../editUsers/editUser.styled";
 
 const formField = {
   first_name: "",
@@ -68,14 +70,16 @@ const NewStaffContainer = () => {
   return (
     <Section>
       {isLoading ? (
-        <DetailList />
+        <Success>
+          <ThreeDots />
+        </Success>
       ) : isSuccess ? (
-        <div>
-          <h3>Successfully Compeleted</h3>
+        <Success>
+          <SubHeading green>Successfully Compeleted</SubHeading>
           <Link to={"/dashboard/staff"}>
             <Button primary>Go back</Button>
           </Link>
-        </div>
+        </Success>
       ) : (
         <Form onSubmit={handleSubmit}>
           <Link to="/dashboard/staff">

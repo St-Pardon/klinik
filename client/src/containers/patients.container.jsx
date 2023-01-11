@@ -43,8 +43,8 @@ const PatientsContainer = () => {
               <Th>Phone No</Th>
               <Th>Email</Th>
               <Th>Address</Th>
-              <Th>Last Checkup</Th>
-              <Th>Primary Doctor</Th>
+              <Th>Blood Group</Th>
+              <Th>Genotype</Th>
               <Th>Next of Kin</Th>
               <Th>Next of Kin Contact</Th>
               {edit && <Th>Edit</Th>}
@@ -73,8 +73,8 @@ const PatientsContainer = () => {
                   <Td>{item.address}</Td>
                   <Td>{item.email}</Td>
                   <Td>{item.address}</Td>
-                  <Td>12 June 2022</Td>
-                  <Td>Dr. Joseph Pope</Td>
+                  <Td>{item.blood_group}</Td>
+                  <Td>{item.genotype}</Td>
                   <Td>{item.next_of_kin}</Td>
                   <Td>{item.next_of_kin_phone}</Td>
                   {edit && (
