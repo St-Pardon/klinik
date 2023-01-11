@@ -73,7 +73,7 @@ const LandingPage = () => {
           <Navlink href="#home">
             <p>Home</p>
           </Navlink>
-          <Navlink href="#service">
+          <Navlink href="#services">
             <p>Service</p>
           </Navlink>
           <Navlink href="#about-us">
