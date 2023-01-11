@@ -12,10 +12,7 @@ from flask_jwt_extended import JWTManager
 
 import dotenv
 
-# dotenv.load_dotenv()
-# print(os.getenv('NUM'))
-# dotenv.set_key('.env', 'NUM', "5")
-# print(os.getenv('NUM'))
+dotenv.load_dotenv()
 
 """Instantiate flask object """
 app = Flask(__name__)
@@ -68,14 +65,8 @@ app.register_blueprint(app_views)
 """ cors for /api/v1 """
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
-
-# """Config for database"""
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-# db = SQLAlchemy(app)
-# db.init_app(app)
-
 """ config for secret key"""
-app.config['SECRET_KEY'] = 'sasdjshdjfsdk'
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(minutes=30)
 
 
