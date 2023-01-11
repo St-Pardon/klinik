@@ -14,7 +14,7 @@ const SettingsContainer = () => {
         </Fieldset>
       </Form>
       <div>
-        <p>Reset Password</p>
+        <p onClick={()=>{setOpen(!open)}}>Reset Password</p>
         <Fieldset style={open ? { display: "flex" } : { display: " none" }}>
           <Input
             type="password"
