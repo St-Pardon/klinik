@@ -27,7 +27,7 @@ const onSuccess = (res) => {
   localStorage.setItem("fullname", fullname);
   navigate("/dashboard");
   getJob_type(data.details.job_title);
-  getUser_role(data.details.user_type);
+  getUser_role(data.details.user_role);
 };
 
 const onError = (err) => {

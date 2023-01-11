@@ -20,15 +20,15 @@ const formField = {
   email: "",
   address: "",
   phone: "",
-  user_type: "",
-  blood_group: "",
-  job_title: "",
-  password: "",
   sex: "",
   next_of_kin: "",
   next_of_kin_phone: "",
   next_of_kin_address: "",
   relation: "",
+  chronic_disease: "",
+  disability: "",
+  genotype: "",
+  blood_group: "",
 };
 
 const EditPatient = () => {
@@ -49,12 +49,14 @@ const EditPatient = () => {
     address,
     phone,
     blood_group,
-    password,
     sex,
     next_of_kin,
     next_of_kin_phone,
     next_of_kin_address,
     relation,
+    chronic_disease,
+    disability,
+    genotype,
   } = formData;
 
   const { mutate, isSuccess } = UseEditUser(userId);
@@ -125,16 +127,6 @@ const EditPatient = () => {
             />
           </Fieldset>
           <Fieldset>
-            <label htmlFor="password">Password:</label>
-            <Input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-            />
-          </Fieldset>
-          <Fieldset>
             <label htmlFor="sex">Sex:</label>
             <Select name="sex" id="sex" value={sex} onChange={handleChange}>
               <option value="" selected disabled>
@@ -176,7 +168,7 @@ const EditPatient = () => {
               value={blood_group}
               onChange={handleChange}
             >
-              <option value="" selected disabled>
+              <option value="" disabled>
                 - - - Select Patient's Blood Group - - -
               </option>
               <option value="O+">O+</option>
@@ -188,8 +180,8 @@ const EditPatient = () => {
           </Fieldset>
           <Fieldset>
             <label htmlFor="genotype">Genotype:</label>
-            <Select name="genotype" id="genotype">
-              <option value="" selected disabled>
+            <Select name="genotype" value={genotype} onChange={handleChange} id="genotype">
+              <option value="" disabled>
                 - - - Select Patient's Genotype - - -
               </option>
               <option value="AA">AA</option>
@@ -201,11 +193,11 @@ const EditPatient = () => {
           </Fieldset>
           <Fieldset>
             <label htmlFor="disability">Disability:</label>
-            <Input type="text" id="disability" name="disability" />
+            <Input type="text" id="disability" name="disability" value={disability} onChange={handleChange} />
           </Fieldset>
           <Fieldset>
             <label htmlFor="chronic_disease">Chronic Disease:</label>
-            <Input type="text" id="chronic_disease" name="chronic_disease" />
+            <Input type="text" id="chronic_disease" name="chronic_disease" value={chronic_disease} onChange={handleChange} />
           </Fieldset>
           <Fieldset>
             <label htmlFor="next_of_kin">Next of Kin:</label>
