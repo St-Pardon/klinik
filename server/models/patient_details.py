@@ -5,6 +5,10 @@ import sqlalchemy
 from sqlalchemy import Column, String, Text, Boolean
 from sqlalchemy.orm import relationship
 from datetime import datetime
+import dotenv
+import os
+
+dotenv.load_dotenv()
 
 class PatientDetails(BaseModel, Base):
     """Patient Details """
@@ -31,9 +35,11 @@ class PatientDetails(BaseModel, Base):
     nurse_report = relationship("NurseReport",
                               backref="patient",
                               cascade="all, delete, delete-orphan")
-    count = 1
+
+    count = int(os.getenv('PATIENT_ID'))
     def __init__(self, *args, **kwargs):
         """initializes Review"""
         super().__init__(*args, **kwargs)
-        # self.count += 1
-        # self.reg_no = 'P' + str(datetime.today().year) + 'F' + str(10000 + count)
+        PatientDetails.count += 1
+        self.reg_no = 'P' + str(datetime.today().year) + 'PA' + str(PatientDetails.count)
+        dotenv.set_key('.env', 'PATIENT_ID', str(PatientDetails.count))
