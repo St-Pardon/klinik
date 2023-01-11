@@ -20,7 +20,6 @@ def regpatient():
     new["email"] = details.get("email")
     new["address"] = details.get("address")
     new["phone"] = details.get("phone")
-    new["file_no"] = details.get("file_no")
     new["password"] = hashPassword(details.get("first_name"))
 
     new["sex"] = details.get("sex")
@@ -36,16 +35,16 @@ def regpatient():
     new["genotype"] = details.get("genotype")
     new["blood_group"] = details.get("blod_group")
 
-    
-    obj = {"class_": class_, "obj": {"file_no": new.get("file_no")}}
-    data = storage.get_one(**obj)
-    if not check or data != None:
-        abort(400)
+   
+    if not check:
+        return (jsonify({"error": "bad request"}), 400)
+    obj = {"class_": class_}
     obj["obj"] = new
     patient = storage.new(**obj)
     new["created_at"] = patient.created_at
     new["updated_at"] = patient.updated_at
     new["id"] = patient.id
+    new["file_no"] = patient.file_no
     del new["password"]
     return (make_response(jsonify(new)), 201)
 

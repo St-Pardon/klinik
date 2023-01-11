@@ -10,11 +10,6 @@ from flasgger.utils import swag_from
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required
 
-# from multiprocessing import Value
-# from datetime import datetime
-
-# counter = Value('i', 0)
-
 
 @app_views.route("/regstaff", methods=["POST"])
 @jwt_required()
@@ -39,17 +34,10 @@ def regStaff():
     new["next_of_kin_address"] = details.get("next_of_kin_address")
     new["relationship"] = details.get("relationship")
 
-    # """Increment the doctor Reg_no"""
-    # with counter.get_lock():
-    #     counter.value += 1
-    #     out = counter.value
-    # new["reg_no"] = "out"
-
     check = verifyDetails(new)
-    obj = {"class_": class_, "obj": {"reg_no": new.get("reg_no")}}
-    data = storage.get_one(**obj)
-    if not check or data != None:
+    if not check:
         return (jsonify({"error": "invalid input"}), 400)
+    obj = {"class_": class_}
     obj["obj"] = new
     staff = storage.new(**obj)
     new["created_at"] = staff.created_at
