@@ -10,10 +10,10 @@ from flasgger.utils import swag_from
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required
 
-from multiprocessing import Value
-from datetime import datetime
+# from multiprocessing import Value
+# from datetime import datetime
 
-counter = Value('i', 0)
+# counter = Value('i', 0)
 
 
 @app_views.route("/regstaff", methods=["POST"])
@@ -64,7 +64,7 @@ def regStaff():
 @jwt_required()
 @swag_from("documentation/profile/get_staff.yml")
 def getProfile(id):
-    """Get the Patient or Staff Profile details in database """
+    """Get the Patient or Staff Profile details in database by ID"""
     class_name = id.split('.')
     class_ = class_name[0]
     obj = {"class_": class_, "obj": {"id": id}}

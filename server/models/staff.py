@@ -3,7 +3,10 @@ from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, String,  Text, Boolean
 from datetime import datetime
+import dotenv
+import os
 
+dotenv.load_dotenv()
 class Staff(BaseModel, Base):
     """Table for staff details"""
     __tablename__ = "staffDetails"
@@ -24,10 +27,11 @@ class Staff(BaseModel, Base):
     relationship = Column(String(80), nullable=False)
     status = Column(Boolean, default=False)
 
-    count = 1
+    count = int(os.getenv('STAFF_ID'))
 
     def __init__(self, *args, **kwargs):
         """initializes Review"""
         super().__init__(*args, **kwargs)
         Staff.count += 1
         self.reg_no = 'S' + str(datetime.today().year) + "DS" + str(Staff.count)
+        dotenv.set_key('.env', 'STAFF_ID', str(Staff.count))

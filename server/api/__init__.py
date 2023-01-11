@@ -7,9 +7,15 @@ from flask import Flask, make_response, jsonify
 from api.v1.views import app_views
 import datetime
 
-
+import os
 from flask_jwt_extended import JWTManager
 
+import dotenv
+
+# dotenv.load_dotenv()
+# print(os.getenv('NUM'))
+# dotenv.set_key('.env', 'NUM', "5")
+# print(os.getenv('NUM'))
 
 """Instantiate flask object """
 app = Flask(__name__)
