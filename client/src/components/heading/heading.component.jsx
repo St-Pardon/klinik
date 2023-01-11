@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components'
+import styled, { css } from "styled-components";
 
 export const SubHeading = styled.h4`
   color: #444446;
@@ -21,6 +21,13 @@ export const SubHeading = styled.h4`
     css`
       padding: 5px 0;
     `}
+  ${(props) =>
+    props.green &&
+    css`
+      color: green;
+      font: 1.5rem;
+      text-align: center;
+    `}
     ${(props) =>
     props.profile &&
     css`
@@ -41,7 +48,7 @@ export const SecHeading = styled.h3`
     props.peek &&
     css`
       text-align: center;
-      color: #FFF;
+      color: #fff;
     `}
   ${(props) =>
     props.name &&

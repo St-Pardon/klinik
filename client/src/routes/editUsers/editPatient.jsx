@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button } from "../../components/button/button.styled";
-// import { Button } from "../../components/button/button.styled";
 import {
   Fieldset,
   Form,
@@ -12,8 +11,8 @@ import {
 import { SubHeading } from "../../components/heading/heading.component";
 import { ThreeDots } from "../../components/Loader/loaders";
 import { Section } from "../../containers/container.styled";
-import { useCreatePatient } from "../../services/queries/req.query";
-import { Success } from "../editUsers/editUser.styled";
+import { UseEditUser, useProfileById } from "../../services/queries/req.query";
+import { Success } from "./editUser.styled";
 
 const formField = {
   first_name: "",
@@ -23,6 +22,7 @@ const formField = {
   phone: "",
   user_type: "",
   blood_group: "",
+  job_title: "",
   password: "",
   sex: "",
   next_of_kin: "",
@@ -31,8 +31,17 @@ const formField = {
   relation: "",
 };
 
-const NewPatientContainer = () => {
+const EditPatient = () => {
+  const { userId } = useParams();
   const [formData, setFormData] = useState(formField);
+
+  const onSuccess = (data) => {
+    setFormData(data);
+  };
+  const onError = () => {
+    console.log("error");
+  };
+  const { isLoading } = useProfileById(userId, onSuccess, onError);
   const {
     first_name,
     last_name,
@@ -48,11 +57,7 @@ const NewPatientContainer = () => {
     relation,
   } = formData;
 
-  const { mutate, isSuccess, isLoading } = useCreatePatient();
-
-  const resetFeild = () => {
-    setFormData(formField);
-  };
+  const { mutate, isSuccess } = UseEditUser(userId);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,7 +67,6 @@ const NewPatientContainer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutate(formData);
-    resetFeild();
   };
   return (
     <Section>
@@ -73,7 +77,7 @@ const NewPatientContainer = () => {
       ) : isSuccess ? (
         <Success>
           <SubHeading green>Successfully Compeleted</SubHeading>
-          <Link to={"/dashboard/patient"}>
+          <Link to={"/dashboard/staff"}>
             <Button primary>Go back</Button>
           </Link>
         </Success>
@@ -175,11 +179,11 @@ const NewPatientContainer = () => {
               <option value="" selected disabled>
                 - - - Select Patient's Blood Group - - -
               </option>
-              <option value="O Positive">O+</option>
-              <option value="O Negative">O-</option>
-              <option value="A Positive">A+</option>
-              <option value="A Negative">A-</option>
-              <option value="AB Positive">AB+</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="AB+">AB+</option>
             </Select>
           </Fieldset>
           <Fieldset>
@@ -253,4 +257,4 @@ const NewPatientContainer = () => {
   );
 };
 
-export default NewPatientContainer;
+export default EditPatient;

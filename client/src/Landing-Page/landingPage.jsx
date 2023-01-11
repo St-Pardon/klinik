@@ -117,7 +117,7 @@ const LandingPage = () => {
           </Para>
           <ProductComponent />
         </Section>
-        <section id="service">
+        <section id="services">
           <SecHeading center>Our Services</SecHeading>
           <ServicesContainer>
             <Service>

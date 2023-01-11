@@ -4,37 +4,99 @@ const BaseURI = "https://www.st-pardon.tech/api/v1";
 
 // Patients
 export const getProfileById = (userId) => {
-  return axios.get(`${BaseURI}/getprofile/${userId}`).then((res) => res.data);
+  return axios
+    .get(`${BaseURI}/getprofile/${userId}`, {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      }})
+    .then((res) => res.data);
 };
 
 export const getAllPatient = () => {
-  return axios.get(`${BaseURI}/patient/all-profile`).then((res) => res.data);
+  return axios
+    .get(`${BaseURI}/patient/all-profile`, {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .then((res) => res.data);
 };
 
-export const getAllStaff= () => {
-  return axios.get(`${BaseURI}/allstaffprofile`).then((res) => res.data);
+export const getAllStaff = () => {
+  return axios
+    .get(`${BaseURI}/allstaffprofile`, {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      }})
+    .then((res) => res.data);
 };
 
 export const getPatientRecords = (userId) => {
-  return axios.get(`${BaseURI}/patient/all-single-record/${userId}`).then((res) => res.data);
+  return axios
+    .get(`${BaseURI}/patient/all-single-record/${userId}`, {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      } })
+    .then((res) => res.data);
 };
 
-export const getDrugData= () => {
-  return axios.get(`${BaseURI}/`).then((res) => res.data); //not complete
+export const getDrugData = () => {
+  return axios
+    .get(`${BaseURI}/`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .then((res) => res.data); //not complete
 };
-
 
 // create staff
-export const createStaff = () => {
-  return axios.post(`${BaseURI}/regstaff`, {Authentication: localStorage.getItem("jwt")})
-}
+export const createStaff = (data) => {
+  return axios.post(`${BaseURI}/regstaff`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
 
 // create patient
-export const createPatient = () => {
-  return axios.post(`${BaseURI}/patient/register`, {Authentication: localStorage.getItem("jwt")})
-}
+export const createPatient = (data) => {
+  return axios.post(`${BaseURI}/patient/register`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
 
 // create patient
 export const deleteUser = (userId) => {
-  return axios.post(`${BaseURI}/deleteprofile/${userId}`, {Authentication: localStorage.getItem("jwt")})
-}
+  return axios.delete(`${BaseURI}/deleteprofile/${userId}`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
+
+// edit user
+export const editUser = (userId, data) => {
+  console.log(userId, data);
+  return axios.put(`${BaseURI}/updateprofile/${userId}`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
+
+// create patient
+export const Signin = (data) => {
+  return axios.post(`${BaseURI}/login`, data);
+};

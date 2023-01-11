@@ -3,16 +3,23 @@ import { FaUserEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../components/button/button.styled";
 import { DataTable } from "../components/Loader/loaders";
-import { useAllPatient } from "../services/queries/req.query";
+import { useAllPatient, UseDeleteUser } from "../services/queries/req.query";
 import { Row, Section, Table, Td, Th, Thead } from "./container.styled";
-import { handleDelete, handleEdit } from "../services/function/helper.functions";
+import { handleEdit } from "../services/function/helper.functions";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import { Icon } from "../components/icon/icon.styled";
 import { MdOutlineDeleteForever } from "react-icons/md";
 
 const PatientsContainer = () => {
-  const { isLoading, data } = useAllPatient();
+  const { isLoading, data, refetch } = useAllPatient();
   const [edit, setEdit] = useState(false);
+  const onSuccess = () => {
+    refetch();
+  };
+  const onError = (err) => {
+    console.log(err);
+  };
+  const { mutate } = UseDeleteUser(onSuccess, onError);
 
   return (
     <Section>
@@ -36,8 +43,8 @@ const PatientsContainer = () => {
               <Th>Phone No</Th>
               <Th>Email</Th>
               <Th>Address</Th>
-              <Th>Last Checkup</Th>
-              <Th>Primary Doctor</Th>
+              <Th>Blood Group</Th>
+              <Th>Genotype</Th>
               <Th>Next of Kin</Th>
               <Th>Next of Kin Contact</Th>
               {edit && <Th>Edit</Th>}
@@ -66,19 +73,21 @@ const PatientsContainer = () => {
                   <Td>{item.address}</Td>
                   <Td>{item.email}</Td>
                   <Td>{item.address}</Td>
-                  <Td>12 June 2022</Td>
-                  <Td>Dr. Joseph Pope</Td>
-                  <Td>Jane Doe</Td>
-                  <Td>08027162632</Td>
+                  <Td>{item.blood_group}</Td>
+                  <Td>{item.genotype}</Td>
+                  <Td>{item.next_of_kin}</Td>
+                  <Td>{item.next_of_kin_phone}</Td>
                   {edit && (
                     <Td>
                       <Icon edit>
-                        <Link to={`/edit/:${item.id}`}>
+                        <Link to={`/edit_patient/:${item.id}`}>
                           {" "}
                           <HiOutlinePencilAlt />
                         </Link>{" "}
                         <MdOutlineDeleteForever
-                          onClick={() => {handleDelete(item.id)}}
+                          onClick={() => {
+                            mutate(item.id);
+                          }}
                           style={{ color: "red" }}
                         />
                       </Icon>
