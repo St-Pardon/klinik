@@ -41,5 +41,5 @@ class PatientDetails(BaseModel, Base):
         """initializes Review"""
         super().__init__(*args, **kwargs)
         PatientDetails.count += 1
-        self.reg_no = 'P' + str(datetime.today().year) + 'PA' + str(PatientDetails.count)
+        self.file_no = 'P' + str(datetime.today().year) + 'PA' + str(PatientDetails.count)
         dotenv.set_key('.env', 'PATIENT_ID', str(PatientDetails.count))
