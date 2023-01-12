@@ -286,3 +286,6 @@ const NewPatientContainer = () => {
     </Section>
   );
 };
+
+
+export default NewPatientContainer;
