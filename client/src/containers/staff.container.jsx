@@ -63,7 +63,7 @@ const StaffContainer = () => {
                   style={i % 2 === 0 ? { backgroundColor: "#f4f4f4" } : {}}
                 >
                   <Td>{i + 1}</Td>
-                  <Td>
+                  <Td style={{ color: "skyblue" }}>
                     <Link to={`/dashboard/staff_detail/${item.id}`}>
                       {item.first_name} {item.last_name}
                     </Link>

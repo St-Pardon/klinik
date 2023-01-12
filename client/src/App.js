@@ -83,7 +83,7 @@ function App() {
           element: <PatientDetail />,
         },
         {
-          path: "staff_detail",
+          path: "staff_detail/:profileId",
           element: <StaffDetail />,
         },
         {

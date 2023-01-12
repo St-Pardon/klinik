@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BaseURI = "https://www.st-pardon.tech/api/v1";
+const BaseURI = "https://klinik-5ola.onrender.com/api/v1";
 
 // Patients
 export const getProfileById = (userId) => {
