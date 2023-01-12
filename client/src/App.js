@@ -23,6 +23,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import Enonet from "./routes/404/404.route";
 import EditStaff from "./routes/editUsers/editStaff";
 import EditPatient from "./routes/editUsers/editPatient";
+import NurseEntry from "./routes/registration/newNurseEntry";
+import DoctorEntry from "./routes/registration/newDoctorEntry";
 
 function App() {
   const [user_type, setUser_type] = useState("");
@@ -85,6 +87,14 @@ function App() {
         {
           path: "staff_detail/:profileId",
           element: <StaffDetail />,
+        },
+        {
+          path: "nurse_entry/:userId",
+          element: <NurseEntry job_type={job_type} />,
+        },
+        {
+          path: "doctor_entry/:userId",
+          element: <DoctorEntry job_type={job_type} />,
         },
         {
           path: "new_patient",

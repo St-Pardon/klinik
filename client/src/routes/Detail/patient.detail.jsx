@@ -27,7 +27,7 @@ import {
 import { useProfileById } from "../../services/queries/req.query";
 import { ProfileHeadLoader } from "../../components/Loader/loaders";
 
-const PatientDetail = () => {
+const PatientDetail = ({job_type}) => {
   const { profileId } = useParams();
   const { isLoading, data } = useProfileById(profileId);
 
@@ -127,8 +127,8 @@ const PatientDetail = () => {
         </div>
       </Div>
       <hr />
-      <Record userId={data.id} />
-      <Link to={`new_entry/${data?.id}`}>
+      <Record userId={data?.id} />
+      <Link to={job_type === 'Nurse' ? `/dashboard/nurse_entry/${data?.id}` : `/dashboard/doctor_entry/${data?.id}`}>
         <Icon add>
           <BsFillPlusCircleFill title="New Entry" />
         </Icon>

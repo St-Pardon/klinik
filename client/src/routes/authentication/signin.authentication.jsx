@@ -20,7 +20,6 @@ const Signin = ({ getUser, getUser_role, getJob_type }) => {
 
 const onSuccess = (res) => {
   const { data } = res;
-  console.log(data);
   const fullname = `${data.details.first_name} ${data.details.last_name}`;
   localStorage.setItem("token", data.access_token);
   localStorage.setItem("userId", data.details.id);

@@ -40,6 +40,10 @@ export const useCreateStaff = () => {
   return useMutation(createStaff);
 };
 
+export const useNusrseRecord = () => {
+  return useMutation(createStaff);
+};
+
 export const useCreatePatient = () => {
   return useMutation(createPatient);
 };
