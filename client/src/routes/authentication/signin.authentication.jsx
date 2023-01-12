@@ -66,8 +66,8 @@ const handleLogin = (e) => {
                 <GoInfo />
                 To test demo hover here
                 <span className="tooltiptext">
-                  Signin with "P202200001" for patient and "S202200001 for
-                  Nurse". use "qwertyuiop" as password. Explore on PC
+                  Signin with "P2023DS14" for Nurse and "P2023PA2" for Patient".
+                  use "daniel" || "abdu_2" as password. Explore on PC
                 </span>
               </div>
               <p>What best describe you?</p>
