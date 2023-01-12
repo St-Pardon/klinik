@@ -11,6 +11,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required
 
 
+
 @app_views.route("/regstaff", methods=["POST"])
 @jwt_required()
 @swag_from("documentation/profile/create_staff_profile.yml")
@@ -46,6 +47,7 @@ def regStaff():
     new["id"] = staff.id
     del new["password"]
     return  (jsonify(new), 201)
+
 
 
 @app_views.route("/getprofile/<id>", methods=["GET"])
@@ -116,8 +118,6 @@ def deleteprofile(id):
     return ({}, 200)
 
 
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
 @app_views.route("/login", methods=["POST"])
 def login():
     """login route, it requires password and reg_no ro file_no"""
@@ -153,9 +153,3 @@ def staff_duty():
     user = storage.filter_all(**obj)
     return (jsonify(user))
 
-
-# @app_views.route("/duty")
-# def get():
-#     obj = {"class_": "Staff", "key": "Staff.status", "val": "True"}
-#     user = storage.filter_all(**obj)
-#     return (jsonify(user))

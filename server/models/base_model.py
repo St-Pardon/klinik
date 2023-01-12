@@ -16,6 +16,7 @@ class BaseModel:
 
 
     def __init__(self, *args, **kwargs):
+        """Initialize the base model"""
         if kwargs:
             for key, value in kwargs.items():
                 setattr(self, key, value)
