@@ -20,7 +20,6 @@ const Signin = ({ getUser, getUser_role, getJob_type }) => {
 
 const onSuccess = (res) => {
   const { data } = res;
-  console.log(data);
   const fullname = `${data.details.first_name} ${data.details.last_name}`;
   localStorage.setItem("token", data.access_token);
   localStorage.setItem("userId", data.details.id);
@@ -67,8 +66,8 @@ const handleLogin = (e) => {
                 <GoInfo />
                 To test demo hover here
                 <span className="tooltiptext">
-                  Signin with "P202200001" for patient and "S202200001 for
-                  Nurse". use "qwertyuiop" as password. Explore on PC
+                  Signin with "P2023DS14" for Nurse and "P2023PA2" for Patient".
+                  use "daniel" || "abdu_2" as password. Explore on PC
                 </span>
               </div>
               <p>What best describe you?</p>

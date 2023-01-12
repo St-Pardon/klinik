@@ -41,7 +41,8 @@ const OverviewContainer = ({ job_type, user_type }) => {
         ) : null}
 
         {/* ----- widgets for Nurses ----- */}
-        {user_type === "staff" && job_type === "nurse" ? (
+        {user_type === "staff" &&
+        (job_type === "nurse" || job_type === "Nurse") ? (
           <SummaryWidget>
             <SubHeading>Appointment Today</SubHeading>
             <p>
@@ -49,7 +50,8 @@ const OverviewContainer = ({ job_type, user_type }) => {
             </p>
           </SummaryWidget>
         ) : null}
-        {user_type === "staff" && job_type === "nurse" ? (
+        {user_type === "staff" &&
+        (job_type === "nurse" || job_type === "Nurse") ? (
           <SummaryWidget>
             <SubHeading>Doctors on Duty</SubHeading>
             <p>
@@ -58,7 +60,10 @@ const OverviewContainer = ({ job_type, user_type }) => {
           </SummaryWidget>
         ) : null}
         {user_type === "staff" &&
-        (job_type === "nurse" || job_type === "doctor") ? (
+        (job_type === "nurse" ||
+          job_type === "doctor" ||
+          job_type === "Nurse" ||
+          job_type === "Doctor") ? (
           <SummaryWidget>
             <SubHeading>Patients Admitted</SubHeading>
             <p>
@@ -67,7 +72,10 @@ const OverviewContainer = ({ job_type, user_type }) => {
           </SummaryWidget>
         ) : null}
         {user_type === "staff" &&
-        (job_type === "nurse" || job_type === "doctor") ? (
+        (job_type === "nurse" ||
+          job_type === "doctor" ||
+          job_type === "Nurse" ||
+          job_type === "Doctor") ? (
           <SummaryWidget>
             <SubHeading>Processed Patients</SubHeading>
             <Ul>
@@ -127,7 +135,7 @@ const OverviewContainer = ({ job_type, user_type }) => {
             </Ul>
           </SummaryWidget>
         ) : null}
-        {user_type === "staff" && job_type === "chemist" ? (
+        {user_type === "staff" && (job_type === "chemist"||job_type === "Chemist") ? (
           <SummaryWidget>
             <SubHeading>Results to Dispatch</SubHeading>
             <Ul>
@@ -137,7 +145,7 @@ const OverviewContainer = ({ job_type, user_type }) => {
             </Ul>
           </SummaryWidget>
         ) : null}
-        {user_type === "staff" && job_type === "chemist" ? (
+        {user_type === "staff" && (job_type === "chemist"||job_type === "Chemist") ? (
           <SummaryWidget>
             <SubHeading>Processing</SubHeading>
             <p>None</p>

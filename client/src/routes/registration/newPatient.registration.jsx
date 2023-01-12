@@ -79,7 +79,7 @@ const NewPatientContainer = () => {
       ) : isSuccess ? (
         <Success>
           <SubHeading green>Successfully Compeleted</SubHeading>
-          <Link to={"/dashboard/patient"}>
+          <Link to={"/dashboard/patients"}>
             <Button primary>Go back</Button>
           </Link>
         </Success>
@@ -127,7 +127,7 @@ const NewPatientContainer = () => {
             />
           </Fieldset>
           <Fieldset>
-            <label htmlFor="file_no">Email:</label>
+            <label htmlFor="file_no">File No:</label>
             <Input
               type="file_no"
               id="file_no"

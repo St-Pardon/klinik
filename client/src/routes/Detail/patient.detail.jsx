@@ -27,7 +27,7 @@ import {
 import { useProfileById } from "../../services/queries/req.query";
 import { ProfileHeadLoader } from "../../components/Loader/loaders";
 
-const PatientDetail = () => {
+const PatientDetail = ({job_type}) => {
   const { profileId } = useParams();
   const { isLoading, data } = useProfileById(profileId);
 
@@ -82,7 +82,7 @@ const PatientDetail = () => {
                 <Icon detail>
                   <GiDna1 />
                 </Icon>
-                <SubHeading bio>Genotype: AS</SubHeading>
+                <SubHeading bio>Genotype: {data?.genotype}</SubHeading>
               </Div>
               <Div icon>
                 <Icon detail>
@@ -96,7 +96,7 @@ const PatientDetail = () => {
                 <Icon detail>
                   <BsGenderAmbiguous />
                 </Icon>
-                <SubHeading bio>Sex: Male</SubHeading>
+                <SubHeading bio>Sex: {data?.sex}</SubHeading>
               </Div>
               <Div icon>
                 <Icon detail>
@@ -108,27 +108,27 @@ const PatientDetail = () => {
                 <Icon detail>
                   <BsCalendar3Event />
                 </Icon>
-                <SubHeading bio>Next Appointment: 23rd June 2022</SubHeading>
+                <SubHeading bio>Next Appointment: Not Set</SubHeading>
               </Div>
               <Div icon>
                 <Icon detail>
                   <TbDisabled />
                 </Icon>
-                <SubHeading bio>Disability: Nill</SubHeading>
+                <SubHeading bio>Disability: {data?.disability}</SubHeading>
               </Div>
               <Div icon>
                 <Icon detail>
                   <RiVirusLine />
                 </Icon>
-                <SubHeading bio>Chronic Illness: AVN</SubHeading>
+                <SubHeading bio>Chronic Illness: {data?.chronic_dieases}</SubHeading>
               </Div>
             </div>
           </Div>
         </div>
       </Div>
       <hr />
-      <Record userId={data.id} />
-      <Link to="new_entry">
+      <Record userId={data?.id} />
+      <Link to={job_type === 'Nurse' ? `/dashboard/nurse_entry/${data?.id}` : `/dashboard/doctor_entry/${data?.id}`}>
         <Icon add>
           <BsFillPlusCircleFill title="New Entry" />
         </Icon>

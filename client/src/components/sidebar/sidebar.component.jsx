@@ -2,7 +2,7 @@ import React from "react";
 import { BsFillCalendar3WeekFill, BsPeopleFill } from "react-icons/bs";
 import { MdContactSupport, MdSettings } from "react-icons/md";
 import { RiDashboardFill } from "react-icons/ri";
-import { GiMedicinePills } from "react-icons/gi";
+// import { GiMedicinePills } from "react-icons/gi";
 import { FaUserMd } from "react-icons/fa";
 import { Icon } from "../icon/icon.styled";
 import { IconContainer, Menu } from "./sidebar.styled";
@@ -34,7 +34,8 @@ const Sidebar = ({ user_type, user_role, job_type }) => {
         style={({ isActive }) =>
           isActive
             ? activeStyle
-            : user_type === "patient" && user_role !== "admin"
+            : user_type === "patient" &&
+              (user_role !== "admin" || user_role !== "Admin")
             ? { display: "none" }
             : job_type === "nurse"
             ? inactiveStyle
@@ -56,7 +57,8 @@ const Sidebar = ({ user_type, user_role, job_type }) => {
         style={({ isActive }) =>
           isActive
             ? activeStyle
-            : user_type === "patients" || user_role !== "admin"
+            : user_type === "patients" ||
+              user_role !== "Admin"
             ? { display: "none" }
             : inactiveStyle
         }
@@ -68,12 +70,13 @@ const Sidebar = ({ user_type, user_role, job_type }) => {
           <p>Staff</p>
         </IconContainer>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="drugs"
         style={({ isActive }) =>
           isActive
             ? activeStyle
-            : user_type === "patient" && user_role !== "admin"
+            : user_type === "patient" &&
+              (user_role !== "admin" || user_role !== "Admin")
             ? { display: "none" }
             : job_type === "pharmasist"
             ? inactiveStyle
@@ -88,11 +91,11 @@ const Sidebar = ({ user_type, user_role, job_type }) => {
           </Icon>
           <p>Drugs</p>
         </IconContainer>
-      </NavLink>
+      </NavLink>*/}
       <NavLink
         to="appointment"
         style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
-      >
+      > 
         <IconContainer>
           <Icon sb>
             <BsFillCalendar3WeekFill />

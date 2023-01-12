@@ -64,6 +64,14 @@ export const createStaff = (data) => {
     },
   });
 };
+export const createNurseRecord = (data) => {
+  return axios.post(`${BaseURI}/nurse/createRecord`, data, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+};
 
 // create patient
 export const createPatient = (data) => {
