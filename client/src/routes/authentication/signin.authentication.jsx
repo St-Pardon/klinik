@@ -66,8 +66,8 @@ const handleLogin = (e) => {
                 <GoInfo />
                 To test demo hover here
                 <span className="tooltiptext">
-                  Signin with "S2023DS14" for Nurse".
-                  use "admin". You can create a patient to signin as a patient. Explore on PC
+                  Signin with "S2023DS16" as a Nurse".
+                  use "admin" as the password. You can create a patient to signin as a patient. Explore on PC
                 </span>
               </div>
               <p>What best describe you?</p>
